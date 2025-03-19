@@ -42,12 +42,8 @@
 
     <!-- Sección de imágenes -->
     <div class="flex flex-col gap-8">
-      <NuxtImg
-        src="https://jdelectricos.com.co/wp-content/uploads/2015/05/bodega-jd-electricos.jpg"
-        alt="Bodega JD Eléctricos"
-        class="w-full h-auto rounded-lg shadow-md"
-      />
-      <h2 class="font-bold text-sm text-gray-800 text-center">
+     
+      <h2 class="font-bold text-gray-800 text-center">
         CABLES ELÉCTRICOS Y Mejoras Tecnológicas a partir de la Huella de
         Carbono
       </h2>

@@ -3,20 +3,15 @@
     <div
       class="slider w-full mx-auto overflow-hidden relative flex flex-col items-center justify-center p-5"
     >
-      <div class="flex flex-col items-center justify-center gap-5 text-center">
-        <span class="sm:text-4xl text-2xl font-extrabold opacity-55"
-          >Conoce</span
-        >
-        <h2 class="sm:text-6xl text-3xl font-extrabold text-gray-800">
-          Algunos de nuestros proveedores
+      <div class="flex flex-col items-center justify-center text-center">
+        <h2 class="sm:text-4xl text-2xl font-extrabold opacity-55">
+          Conoce Algunos de nuestros proveedores
         </h2>
       </div>
       <!-- Contenedor del fondo con opacidad -->
-      <div
-        class="absolute inset-0 dark:bg-[#201c1c] bg-blueJaps opacity-25"
-      ></div>
+      <div class="absolute inset-0 bg-gray-100 -z-20"></div>
 
-      <div class="slide-track flex animate-scroll w-full py-8">
+      <div class="slide-track flex animate-scroll w-full">
         <div
           class="slide p-10 flex justify-center items-center"
           v-for="(image, index) in images"
@@ -46,13 +41,10 @@
           />
         </div>
       </div>
-      <div class="flex flex-col items-center justify-center gap-5 text-center">
+      <div class="flex flex-col items-center justify-center text-center">
         <h2 class="sm:text-6xl text-3xl font-extrabold text-gray-800">
-          de iluminación y productos eléctricos
+          de iluminación y productos eléctricos industriales en Colombia.
         </h2>
-        <span class="sm:text-4xl text-2xl font-extrabold opacity-55">
-          industriales en Colombia.
-        </span>
       </div>
     </div>
   </section>
