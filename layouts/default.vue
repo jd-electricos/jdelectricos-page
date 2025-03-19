@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fixed w-full z-10">
+    <div class="w-full z-10 lg:fixed absolute top-0">
       <bannerPhone />
       <menubar />
     </div>

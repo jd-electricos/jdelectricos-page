@@ -1,10 +1,16 @@
 <template>
-    <div class="flex flex-col items-center justify-center h-screen">
-      <p class="">{{ message }}</p>
-      <h1 class="text-3xl font-bold underline">{{ message }}</h1>
-    </div>
-  </template>
-  <script setup>
-  const message = "home!";
-  </script>
-  
+  <div class="mt-[19.5rem] md:mt-24">
+    <bannerPromotions />
+    <textAndimage />
+    <carouselDistributor />
+    <ImageAndText />
+    <introAboutMe />
+  </div>
+</template>
+<script setup>
+import bannerPromotions from "../components/home/bannerPromotions.vue";
+import textAndimage from "../components/home/textAndimage.vue";
+import carouselDistributor from "../components/home/carouselDistributor.vue";
+import ImageAndText from "../components/home/ImageAndText.vue";
+import introAboutMe from "../components/home/introAboutMe.vue";
+</script>

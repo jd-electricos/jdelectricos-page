@@ -2,8 +2,8 @@
   <nav class="flex justify-between items-center bg-gray-800 text-white px-20">
     <!-- logo de la empresa -->
     <div>
-      <img
-        src="/public/img/logo-jd-electricos.webp"
+      <NuxtImg
+        src="/img/logo/logo-jd-electricos.webp"
         alt="logo de jd electricos"
         class="w-16 h-16"
       />
@@ -11,9 +11,10 @@
 
     <button
       @click="drawer = !drawer"
-      class="bg-red-300 p-4 rounded-md lg:hidden"
+      class="p-4 rounded-md lg:hidden"
     >
-      Drawer
+      <Menu v-if="!drawer" class="w-6 h-6" />
+      <X v-else class="w-6 h-6" />
     </button>
 
     <!-- labels del menu -->
@@ -121,6 +122,7 @@
 </template>
 
 <script setup>
+import { Menu, X } from "lucide-vue-next";
 import { ref } from "vue";
 const drawer = ref(false);
 const activeSubMenu = ref(null);
