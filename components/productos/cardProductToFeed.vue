@@ -1,16 +1,19 @@
 <template>
   <div
-    class="w-48 flex flex-col items-center gap-4 m-5 border-2 border-white rounded-sm hover:border-2 hover:border-yellow-500 p-3"
+    class="w-48 flex flex-col items-center gap-4 m-5 border-2 border-white rounded-sm hover:border-2 hover:border-yellow-500 hover:bg-gray-50 p-3"
   >
     <div>
       <NuxtImg :src="urlImg" alt="" class="w-40 h-40 rounded-2xl" />
     </div>
     <div>
       <div class="flex flex-col items-center gap-4">
-        <NuxtLink :to="`/${slugProduct}`">
+        <!-- <NuxtLink :to="`/${slugProduct}`">  este codigo es el de los slug se debe remplazar el de abajo por el de arriba -->
+        <NuxtLink :to="`/`">
           <h2 class="font-bold text-justify">{{ nameProduct }}</h2>
         </NuxtLink>
-        <p class="font-semibold">$ {{ priceProduct }}</p>
+        <NuxtLink :to="`/`">
+          <p class="font-semibold">Saber mas</p>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -21,7 +24,6 @@ defineProps({
   urlImg: String,
   slugProduct: String,
   nameProduct: String,
-  priceProduct: String,
 });
 </script>
 

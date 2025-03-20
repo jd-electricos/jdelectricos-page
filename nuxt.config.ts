@@ -19,6 +19,12 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   app: {
+    head: {
+      htmlAttrs: {
+        lang: "es",
+      },
+      link: [{ rel: "icon", type: "image/png", href: "/img/logo/logo-jd-electricos.webp" }],
+    },
     pageTransition: { name: "page", mode: "out-in" },
   },
 });

@@ -1,12 +1,12 @@
 <template>
-  <section>
+  <section class="px-8 py-8 md:py-16">
     <!-- Imagen para escritorio -->
     <NuxtImg
       :src="desktopBanner"
       alt="Promoción JD Eléctricos Materiales Eléctricos"
       class="hidden md:block w-full h-auto"
-      width="1920"
-      height="600"
+      width="100%"
+      height="400"
       loading="lazy"
       decoding="async"
       format="webp"
@@ -26,8 +26,8 @@
 </template>
 
 <script setup>
-import desktopBanner from '/img/desktop/aislador-ansi-54-4-promo-desktop.webp';
-import mobileBanner from '/img/mobile/aislador-ansi-54-4-promo-mobile.webp';
+import desktopBanner from "/img/desktop/aislador-ansi-54-4-promo-desktop.webp";
+import mobileBanner from "/img/mobile/aislador-ansi-54-4-promo-mobile.webp";
 </script>
 
 <style scoped></style>
