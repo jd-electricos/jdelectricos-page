@@ -11,7 +11,7 @@
 
     <button
       @click="drawer = !drawer"
-      class="p-4 rounded-md lg:hidden"
+      class="p-4 rounded-md lg:hidden cursor-pointer"
     >
       <Menu v-if="!drawer" class="w-6 h-6" />
       <X v-else class="w-6 h-6" />
@@ -68,7 +68,7 @@
   >
     <button
       @click="drawer = false"
-      class="absolute top-2 right-2 text-xl text-white"
+      class="absolute top-2 right-2 text-xl text-white cursor-pointer"
     >
       &times;
     </button>
@@ -101,7 +101,7 @@
           v-if="activeSubMenu && activeSubMenu.label === item.label"
           class="absolute left-full top-0 bg-gray-700 text-white p-4 min-w-44 rounded-r-lg shadow-lg max-h-72 overflow-y-auto"
         >
-          <button @click="closeSubMenu" class="absolute top-2 right-2 text-xl">
+          <button @click="closeSubMenu" class="absolute top-2 right-2 text-xl cursor-pointer">
             &times;
           </button>
           <h2 class="text-lg font-bold mb-4">{{ activeSubMenu.label }}</h2>

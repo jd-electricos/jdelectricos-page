@@ -41,23 +41,28 @@
 
       <!-- Formulario de Contacto -->
       <div class="lg:w-1/2 bg-gray-700 p-8 rounded-2xl">
-        <form class="space-y-6">
+        <form @submit.prevent="submitForm" class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="flex flex-col">
-              <label for="nombre" class="text-lg font-semibold">Nombre:</label>
+              <label for="nombre" class="text-lg font-semibold">*Nombre:</label>
               <input
+                v-model="form.name"
                 type="text"
                 id="nombre"
                 name="nombre"
                 placeholder="Ingrese su nombre"
                 class="p-3 mt-2 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+              <p v-if="errors.name" class="text-red-500 text-sm">
+                {{ errors.name }}
+              </p>
             </div>
             <div class="flex flex-col">
               <label for="empresa" class="text-lg font-semibold"
                 >Empresa:</label
               >
               <input
+                v-model="form.company"
                 type="text"
                 id="empresa"
                 name="empresa"
@@ -70,51 +75,66 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="flex flex-col">
               <label for="email" class="text-lg font-semibold"
-                >Correo / Email:</label
+                >*Correo / Email:</label
               >
               <input
+                v-model="form.email"
                 type="email"
                 id="email"
                 name="email"
                 placeholder="Ingrese su correo electrónico"
                 class="p-3 mt-2 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+              <p v-if="errors.email" class="text-red-500 text-sm">
+                {{ errors.email }}
+              </p>
             </div>
             <div class="flex flex-col">
               <label for="telefono" class="text-lg font-semibold"
-                >Teléfono / Celular:</label
+                >*Teléfono / Celular:</label
               >
               <input
+                v-model="form.phone"
                 type="tel"
                 id="telefono"
                 name="telefono"
                 placeholder="Ingrese su número de contacto"
                 class="p-3 mt-2 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+              <p v-if="errors.phone" class="text-red-500 text-sm">
+                {{ errors.phone }}
+              </p>
             </div>
           </div>
 
           <div class="flex flex-col">
-            <label for="asunto" class="text-lg font-semibold">Asunto:</label>
+            <label for="asunto" class="text-lg font-semibold">*Asunto:</label>
             <input
+              v-model="form.affair"
               type="text"
               id="asunto"
               name="asunto"
               placeholder="Ingrese el asunto"
               class="p-3 mt-2 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            <p v-if="errors.affair" class="text-red-500 text-sm">
+              {{ errors.affair }}
+            </p>
           </div>
 
           <div class="flex flex-col">
-            <label for="mensaje" class="text-lg font-semibold">Mensaje:</label>
+            <label for="mensaje" class="text-lg font-semibold">*Mensaje:</label>
             <textarea
+              v-model="form.message"
               id="mensaje"
               name="mensaje"
               placeholder="Escriba su mensaje aquí..."
               class="p-3 mt-2 bg-gray-700 rounded-lg border border-gray-600 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </div>
-
+          <p v-if="errors.message" class="text-red-500 text-sm">
+            {{ errors.message }}
+          </p>
           <button
             type="submit"
             class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition duration-300"
@@ -129,6 +149,33 @@
 
 <script setup>
 import { FilePen, Phone, Mail } from "lucide-vue-next";
+const form = ref({
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  affair: "",
+  message: "",
+});
+const errors = ref({});
+
+const validateForm = () => {
+  errors.value = {}; // Reiniciar errores
+
+  if (!form.value.name) errors.value.name = "El nombre es obligatorio.";
+  if (!form.value.email) errors.value.email = "El correo es obligatorio.";
+  if (!form.value.phone) errors.value.phone = "El teléfono es obligatorio.";
+  if (!form.value.affair) errors.value.affair = "El asunto es obligatorio.";
+  if (!form.value.message) errors.value.message = "El mensaje es obligatorio.";
+
+  return Object.keys(errors.value).length === 0;
+};
+
+const submitForm = () => {
+  if (!validateForm()) return;
+
+  console.log("Formulario enviado con éxito:", form.value);
+};
 </script>
 
 <style scoped></style>
