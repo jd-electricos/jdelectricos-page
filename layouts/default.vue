@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen">
     <!-- Encabezado fijo -->
-    <div class="w-full z-10 lg:fixed absolute top-0">
+    <div class="w-full z-50 lg:fixed absolute top-0">
       <bannerPhone />
       <menubar />
     </div>

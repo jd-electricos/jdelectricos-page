@@ -1,9 +1,11 @@
 <template>
-  <div class="flex flex-col items-center justify-center h-screen">
-    <p class="">{{ message }}</p>
-    <h1 class="text-3xl font-bold underline">{{ message }}</h1>
+  <div class="bg-gray-800">
+    <formContacto />
+    <mapa />
   </div>
 </template>
 <script setup>
-const message = "contacto!";
+import formContacto from "~/components/contacto/formContacto.vue";
+import mapa from "../components/contacto/mapa.vue";
+
 </script>
