@@ -11,8 +11,8 @@
       <NuxtPage />
     </div>
 
-    <footerJd />
     <!-- Footer -->
+    <footerJd />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-4 items-center pt-10">
-    <h2 class="sm:text-6xl text-3xl font-extrabold text-gray-800 px-12">
+  <div class="flex flex-col gap-4 items-center pt-10 bg-gray-800">
+    <h2 class="sm:text-6xl text-3xl font-extrabold text-white px-12">
       Categoría de Productos Eléctricos
     </h2>
     <div class="carousel-container">

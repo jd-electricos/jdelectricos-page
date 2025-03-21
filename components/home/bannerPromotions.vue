@@ -1,5 +1,5 @@
 <template>
-  <section class="px-8 py-8 md:py-16">
+  <section class="">
     <!-- Imagen para escritorio -->
     <NuxtImg
       :src="desktopBanner"

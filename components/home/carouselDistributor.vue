@@ -1,15 +1,15 @@
 <template>
   <section class="scrollAnimation">
     <div
-      class="slider w-full mx-auto overflow-hidden relative flex flex-col items-center justify-center p-5"
+      class="slider w-full mx-auto overflow-hidden relative flex flex-col items-center justify-center p-16"
     >
       <div class="flex flex-col items-center justify-center text-center">
-        <h2 class="sm:text-4xl text-2xl font-extrabold opacity-55">
-          Conoce Algunos de nuestros proveedores
+        <h2 class="sm:text-5xl text-3xl font-extrabold text-gray-800 font-serif">
+          Conoce algunos de nuestros proveedores
         </h2>
       </div>
       <!-- Contenedor del fondo con opacidad -->
-      <div class="absolute inset-0 bg-gray-100 -z-20"></div>
+      <div class="absolute inset-0 -z-20"></div>
 
       <div class="slide-track flex animate-scroll w-full">
         <div
@@ -40,11 +40,6 @@
             loading="lazy"
           />
         </div>
-      </div>
-      <div class="flex flex-col items-center justify-center text-center">
-        <h2 class="sm:text-6xl text-3xl font-extrabold text-gray-800">
-          de iluminación y productos eléctricos industriales en Colombia.
-        </h2>
       </div>
     </div>
   </section>

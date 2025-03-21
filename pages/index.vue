@@ -1,20 +1,20 @@
 <template>
   <div>
-    <bannerPromotions />
-    <textAndimage />
+    <intro />
     <carouselDistributor />
+    <introProducts />
+    <sectionCategory />
+    <bannerPromotions />
     <ImageAndText />
     <introAboutMe />
-    <sectionProducts />
-
   </div>
 </template>
 <script setup>
-import bannerPromotions from "../components/home/bannerPromotions.vue";
-import textAndimage from "../components/home/textAndimage.vue";
+import intro from "../components/home/intro.vue";
 import carouselDistributor from "../components/home/carouselDistributor.vue";
-import ImageAndText from "../components/home/ImageAndText.vue";
+import introProducts from "../components/home/introProducts.vue";
+import sectionCategory from "../components/home/sectionCategory.vue";
+import bannerPromotions from "../components/home/bannerPromotions.vue";
 import introAboutMe from "../components/home/introAboutMe.vue";
-import sectionProducts from "../components/home/sectionCategory.vue";
-
+import ImageAndText from "../components/home/ImageAndText.vue";
 </script>

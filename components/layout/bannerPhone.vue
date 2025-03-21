@@ -2,7 +2,7 @@
   <div
     v-for="item in items"
     :key="item.label"
-    class="flex flex-col items-center md:flex-row gap-5 justify-center bg-gray-600 text-white py-1"
+    class="flex flex-col items-center md:flex-row gap-5 justify-center bg-gray-700 text-white py-1"
   >
     <PhoneCall />
     <p>{{ item.label }}</p>

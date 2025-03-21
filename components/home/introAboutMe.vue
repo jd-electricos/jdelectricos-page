@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-100 py-2">
+  <section class=" py-2">
     <div class="flex flex-col lg:flex-row items-center justify-center">
       <div class="lg:flex-1/2 flex justify-center">
         <NuxtImg
