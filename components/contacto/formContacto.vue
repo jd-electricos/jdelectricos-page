@@ -75,7 +75,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="flex flex-col">
               <label for="email" class="text-lg font-semibold"
-                >*Correo / Email:</label
+                >*Correo :</label
               >
               <input
                 v-model="form.email"
@@ -91,7 +91,7 @@
             </div>
             <div class="flex flex-col">
               <label for="telefono" class="text-lg font-semibold"
-                >*Teléfono / Celular:</label
+                >*Celular:</label
               >
               <input
                 v-model="form.phone"
