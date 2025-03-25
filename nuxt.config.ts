@@ -23,7 +23,18 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "es",
       },
-      link: [{ rel: "icon", type: "image/png", href: "/img/logo/logo-jd-electricos.webp" }],
+      meta: [
+        { name: "robots", content: "index, follow" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "author", content: "Jd Eléctricos" },
+      ],
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/img/logo/logo-jd-electricos.webp",
+        },
+      ],
     },
     pageTransition: { name: "page", mode: "out-in" },
   },
