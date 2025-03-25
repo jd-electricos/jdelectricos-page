@@ -15,11 +15,11 @@
           v-model="searchQuery"
           type="text"
           placeholder="Buscar categoría..."
-          class="px-4 py-2 border rounded-lg"
+          class="px-4 py-2 border rounded-lg bg-white"
         />
 
         <!-- Filtro por categoría -->
-        <select v-model="selectedCategory" class="px-4 py-2 border rounded-lg">
+        <select v-model="selectedCategory" class="bg-white px-4 py-2 border rounded-lg">
           <option value="">Todas</option>
           <option
             v-for="category in allCategories"
@@ -32,7 +32,7 @@
       </div>
       <div class="flex flex-wrap gap-10 justify-center">
         <cardCategoriesToFeed
-          v-for="(categories, index) in filteredCategories"
+          v-for="(categories, index) in paginatedCategories"
           :key="index"
           urlImg="/img/logo/logo-jd-electricos.webp"
           :slugCategory="categories.slug"
@@ -46,6 +46,7 @@
       :totalPages="totalPages"
       @update:page="updatePage"
     />
+    <!-- Paginador -->
   </section>
 </template>
 <script setup>
@@ -65,7 +66,9 @@ const selectedCategory = ref("");
 // Cargar TODAS las categorías solo una vez
 const fetchAllCategories = async () => {
   try {
-    const response = await fetch(`http://localhost:5000/api/categories?all=true`);
+    const response = await fetch(
+      `http://localhost:5000/api/categories?all=true`
+    );
     const data = await response.json();
     allCategories.value = data.items;
     filteredCategories.value = data.items; // Inicia sin filtros
@@ -79,8 +82,12 @@ const fetchAllCategories = async () => {
 // Computed property para filtrar las categorías
 watchEffect(() => {
   const filtered = allCategories.value.filter((category) => {
-    const matchesSearch = category.name.toLowerCase().includes(searchQuery.value.toLowerCase());
-    const matchesCategory = selectedCategory.value ? category.slug === selectedCategory.value : true;
+    const matchesSearch = category.name
+      .toLowerCase()
+      .includes(searchQuery.value.toLowerCase());
+    const matchesCategory = selectedCategory.value
+      ? category.slug === selectedCategory.value
+      : true;
     return matchesSearch && matchesCategory;
   });
 
@@ -96,7 +103,10 @@ const paginatedCategories = computed(() => {
 });
 
 // Calcular total de páginas dinámicamente
-const totalPages = computed(() => Math.ceil(filteredCategories.value.length / limit));
+const totalPages = computed(() => {
+  return Math.max(1, Math.ceil(filteredCategories.value.length / limit));
+});
+
 
 // Cargar categorías al inicio
 fetchAllCategories();
@@ -106,5 +116,3 @@ const updatePage = (newPage) => {
   page.value = newPage;
 };
 </script>
-
-

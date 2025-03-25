@@ -18,9 +18,7 @@
     </div>
   </template>
   
-  <script setup>
-  import { defineProps, defineEmits } from "vue";
-  
+  <script setup>  
   const props = defineProps({
     currentPage: Number,
     totalPages: Number
