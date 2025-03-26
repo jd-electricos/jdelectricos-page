@@ -1,18 +1,17 @@
 <template>
   <div class="flex flex-col gap-4 items-center pt-10 bg-gray-800">
     <h2 class="sm:text-6xl text-3xl font-extrabold text-white px-12">
-      Categoría de Productos Eléctricos
+      Categoría de Materiales Eléctricos
     </h2>
     <div class="carousel-container">
       <div class="slide-track">
-        <!-- Duplicamos la lista de productos para que el scroll sea fluido -->
-        <CardProductToFeed
-          v-for="(product, index) in repeatedProducts"
+        <!-- Duplicamos la lista de categorias para que el scroll sea fluido -->
+        <cardCategoriesToFeed
+          v-for="(categories, index) in repeatedProducts"
           :key="index"
-          :slugProduct="product.slugProduct"
-          :urlImg="product.carouselImg[0]"
-          :nameProduct="product.name"
-          class="slide"
+          urlImg="/img/logo/logo-jd-electricos.webp"
+          :slugCategory="categories.slug"
+          :nameCategory="categories.name"
         />
       </div>
     </div>
@@ -21,24 +20,25 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import CardProductToFeed from "../productos/cardProductToFeed.vue";
+import cardCategoriesToFeed from "~/components/productos/cardCategoriesToFeed.vue";
 
-const products = ref([]);
 
-const fetchProducts = async () => {
+const categories = ref([]);
+
+const fetchCategories = async () => {
   try {
     const response = await fetch("http://localhost:5000/api/products");
-    products.value = await response.json();
+    categories.value = await response.json();
   } catch (error) {
     console.error("Error fetching products:", error);
   }
 };
 
-// Repetimos los productos para que el carrusel sea infinito
-const repeatedProducts = computed(() => [...products.value, ...products.value]);
+// Repetimos los categorias para que el carrusel sea infinito
+const repeatedProducts = computed(() => [...categories.value, ...categories.value]);
 
-// Cargar los productos al montar el componente
-onMounted(fetchProducts);
+// Cargar los categorias al montar el componente
+onMounted(fetchCategories);
 </script>
 
 <style scoped>
@@ -54,7 +54,7 @@ onMounted(fetchProducts);
 .slide-track {
   display: flex;
   width: max-content; /* Se ajusta automáticamente al contenido */
-  animation: scroll 20s linear infinite;
+  animation: scroll 150s linear infinite;
   transform: translateX(-50%); /* Inicia desde la mitad */
 }
 
