@@ -27,8 +27,10 @@ const categories = ref([]);
 
 const fetchCategories = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/products");
-    categories.value = await response.json();
+    const response = await fetch("http://localhost:5000/api/categories");
+    const data = await response.json();
+    categories.value = data.items;
+    console.log(categories.value)
   } catch (error) {
     console.error("Error fetching products:", error);
   }

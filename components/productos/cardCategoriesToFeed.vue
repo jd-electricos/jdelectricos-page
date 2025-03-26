@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-sm hover:border-2 hover:border-yellow-500 hover:bg-white p-3 text-white hover:text-black"
+    class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-white p-3 text-white hover:text-black"
   >
     <div>
       <NuxtLink :to="`/${slugCategory}`">
