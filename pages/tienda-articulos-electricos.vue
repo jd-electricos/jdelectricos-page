@@ -19,7 +19,10 @@
         />
 
         <!-- Filtro por categoría -->
-        <select v-model="selectedCategory" class="bg-white px-4 py-2 border rounded-lg">
+        <select
+          v-model="selectedCategory"
+          class="bg-white px-4 py-2 border rounded-lg"
+        >
           <option value="">Todas</option>
           <option
             v-for="category in allCategories"
@@ -30,22 +33,25 @@
           </option>
         </select>
       </div>
-      <div class="flex flex-wrap gap-10 justify-center">
-        <cardCategoriesToFeed
-          v-for="(categories, index) in paginatedCategories"
-          :key="index"
-          urlImg="/img/logo/logo-jd-electricos.webp"
-          :slugCategory="categories.slug"
-          :nameCategory="categories.name"
+      <div class="flex flex-col">
+        <div class="flex flex-wrap gap-10 justify-center">
+          <cardCategoriesToFeed
+            v-for="(categories, index) in paginatedCategories"
+            :key="index"
+            urlImg="/img/logo/logo-jd-electricos.webp"
+            :slugCategory="categories.slug"
+            :nameCategory="categories.name"
+          />
+        </div>
+        <Paginator
+          :currentPage="page"
+          :totalPages="totalPages"
+          @update:page="updatePage"
         />
       </div>
     </div>
     <!-- Paginador -->
-    <Paginator
-      :currentPage="page"
-      :totalPages="totalPages"
-      @update:page="updatePage"
-    />
+
     <!-- Paginador -->
   </section>
 </template>
@@ -106,7 +112,6 @@ const paginatedCategories = computed(() => {
 const totalPages = computed(() => {
   return Math.max(1, Math.ceil(filteredCategories.value.length / limit));
 });
-
 
 // Cargar categorías al inicio
 fetchAllCategories();

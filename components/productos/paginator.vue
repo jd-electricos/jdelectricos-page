@@ -1,9 +1,9 @@
 <template>
-    <div class="flex justify-center items-center gap-4 m-8">
+    <div class="flex justify-center items-center gap-4 m-8 text-white">
       <button
         @click="prevPage"
         :disabled="currentPage === 1"
-        class="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded disabled:opacity-50 cursor-pointer disabled:cursor-default"
+        class="bg-gray-600 hover:bg-gray-900 text-white px-4 py-2 rounded disabled:opacity-50 cursor-pointer disabled:cursor-default"
       >
         Anterior
       </button>
@@ -11,7 +11,7 @@
       <button
         @click="nextPage"
         :disabled="currentPage >= totalPages"
-        class="bg-gray-600 hover:bg-gray-800 text-white px-4 py-2 rounded disabled:opacity-50 cursor-pointer disabled:cursor-default"
+        class="bg-gray-600 hover:bg-gray-900 text-white px-4 py-2 rounded disabled:opacity-50 cursor-pointer disabled:cursor-default"
       >
         Siguiente
       </button>
