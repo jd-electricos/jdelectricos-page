@@ -38,4 +38,23 @@ export default defineNuxtConfig({
     },
     pageTransition: { name: "page", mode: "out-in" },
   },
+  hooks: {
+    'pages:extend'(routes) {
+      // Modificar la ruta de las categorías
+      const categoryIndex = routes.findIndex(route => route.path.startsWith('/categories/'));
+      if (categoryIndex !== -1) {
+        routes[categoryIndex].path = '/:slugCategory';
+        routes[categoryIndex].name = 'slugCategory';
+        console.log("✅ Ruta de categoría modificada:", routes[categoryIndex]);
+      }
+
+      // Modificar la ruta de los productos
+      const productIndex = routes.findIndex(route => route.path.startsWith('/products/'));
+      if (productIndex !== -1) {
+        routes[productIndex].path = '/:slugProduct';
+        routes[productIndex].name = 'slugProduct';
+        console.log("✅ Ruta de producto modificada:", routes[productIndex]);
+      }
+    }
+  }
 });
