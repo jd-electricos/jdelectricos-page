@@ -61,6 +61,12 @@
     </div>
   </nav>
 
+  <div
+    v-if="drawer"
+    class="fixed inset-0 bg-opacity-50 z-40 lg:hidden"
+    @click="closeDrawerAndSubmenu"
+  ></div>
+
   <!-- drawer para el menu responsivo -->
   <nav
     class="fixed top-0 left-0 h-screen w-44 bg-gray-800 z-50 transition-transform duration-300 flex flex-col pt-16"
@@ -225,5 +231,9 @@ const toggleSubMenu = (index) => {
 const closeSubMenu = () => {
   activeSubMenu.value = null;
   items.value.forEach((item) => (item.isOpen = false));
+};
+const closeDrawerAndSubmenu = () => {
+  drawer.value = false;
+  closeSubMenu()
 };
 </script>

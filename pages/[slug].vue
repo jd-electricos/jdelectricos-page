@@ -4,9 +4,9 @@
       <p>Cargando información...</p>
     </div>
 
-    <div v-else-if="isCategory">
+    <div v-else-if="isCategory" class="pt-10 pb-10 px-5">
       <h1 class="text-4xl font-bold">{{ category?.name }}</h1>
-      <div class="flex flex-wrap gap-5">
+      <div class="flex flex-wrap gap-5 p-5 justify-center">
         <div v-for="product in products" :key="product.id">
           <cardProductToFeed
             :urlImg="product.carouselImg[0]"
