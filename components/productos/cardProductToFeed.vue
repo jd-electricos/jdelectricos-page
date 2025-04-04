@@ -2,7 +2,7 @@
   <div
     class="w-48 min-h-80 flex flex-col items-center justify-between border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-white p-3"
   >
-    <div class="bg-red-100">
+    <div class="">
       <NuxtLink :to="`/${slugProduct}`">
         <NuxtImg :src="urlImg" alt="" class="w-40 rounded-2xl" />
       </NuxtLink>
