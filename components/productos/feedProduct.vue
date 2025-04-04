@@ -1,17 +1,47 @@
 <template>
-  <div v-if="data">
-    <NuxtImg :src="data.carouselImg[0]" />
-    <h1>{{ data.name }}</h1>
-    <p>{{ data.sku }}</p>
-    <p>{{ data.description }}</p>
-    <p>{{ data.price }}</p>
-    <p>{{ data.stock }}</p>
-    <p>{{ data.category.name }}</p>
-    <p>{{ data.technical_parameters }}</p>
+  <div v-if="data" class="flex flex-col px-4 py-12 md:p-24">
+    <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-32">
+      <div class="w-full lg:w-1/2 flex justify-center">
+        <carouselProducts :images="data.carouselImg" />
+        <NuxtLink :to="data.category.slug"> </NuxtLink>
+      </div>
+      <div class="flex flex-col w-full lg:w-1/2">
+        <h1 class="text-2xl md:text-4xl font-bold">{{ data.name }}</h1>
+        <hr class="my-4" />
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-5 gap-4">
+          <p class="font-semibold">
+            Ref: <span class="font-bold">{{ data.sku }}</span>
+          </p>
+
+          <NuxtLink :to="data.category.slug">
+            <p class="font-semibold">
+              Categoria:
+              <span class="font-bold">{{ data.category.name }}</span>
+            </p>
+          </NuxtLink>
+        </div>
+        <p class="py-5 text-justify">{{ data.description }}</p>
+        <p class="font-semibold py-5">
+          Precio: <span class="font-bold">{{ data.price }}</span>
+        </p>
+        <button
+          class="bg-gray-800 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto"
+        >
+          Cotizar Producto
+        </button>
+        <div class="py-10">
+          <h2 class="text-xl md:text-2xl font-bold mb-2">
+            Caracteristicas Tecnicas de {{ data.category.name }}
+          </h2>
+          <p class="text-justify">{{ data.technical_parameters }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
+import carouselProducts from "./carouselProducts.vue";
 import { computed } from "vue";
 
 const props = defineProps({
@@ -19,7 +49,6 @@ const props = defineProps({
 });
 
 const data = computed(() => props.dataProducts || {});
-
 useSeoMeta({
   title: computed(() => data.value.seo.ogtitle || ""),
   description: computed(() => data.value.seo.ogdescription || ""),
@@ -27,7 +56,8 @@ useSeoMeta({
   ogDescription: computed(() => data.value.seo.ogdescription || ""),
   ogType: "product",
   ogUrl: computed(() => data.value.slugProduct || ""),
-  ogSiteName: "materiales electricos, productos electricos en colombia JD ELECTRICOS",
+  ogSiteName:
+    "materiales electricos, productos electricos en colombia JD ELECTRICOS",
   ogImage: computed(() => data.value.carouselImg[0] || ""),
   ogImageSecureUrl: computed(() => data.value.carouselImg[0] || ""),
   ogImageWidth: "800",
@@ -40,7 +70,8 @@ useSeoMeta({
   twitterSite: "@JD_ELECTRICOS",
   twitterCreator: "@JD_ELECTRICOS",
   twitterImage: computed(() => data.value.carouselImg[0] || ""),
-  robots: "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+  robots:
+    "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
 });
 
 useHead({
@@ -56,7 +87,13 @@ useHead({
       type: "application/ld+json",
     },
   ],
-  link: [{ rel: "canonical", href: computed(() => `https://jdelectricos.com.co/${data.value.slugProduct}` || "") }],
+  link: [
+    {
+      rel: "canonical",
+      href: computed(
+        () => `https://jdelectricos.com.co/${data.value.slugProduct}` || ""
+      ),
+    },
+  ],
 });
 </script>
-
