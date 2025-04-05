@@ -9,7 +9,7 @@
       <div class="flex flex-wrap gap-5 p-5 justify-center">
         <div v-for="product in products" :key="product.id">
           <cardProductToFeed
-            :urlImg="product.carouselImg[0]"
+            :urlImg="product.previewImg"
             :slugProduct="product.slugProduct"
             :nameProduct="product.name"
           />
