@@ -1,10 +1,10 @@
 <template>
   <div>
     <intro />
-    <carouselDistributor />
-    <introProducts />
     <sectionCategory />
     <bannerPromotions />
+    <carouselDistributor />
+    <introProducts />
     <ImageAndText />
     <introAboutMe />
   </div>
