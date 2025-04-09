@@ -9,19 +9,19 @@
         <h2>Por Categorias</h2>
       </div>
       <!-- Filtros -->
-      <div class="flex flex-wrap justify-center gap-4 mb-6">
+      <div class="flex flex-wrap justify-center gap-4 mb-6 w-full">
         <!-- Búsqueda por nombre -->
         <input
           v-model="searchQuery"
           type="text"
           placeholder="Buscar categoría..."
-          class="px-4 py-2 border rounded-lg bg-white"
+          class="w-full sm:w-72 px-4 py-2 border rounded-lg bg-white"
         />
 
         <!-- Filtro por categoría -->
         <select
           v-model="selectedCategory"
-          class="bg-white px-4 py-2 border rounded-lg"
+          class="w-full sm:w-72 px-4 py-2 border rounded-lg bg-white"
         >
           <option value="">Todas</option>
           <option

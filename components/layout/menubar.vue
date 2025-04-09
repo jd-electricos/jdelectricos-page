@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex justify-between items-center bg-gray-800 text-white px-20">
+  <nav class="flex justify-between items-center bg-gray-800 text-white px-4 lg:px-20 py-2">
     <!-- logo de la empresa -->
     <div>
       <NuxtImg
@@ -9,6 +9,7 @@
       />
     </div>
 
+    <!-- Botón móvil -->
     <button
       @click="drawer = !drawer"
       class="p-4 rounded-md lg:hidden cursor-pointer"
@@ -17,64 +18,67 @@
       <X v-else class="w-6 h-6" />
     </button>
 
-    <!-- labels del menu -->
-    <div class="hidden lg:flex">
-      <ul class="flex flex-row justify-center items-center">
-        <li
-          v-for="item in items"
-          :key="item.label"
-          class="px-8 relative group hover:bg-gray-600 rounded-t-md"
-          @mouseenter="item.isOpen = true"
-          @mouseleave="item.isOpen = false"
-        >
+    <!-- Menú de escritorio -->
+    <ul class="hidden lg:flex items-center space-x-4">
+      <li
+        v-for="item in items"
+        :key="item.label"
+        class="relative group px-4 hover:bg-gray-600 rounded-md"
+        @mouseenter="item.isOpen = true"
+        @mouseleave="item.isOpen = false"
+      >
+        <!-- Si es el ítem 'Productos', renderizamos el componente -->
+        <menuProducts v-if="item.label === 'Productos'" />
+
+        <!-- Otros ítems -->
+        <template v-else>
           <NuxtLink :to="item.href">{{ item.label }}</NuxtLink>
 
           <!-- Submenú -->
           <div
             v-if="item.isOpen && item.items"
-            class="absolute right-0 top-full p-4 w-auto min-w-[200px] bg-gray-600 rounded-b-md rounded-tl-md overflow-hidden transition-all duration-300 ease-in-out"
+            class="absolute right-0 top-full p-4 bg-gray-600 rounded-md min-w-[200px] z-50"
           >
-            <div class="max-h-96 overflow-y-auto">
-              <!-- Grid dinámico -->
-              <ul
-                :style="{
-                  display: 'grid',
-                  gridTemplateColumns: `repeat(${Math.ceil(
-                    item.items.length / 5
-                  )}, minmax(200px, 1fr))`,
-                  gap: '2px',
-                }"
+            <ul
+              :style="{
+                display: 'grid',
+                gridTemplateColumns: `repeat(${Math.ceil(
+                  item.items.length / 5
+                )}, minmax(200px, 1fr))`,
+                gap: '2px',
+              }"
+            >
+              <li
+                v-for="subitem in item.items"
+                :key="subitem.label"
+                class="text-sm hover:text-yellow-300 p-2"
               >
-                <li v-for="subitem in item.items" :key="subitem.label">
-                  <NuxtLink
-                    :to="subitem.href"
-                    class="flex text-center items-center justify-center hover:text-yellow-300 border-dashed border-1 border-gray-500 p-2 w-full h-full text-sm"
-                  >
-                    {{ subitem.label }}
-                  </NuxtLink>
-                </li>
-              </ul>
-            </div>
+                <NuxtLink :to="subitem.href">
+                  {{ subitem.label }}
+                </NuxtLink>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
-    </div>
+        </template>
+      </li>
+    </ul>
   </nav>
 
+  <!-- Fondo oscuro cuando el drawer está abierto -->
   <div
     v-if="drawer"
-    class="fixed inset-0 bg-opacity-50 z-40 lg:hidden"
+    class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
     @click="closeDrawerAndSubmenu"
   ></div>
 
-  <!-- drawer para el menu responsivo -->
+  <!-- Drawer menú móvil -->
   <nav
-    class="fixed top-0 left-0 h-screen w-44 bg-gray-800 z-50 transition-transform duration-300 flex flex-col pt-16"
+    class="fixed top-0 left-0 h-screen w-64 bg-gray-800 z-50 transition-transform duration-300 flex flex-col pt-16"
     :class="drawer ? 'translate-x-0' : '-translate-x-full'"
   >
     <button
       @click="drawer = false"
-      class="absolute top-2 right-2 text-xl text-white cursor-pointer"
+      class="absolute top-2 right-2 text-3xl text-white cursor-pointer"
     >
       &times;
     </button>
@@ -84,50 +88,57 @@
         :key="index"
         class="text-white p-4 relative"
       >
-        <div class="flex justify-between items-center cursor-pointer">
-          <NuxtLink :to="item.href">{{ item.label }}</NuxtLink>
-          <span v-if="item.items" @click="toggleSubMenu(index)">
-            <svg
-              :class="{ 'rotate-180': item.isOpen }"
-              class="w-4 h-4 ml-2 transition-transform duration-300"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </div>
+        <!-- Si es 'Productos', también renderizamos el componente en móvil -->
+        <menuProducts v-if="item.label === 'Productos'" />
 
-        <!-- Popover de submenú -->
-        <div
-          v-if="activeSubMenu && activeSubMenu.label === item.label"
-          class="absolute left-full top-0 bg-gray-700 text-white p-4 min-w-44 rounded-r-lg shadow-lg max-h-72 overflow-y-auto"
-        >
-          <button @click="closeSubMenu" class="absolute top-2 right-2 text-xl cursor-pointer">
-            &times;
-          </button>
-          <h2 class="text-lg font-bold mb-4">{{ activeSubMenu.label }}</h2>
-          <ul>
-            <li v-for="subitem in activeSubMenu.items" :key="subitem.label">
-              <NuxtLink
-                :to="subitem.href"
-                class="block p-2 hover:text-yellow-300 text-sm"
+        <!-- Otros ítems -->
+        <template v-else>
+          <div class="flex justify-between items-center cursor-pointer">
+            <NuxtLink :to="item.href">{{ item.label }}</NuxtLink>
+            <span v-if="item.items" @click="toggleSubMenu(index)">
+              <svg
+                :class="{ 'rotate-180': item.isOpen }"
+                class="w-4 h-4 ml-2 transition-transform duration-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
               >
-                {{ subitem.label }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </div>
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <!-- Submenú lateral -->
+          <div
+            v-if="activeSubMenu && activeSubMenu.label === item.label"
+            class="absolute left-full top-0 bg-gray-700 text-white p-4 min-w-44 rounded-r-lg shadow-lg max-h-72 overflow-y-auto z-50"
+          >
+            <button @click="closeSubMenu" class="absolute top-2 right-2 text-xl cursor-pointer">
+              &times;
+            </button>
+            <h2 class="text-lg font-bold mb-4">{{ activeSubMenu.label }}</h2>
+            <ul>
+              <li v-for="subitem in activeSubMenu.items" :key="subitem.label">
+                <NuxtLink
+                  :to="subitem.href"
+                  class="block p-2 hover:text-yellow-300 text-sm"
+                >
+                  {{ subitem.label }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+        </template>
       </li>
     </ul>
   </nav>
 </template>
 
 <script setup>
+import menuProducts from "./menuProducts.vue";
 import { Menu, X } from "lucide-vue-next";
 import { ref } from "vue";
 const drawer = ref(false);
