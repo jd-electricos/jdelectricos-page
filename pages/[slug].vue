@@ -5,23 +5,14 @@
     </div>
 
     <div v-else-if="isCategory" class="pt-10 pb-10 px-5">
-      <h1 class="text-4xl font-bold">{{ category?.name }}</h1>
-      <div class="flex flex-wrap gap-5 p-5 justify-center">
-        <div v-for="product in products" :key="product.id">
-          <cardProductToFeed
-            :urlImg="product.previewImg"
-            :slugProduct="product.slugProduct"
-            :nameProduct="product.name"
-          />
-        </div>
-      </div>
+      <feedCategory :products="products" :category="category" />
     </div>
 
     <div v-else-if="isProduct">
       <feedProduct :dataProducts="product" />
     </div>
 
-    <div v-else>
+    <div v-else class="p-10">
       <p>No se encontró ninguna categoría o producto con el slug proporcionado.</p>
     </div>
   </div>
@@ -30,8 +21,8 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { computed } from "vue";
-import cardProductToFeed from "~/components/productos/cardProductToFeed.vue";
 import feedProduct from "~/components/productos/feedProduct.vue";
+import feedCategory from "~/components/productos/feedCategory.vue";
 
 const route = useRoute();
 const slug = route.params.slug;
