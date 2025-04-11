@@ -25,6 +25,55 @@ const props = defineProps({
     required: true,
   },
 });
+
+const data = computed(() => props.category || {});
+useSeoMeta({
+  title: computed(() => data.value.seo.ogtitle || ""),
+  description: computed(() => data.value.seo.ogdescription || ""),
+  ogTitle: computed(() => data.value.seo.ogtitle || ""),
+  ogDescription: computed(() => data.value.seo.ogdescription || ""),
+  ogType: "product",
+  ogUrl: computed(() => data.value.slugProduct || ""),
+  ogSiteName:
+    "materiales electricos, productos electricos en colombia JD ELECTRICOS",
+  // ogImage: computed(() => data.value.carouselImg || ""),
+  // ogImageSecureUrl: computed(() => data.value.carouselImg || ""),
+  ogImageWidth: "800",
+  ogImageHeight: "800",
+  ogImageAlt: computed(() => data.value.name || ""),
+  ogImageType: "image/jpeg",
+  twitterCard: "summary_large_image",
+  twitterTitle: computed(() => data.value.name || ""),
+  twitterDescription: computed(() => data.value.description || ""),
+  twitterSite: "@JD_ELECTRICOS",
+  twitterCreator: "@JD_ELECTRICOS",
+  twitterImage: "https://jdelectricos.com.co/wp-content/uploads/2020/04/distribuidor-de-materiales-electricos.jpg",
+  robots:
+    "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+});
+
+useHead({
+  meta: [
+    { property: "og:locale", content: "es_ES" },
+    { property: "og:type", content: "product" },
+    { property: "product:price:currency", content: "COP" },
+    { property: "product:availability", content: "instock" },
+  ],
+  script: [
+    {
+      innerHTML: computed(() => JSON.stringify(data.value.seo?.jsonld || {})),
+      type: "application/ld+json",
+    },
+  ],
+  link: [
+    {
+      rel: "canonical",
+      href: computed(
+        () => `https://jdelectricos.com.co/${data.value.slug}` || ""
+      ),
+    },
+  ],
+});
 </script>
 
 <style scoped></style>
