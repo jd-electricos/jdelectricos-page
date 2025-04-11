@@ -2,8 +2,7 @@
   <div v-if="data" class="flex flex-col px-4 py-12 md:p-24">
     <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-32">
       <div class="w-full lg:w-1/2 flex justify-center">
-        <carouselProducts :images="data.carouselImg" />
-        <NuxtLink :to="data.category.slug"> </NuxtLink>
+        <carouselProducts :carouselImage="data.carouselImg" :alt="data.name" />
       </div>
       <div class="flex flex-col w-full lg:w-1/2">
         <h1 class="text-2xl md:text-4xl font-bold">{{ data.name }}</h1>
@@ -25,7 +24,7 @@
           Precio: <span class="font-bold">{{ data.price }}</span>
         </p>
         <button
-          class="bg-gray-800 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto"
+          class="bg-gray-800 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto shadow-xl shadow-neutral-800/50"
         >
           Cotizar Producto
         </button>

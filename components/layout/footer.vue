@@ -1,76 +1,86 @@
 <template>
   <footer class="bg-gray-800 text-white">
-    <div
-      class="container mx-auto px-5 py-8 flex flex-col md:flex-row items-center justify-between"
-    >
+    <div class="container mx-auto px-5 py-8 flex flex-col md:flex-row items-center justify-between">
+      
       <!-- Logo -->
       <NuxtImg
         src="/img/logo/logo-jd-electricos.webp"
         alt="Logo de JD Eléctricos"
         class="w-32 sm:w-28 md:w-36 lg:w-44 mb-6 md:mb-0"
+        loading="lazy"
+        width="176"
+        height="auto"
       />
 
-      <!-- Secciones del footer -->
-      <div
-        class="flex flex-col sm:flex-row gap-10 md:gap-20 text-center sm:text-left"
-      >
-        <!-- Menú -->
-        <ul>
-          <div
-            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
-          >
+      <!-- Secciones del Footer -->
+      <div class="flex flex-col sm:flex-row gap-10 md:gap-20 text-center sm:text-left w-full justify-around">
+
+        <!-- Menú de navegación -->
+        <nav aria-label="Menú principal" role="navigation">
+          <h2 class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5">
             <SquareMenu />
-            <p>Menú</p>
-          </div>
-          <li v-for="item in itemsMenu" :key="item.label">
-            <NuxtLink
-              :to="item.href"
-              class="hover:text-gray-300 transition-colors underline"
-            >
-              {{ item.label }}
-            </NuxtLink>
-          </li>
-        </ul>
+            <span>Menú</span>
+          </h2>
+          <ul class="space-y-2">
+            <li v-for="item in itemsMenu" :key="item.label">
+              <NuxtLink
+                :to="item.href"
+                class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                {{ item.label }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </nav>
 
         <!-- Teléfonos -->
-        <ul>
-          <div
-            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
-          >
+        <section aria-label="Teléfonos de contacto">
+          <h2 class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5">
             <Phone />
-            <p>Teléfonos</p>
-          </div>
-          <li v-for="phone in itemsInfo.phone" :key="phone">
-            <a
-              :href="'tel:' + phone"
-              class="hover:text-gray-300 transition-colors underline"
-            >
-              {{ phone }}
-            </a>
-          </li>
-        </ul>
+            <span>Teléfonos</span>
+          </h2>
+          <address class="not-italic">
+            <ul class="space-y-2">
+              <li v-for="phone in itemsInfo.phone" :key="phone">
+                <a
+                  :href="'tel:' + phone.replace(/\s+/g, '')"
+                  class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
+                >
+                  {{ phone }}
+                </a>
+              </li>
+            </ul>
+          </address>
+        </section>
 
-        <!-- Correo -->
-        <ul>
-          <div
-            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
-          >
+        <!-- Correo electrónico -->
+        <section aria-label="Correo electrónico">
+          <h2 class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5">
             <Mail />
-            <p>Correo</p>
-          </div>
-          <li v-for="email in itemsInfo.email" :key="email">
-            <a
-              :href="'mailto:' + email.trim()"
-              class="hover:text-gray-300 transition-colors underline"
-            >
-              {{ email.trim() }}
-            </a>
-          </li>
-        </ul>
+            <span>Correo</span>
+          </h2>
+          <address class="not-italic">
+            <ul class="space-y-2">
+              <li v-for="email in itemsInfo.email" :key="email">
+                <a
+                  :href="'mailto:' + email.trim()"
+                  class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
+                >
+                  {{ email.trim() }}
+                </a>
+              </li>
+            </ul>
+          </address>
+        </section>
+
       </div>
     </div>
+
+    <!-- Créditos -->
     <div class="w-full text-center bg-gray-700 p-5 lg:p-2">
-      <p class="text-sm">© 2025 JD Eléctricos. Todos los derechos reservados. | Diseño y desarrollo por Jd Eléctricos.</p>
+      <p class="text-sm">
+        © 2025 JD Eléctricos. Todos los derechos reservados. | Diseño y desarrollo por JD Eléctricos.
+      </p>
     </div>
   </footer>
 </template>

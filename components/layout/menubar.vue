@@ -1,5 +1,7 @@
 <template>
-  <nav class="flex justify-between items-center bg-gray-800 text-white px-4 lg:px-20 py-2">
+  <nav
+    class="flex justify-between items-center bg-gray-800 text-white px-4 lg:px-20 py-2"
+  >
     <!-- logo de la empresa -->
     <div>
       <NuxtImg
@@ -13,6 +15,8 @@
     <button
       @click="drawer = !drawer"
       class="p-4 rounded-md lg:hidden cursor-pointer"
+      aria-label="Menu"
+      title="Menu"
     >
       <Menu v-if="!drawer" class="w-6 h-6" />
       <X v-else class="w-6 h-6" />
@@ -116,7 +120,10 @@
             v-if="activeSubMenu && activeSubMenu.label === item.label"
             class="absolute left-full top-0 bg-gray-700 text-white p-4 min-w-44 rounded-r-lg shadow-lg max-h-72 overflow-y-auto z-50"
           >
-            <button @click="closeSubMenu" class="absolute top-2 right-2 text-xl cursor-pointer">
+            <button
+              @click="closeSubMenu"
+              class="absolute top-2 right-2 text-xl cursor-pointer"
+            >
               &times;
             </button>
             <h2 class="text-lg font-bold mb-4">{{ activeSubMenu.label }}</h2>
@@ -176,15 +183,24 @@ const items = ref([
     href: "/tienda-articulos-electricos",
     items: [
       { label: "AISLADORES ELECTRICOS", href: "/aisladores-electricos" },
-      { label: "ALAMBRES Y CABLES ELECTRICOS", href: "/alambres-y-cables-electricos" },
-      { label: "ARTICULOS ELECTRICOS VARIOS", href: "/articulos-electricos-varios-bogota" },
+      {
+        label: "ALAMBRES Y CABLES ELECTRICOS",
+        href: "/alambres-y-cables-electricos",
+      },
+      {
+        label: "ARTICULOS ELECTRICOS VARIOS",
+        href: "/articulos-electricos-varios-bogota",
+      },
       { label: "BREAKERS ELECTRICOS", href: "/breakers-electricos" },
       { label: "CABLOFIL", href: "/cablofil-bogota" },
       { label: "CAJAS Y TABLEROS", href: "/cajas-y-tableros-bogota" },
       { label: "CINTAS AISLANTES", href: "/cintas-aislantes-bogota" },
       { label: "CINTAS BAND IT", href: "/cintas-band-it-acero-inoxidable" },
       { label: "CONDENSADORES", href: "/bancos-de-condensadores-bogota" },
-      { label: "CORTACIRCUITOS Y PARARRAYOS", href: "/cortacircuitos-y-pararrayos" },
+      {
+        label: "CORTACIRCUITOS Y PARARRAYOS",
+        href: "/cortacircuitos-y-pararrayos",
+      },
       { label: "CRUCETAS Y VIGAS", href: "/crucetas-y-vigas-en-bogota" },
       { label: "HERRAJES", href: "/herrajes-electricos-en-colombia" },
       { label: "HERRAMIENTAS", href: "/herramientas-en-bogota" },
@@ -195,20 +211,38 @@ const items = ref([
       { label: "MEDIDORES", href: "/medidores-de-energia-en-bogota" },
       { label: "MOTORES ELECTRICOS", href: "/motores-electricos-en-bogota" },
       { label: "PARARRAYOS", href: "/cortacircuitos-y-pararrayos" },
-      { label: "PREMOLDEADOS", href: "/accesorios-premoldeados-mtension-bogota" },
+      {
+        label: "PREMOLDEADOS",
+        href: "/accesorios-premoldeados-mtension-bogota",
+      },
       { label: "POSTES DE CONCRETO", href: "/postes-de-concreto-colombia" },
       { label: "promociones", href: "/promociones" },
-      { label: "PROTECCION", href: "/apantallamiento-para-proteccion-contra-rayos-bogota" },
-      { label: "PUESTA A TIERRA", href: "/accesorios-para-puesta-a-tierra-bogota" },
+      {
+        label: "PROTECCION",
+        href: "/apantallamiento-para-proteccion-contra-rayos-bogota",
+      },
+      {
+        label: "PUESTA A TIERRA",
+        href: "/accesorios-para-puesta-a-tierra-bogota",
+      },
       { label: "RECONECTADOR", href: "/reconectadores-reclosers-en-bogota" },
       { label: "RED ESTRUCTURADA", href: "/redes-estructuradas-en-bogota" },
       { label: "RED TRENZADA", href: "/red-trenzada-en-bogota" },
-      { label: "SECTOR PETROLEO", href: "/materiales-sector-petroleo-en-bogota" },
+      {
+        label: "SECTOR PETROLEO",
+        href: "/materiales-sector-petroleo-en-bogota",
+      },
       { label: "SEGURIDAD INDUSTRIAL", href: "/seguridad-industrial" },
       { label: "SOLDADURA EXOTERMICA", href: "/soldadura-exotermica" },
-      { label: "SUBESTACIONES", href: "/subestaciones-capsuladas-y-celdas-en-bogota" },
+      {
+        label: "SUBESTACIONES",
+        href: "/subestaciones-capsuladas-y-celdas-en-bogota",
+      },
       { label: "TRANSFORMADORES", href: "/transformadores-en-bogota" },
-      { label: "TERMINALES PREMOLDEADAS", href: "/terminales-premoldeadas-en-bogota" },
+      {
+        label: "TERMINALES PREMOLDEADAS",
+        href: "/terminales-premoldeadas-en-bogota",
+      },
       { label: "TUBERIA", href: "/tuberia-metalica-y-pvc-en-bogota" },
     ],
     isOpen: false,
@@ -245,6 +279,6 @@ const closeSubMenu = () => {
 };
 const closeDrawerAndSubmenu = () => {
   drawer.value = false;
-  closeSubMenu()
+  closeSubMenu();
 };
 </script>
