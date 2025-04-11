@@ -10,11 +10,11 @@
         <h2>JD Electricos E</h2>
         <h2>Industria Ltda</h2>
       </div>
-      <div class="flex-1 flex justify-end">
+      <div class="flex-1 flex justify-end ">
         <NuxtImg
           src="/img/logo/Aislamientos.jpg"
           alt="Electricos"
-          class="lg:w-[30rem] lg:h-[40rem] max-w-[30rem] w-full sm:w-auto object-cover rounded-2xl"
+          class="lg:w-[30rem] lg:h-[40rem] max-w-[30rem] w-full sm:w-auto object-cover rounded-2xl "
           width="480"
           height="640"
         />

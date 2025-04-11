@@ -12,7 +12,7 @@
     <!-- Categorías principales -->
     <div
       v-if="open"
-      class="hidden md:block bg-white absolute left-0 md:left-auto md:right-0 z-50 lg:min-w-[300px] max-w-screen-xl text-sm"
+      class="hidden md:block rounded-l bg-white absolute left-0 md:left-auto md:right-0 z-50 lg:min-w-[300px] max-w-screen-xl text-sm"
     >
       <ul
         class="border rounded shadow-md p-2 flex flex-col max-h-[300px] overflow-auto"

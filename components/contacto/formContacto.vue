@@ -40,7 +40,7 @@
       </div>
 
       <!-- Formulario de Contacto -->
-      <div class="lg:w-1/2 bg-gray-700 p-8 rounded-2xl">
+      <div class="lg:w-1/2 bg-gray-700 p-8 rounded-2xl shadow-xl shadow-neutral-800/50">
         <form @submit.prevent="submitForm" class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="flex flex-col">

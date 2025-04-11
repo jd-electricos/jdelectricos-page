@@ -1,11 +1,11 @@
 <template>
   <div class="py-12 px-6">
-    <div class="max-w-screen-lg mx-auto p-10">
+    <div class="max-w-screen-lg mx-auto p-10 ">
       <!-- Logo -->
       <NuxtImg
         src="/img/logo/logo-jd-electricos.webp"
         alt="logo de JD Electricos"
-        class="w-28 h-28 mx-auto mb-4"
+        class="w-28 h-28 mx-auto mb-4 "
         width="112"
         height="112"
       />
@@ -36,11 +36,11 @@
 
     <!-- Misión, Visión y Valores en horizontal -->
     <div
-      class="max-w-screen-lg mx-auto mt-12 lg:flex lg:justify-between gap-16 p-10"
+      class="max-w-screen-lg mx-auto mt-12 lg:flex lg:justify-between gap-16 p-10 "
     >
       <!-- Misión -->
       <div
-        class="lg:w-1/3 lg:text-left border-2 border-yellow-600 p-6 rounded-2xl hover:bg-yellow-200"
+        class="lg:w-1/3 lg:text-left border-2 border-yellow-600 p-6 rounded-2xl hover:bg-yellow-200 shadow-xl shadow-neutral-800/50"
       >
         <h2
           class="text-2xl font-bold text-gray-900 border-l-4 border-yellow-600 pl-4"
@@ -64,7 +64,7 @@
 
       <!-- Visión -->
       <div
-        class="lg:w-1/3 lg:text-left border-2 border-yellow-600 p-6 rounded-2xl hover:bg-yellow-200"
+        class="lg:w-1/3 lg:text-left border-2 border-yellow-600 p-6 rounded-2xl hover:bg-yellow-200 shadow-xl shadow-neutral-800/50"
       >
         <h2
           class="text-2xl font-bold text-gray-900 border-l-4 border-yellow-600 pl-4"
@@ -84,7 +84,7 @@
 
       <!-- Valores -->
       <div
-        class="lg:w-1/3 lg:text-left border-2 border-yellow-600 p-6 rounded-2xl hover:bg-yellow-200"
+        class="lg:w-1/3 lg:text-left border-2 border-yellow-600 p-6 rounded-2xl hover:bg-yellow-200 shadow-xl shadow-neutral-800/50"
       >
         <h2
           class="text-2xl font-bold text-gray-900 border-l-4 border-yellow-600 pl-4"
@@ -106,8 +106,8 @@
     </div>
 
     <!-- Sección de Políticas de Calidad -->
-    <div class="max-w-screen-lg mx-auto mt-12 bg-gray-800 p-12 rounded-2xl">
-      <h2 class="text-2xl font-bold text-white border-yellow-600 pl-4">
+    <div class="max-w-screen-lg mx-auto mt-12 bg-gray-800 p-12 rounded-2xl shadow-xl shadow-neutral-800/50">
+      <h2 class="text-2xl font-bold text-white border-yellow-600">
         Política de Calidad
       </h2>
       <p class="text-lg text-white mt-4">

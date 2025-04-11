@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="rounded-2xl" id="map" style="height: 500px; width: 80%"></div>
+      <div class="rounded-2xl shadow-xl shadow-neutral-800/50" id="map" style="height: 500px; width: 80%"></div>
     </div>
   </template>
   
