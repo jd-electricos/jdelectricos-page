@@ -12,10 +12,10 @@
             Ref: <span class="font-bold">{{ data.sku }}</span>
           </p>
 
-          <NuxtLink :to="data.category.slug">
+          <NuxtLink :to="data.subCategory.slug">
             <p class="font-semibold">
               Categoria:
-              <span class="font-bold">{{ data.category.name }}</span>
+              <span class="font-bold">{{ data.subCategory.name || 'nada' }}</span>
             </p>
           </NuxtLink>
         </div>
@@ -30,7 +30,7 @@
         </button>
         <div class="py-10">
           <h2 class="text-xl md:text-2xl font-bold mb-2">
-            Caracteristicas Tecnicas de {{ data.category.name }}
+            Caracteristicas Tecnicas de {{ data.subCategory.name }}
           </h2>
           <p class="text-justify">{{ data.technical_parameters }}</p>
         </div>

@@ -2,30 +2,49 @@
   <div class="pt-10 pb-10 px-5">
     <h1 class="text-4xl font-bold">{{ props.category?.name }}</h1>
     <div class="flex flex-wrap gap-5 p-5 justify-center">
-      <div v-for="product in props.products" :key="product.id">
-        <cardProductToFeed
-          :urlImg="product.previewImg"
-          :slugProduct="product.slugProduct"
-          :nameProduct="product.name"
-        />
+      <div
+        v-for="subcategory in props.category?.subCategories"
+        :key="subcategory.name"
+      >
+        <div
+          class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-white p-3  hover:text-black"
+        >
+          <div>
+            <NuxtLink
+              :to="`/${subcategory.slugProduct}`"
+              :aria-label="`Ver categoria ${subcategory.name}`"
+            >
+              <NuxtImg
+                src="https://jdelectricos.com.co/wp-content/uploads/2015/02/10671457_350118441826896_5004478760188836471_n-150x150.jpg"
+                :alt="`Ver categoria ${subcategory.name}`"
+                class="w-40 h-40 rounded-2xl"
+              />
+            </NuxtLink>
+          </div>
+          <div>
+            <div class="flex flex-col items-center gap-4">
+              <!-- <NuxtLink :to="`/${slugCategory}`">  este codigo es el de los slug se debe remplazar el de abajo por el de arriba -->
+              <NuxtLink :to="`/${subcategory.slug}`">
+                <h2 class="font-bold text-center">{{ subcategory.name }}</h2>
+              </NuxtLink>
+              <NuxtLink :to="`/${subcategory.slug}`">
+                <p class="font-semibold">Ver Categoria</p>
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import cardProductToFeed from "~/components/productos/cardProductToFeed.vue";
 const props = defineProps({
-  products: {
-    type: Array,
-    required: true,
-  },
   category: {
     type: Object,
     required: true,
   },
 });
-
 const data = computed(() => props.category || {});
 useSeoMeta({
   title: computed(() => data.value.seo.ogtitle || ""),
@@ -47,7 +66,8 @@ useSeoMeta({
   twitterDescription: computed(() => data.value.description || ""),
   twitterSite: "@JD_ELECTRICOS",
   twitterCreator: "@JD_ELECTRICOS",
-  twitterImage: "https://jdelectricos.com.co/wp-content/uploads/2020/04/distribuidor-de-materiales-electricos.jpg",
+  twitterImage:
+    "https://jdelectricos.com.co/wp-content/uploads/2020/04/distribuidor-de-materiales-electricos.jpg",
   robots:
     "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
 });

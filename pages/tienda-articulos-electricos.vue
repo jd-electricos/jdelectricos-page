@@ -51,9 +51,7 @@
       </div>
     </div>
     <!-- Paginador -->
-
-    <!-- Paginador -->
-  </section>
+</section>
 </template>
 <script setup>
 import { ref, computed, watchEffect } from "vue";

@@ -8,12 +8,16 @@
       <feedCategory :products="products" :category="category" />
     </div>
 
+    <div v-else-if="isSubcategory" class="pt-10 pb-10 px-5">
+      <feedSubcategory :products="products" :subcategory="subcategory" />
+    </div>
+
     <div v-else-if="isProduct">
       <feedProduct :dataProducts="product" />
     </div>
 
     <div v-else class="p-10">
-      <p>No se encontró ninguna categoría o producto con el slug proporcionado.</p>
+      <p>No se encontró ninguna categoría, subcategoría o producto con el slug proporcionado.</p>
     </div>
   </div>
 </template>
@@ -23,6 +27,7 @@ import { useRoute } from "vue-router";
 import { computed } from "vue";
 import feedProduct from "~/components/productos/feedProduct.vue";
 import feedCategory from "~/components/productos/feedCategory.vue";
+import feedSubcategory from "~/components/productos/feedSubcategory.vue"; // Asegúrate de crearlo
 
 const route = useRoute();
 const slug = route.params.slug;
@@ -30,45 +35,54 @@ const slug = route.params.slug;
 const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
   const result = {
     isCategory: false,
+    isSubcategory: false,
     isProduct: false,
     category: null,
+    subcategory: null,
     product: null,
     products: [],
   };
 
   try {
-    // 1. Intentar buscar categoría (manejo manual de error)
+    // 1. Buscar categoría
     let categoryRes = null;
-
     try {
       categoryRes = await $fetch(`http://localhost:5000/api/categories/slug/${slug}`);
-    } catch (e) {
-      categoryRes = null;
-    }
+    } catch {}
 
     if (categoryRes?.id) {
       result.category = categoryRes;
       result.isCategory = true;
-
       try {
         result.products = await $fetch(
           `http://localhost:5000/api/products/categories/${categoryRes.id}`
         );
-      } catch (e) {
-        result.products = [];
-      }
-
+      } catch {}
       return result;
     }
 
-    // 2. Si no es categoría, buscar como producto
-    let productRes = null;
+    // 2. Buscar subcategoría
+    let subcategoryRes = null;
+    try {
+      subcategoryRes = await $fetch(`http://localhost:5000/api/subcategories/slug/${slug}`);
+    } catch {}
 
+    if (subcategoryRes?.id) {
+      result.subcategory = subcategoryRes;
+      result.isSubcategory = true;
+      try {
+        result.products = await $fetch(
+          `http://localhost:5000/api/products/subcategories/${subcategoryRes.id}`
+        );
+      } catch {}
+      return result;
+    }
+
+    // 3. Buscar producto
+    let productRes = null;
     try {
       productRes = await $fetch(`http://localhost:5000/api/products/slug/${slug}`);
-    } catch (e) {
-      productRes = null;
-    }
+    } catch {}
 
     if (Array.isArray(productRes) && productRes.length > 0) {
       result.product = productRes[0];
@@ -77,6 +91,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       result.product = productRes;
       result.isProduct = true;
     }
+
   } catch (e) {
     console.error("❌ Error general:", e);
   }
@@ -86,8 +101,11 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
 
 // Computed
 const isCategory = computed(() => data.value?.isCategory);
+const isSubcategory = computed(() => data.value?.isSubcategory);
 const isProduct = computed(() => data.value?.isProduct);
+
 const category = computed(() => data.value?.category);
+const subcategory = computed(() => data.value?.subcategory);
 const product = computed(() => data.value?.product);
 const products = computed(() => data.value?.products);
 </script>
