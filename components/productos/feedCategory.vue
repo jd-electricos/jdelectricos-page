@@ -11,7 +11,7 @@
         >
           <div>
             <NuxtLink
-              :to="`/${subcategory.slugProduct}`"
+              :to="`/${subcategory.slug}`"
               :aria-label="`Ver categoria ${subcategory.name}`"
             >
               <NuxtImg

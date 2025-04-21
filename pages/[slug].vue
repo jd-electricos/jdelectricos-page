@@ -9,7 +9,7 @@
     </div>
 
     <div v-else-if="isSubcategory" class="pt-10 pb-10 px-5">
-      <feedSubcategory :products="products" :subcategory="subcategory" />
+      <feedSubcategory :subcategory="subcategory" />
     </div>
 
     <div v-else-if="isProduct">
