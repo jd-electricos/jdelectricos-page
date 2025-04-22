@@ -1,6 +1,10 @@
 <template>
   <div class="pt-10 pb-10 px-5">
-    <h1 class="text-4xl font-bold">{{ props.category?.name }}</h1>
+    <h1 class="text-4xl font-bold py-5">{{ props.category?.name }}</h1>
+    <breadcrumb
+      :categorySlug="props.category?.slug"
+      :categoryName="props.category?.name"
+    />
     <div class="flex flex-wrap gap-5 p-5 justify-center">
       <div
         v-for="subcategory in props.category?.subCategories"
@@ -39,6 +43,7 @@
 </template>
 
 <script setup>
+import breadcrumb from "../layout/breadcrumb.vue";
 const props = defineProps({
   category: {
     type: Object,

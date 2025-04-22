@@ -1,7 +1,8 @@
 <template>
   <footer class="bg-gray-800 text-white">
-    <div class="container mx-auto px-5 py-8 flex flex-col md:flex-row items-center justify-between">
-      
+    <div
+      class="container mx-auto px-5 py-8 flex flex-col md:flex-row items-center justify-between"
+    >
       <!-- Logo -->
       <NuxtImg
         src="/img/logo/logo-jd-electricos.webp"
@@ -9,15 +10,18 @@
         class="w-32 sm:w-28 md:w-36 lg:w-44 mb-6 md:mb-0"
         loading="lazy"
         width="176"
-        height="auto"
+        height="176"
       />
 
       <!-- Secciones del Footer -->
-      <div class="flex flex-col sm:flex-row gap-10 md:gap-20 text-center sm:text-left w-full justify-around">
-
+      <div
+        class="flex flex-col sm:flex-row gap-10 md:gap-20 text-center sm:text-left w-full justify-around"
+      >
         <!-- Menú de navegación -->
         <nav aria-label="Menú principal" role="navigation">
-          <h2 class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5">
+          <h2
+            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
+          >
             <SquareMenu />
             <span>Menú</span>
           </h2>
@@ -35,7 +39,9 @@
 
         <!-- Teléfonos -->
         <section aria-label="Teléfonos de contacto">
-          <h2 class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5">
+          <h2
+            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
+          >
             <Phone />
             <span>Teléfonos</span>
           </h2>
@@ -55,7 +61,9 @@
 
         <!-- Correo electrónico -->
         <section aria-label="Correo electrónico">
-          <h2 class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5">
+          <h2
+            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
+          >
             <Mail />
             <span>Correo</span>
           </h2>
@@ -72,14 +80,14 @@
             </ul>
           </address>
         </section>
-
       </div>
     </div>
 
     <!-- Créditos -->
     <div class="w-full text-center bg-gray-700 p-5 lg:p-2">
       <p class="text-sm">
-        © 2025 JD Eléctricos. Todos los derechos reservados. | Diseño y desarrollo por JD Eléctricos.
+        © 2025 JD Eléctricos. Todos los derechos reservados. | Diseño y
+        desarrollo por JD Eléctricos.
       </p>
     </div>
   </footer>

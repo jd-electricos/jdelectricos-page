@@ -1,13 +1,25 @@
 <template>
-  <div v-if="data" class="flex flex-col px-4 py-12 md:p-24">
-    <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-32">
+  <section v-if="data" class="flex flex-col px-4 py-12 md:p-14">
+    <breadcrumb
+      :categorySlug="data.subCategory.category.slug"
+      :categoryName="data.subCategory.category.name"
+      :subcategorySlug="data.subCategory.slug"
+      :subcategoryName="data.subCategory.name"
+      :productSlug="data.slugProduct"
+      :productName="data.name"
+    />
+    <div
+      class="flex flex-col lg:flex-row items-center gap-10 lg:gap-32 md:p-14"
+    >
       <div class="w-full lg:w-1/2 flex justify-center">
         <carouselProducts :carouselImage="data.carouselImg" :alt="data.name" />
       </div>
       <div class="flex flex-col w-full lg:w-1/2">
         <h1 class="text-2xl md:text-4xl font-bold">{{ data.name }}</h1>
         <hr class="my-4" />
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-5 gap-4">
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center p-5 gap-4"
+        >
           <p class="font-semibold">
             Ref: <span class="font-bold">{{ data.sku }}</span>
           </p>
@@ -15,7 +27,9 @@
           <NuxtLink :to="data.subCategory.slug">
             <p class="font-semibold">
               Categoria:
-              <span class="font-bold">{{ data.subCategory.name || 'nada' }}</span>
+              <span class="font-bold">{{
+                data.subCategory.name || "nada"
+              }}</span>
             </p>
           </NuxtLink>
         </div>
@@ -36,11 +50,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
 import carouselProducts from "./carouselProducts.vue";
+import breadcrumb from "../layout/breadcrumb.vue";
 import { computed } from "vue";
 
 const props = defineProps({
