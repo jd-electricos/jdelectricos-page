@@ -13,6 +13,7 @@
 
     <!-- Footer -->
     <footerJd />
+    <buttonWp/>
   </div>
 </template>
 
@@ -20,4 +21,5 @@
 import menubar from "../components/layout/menubar.vue";
 import bannerPhone from "../components/layout/bannerPhone.vue";
 import footerJd from "../components/layout/footer.vue";
+import buttonWp from "~/components/layout/buttonWp.vue";
 </script>
