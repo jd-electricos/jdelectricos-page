@@ -1,6 +1,6 @@
 <template>
   <div class="fixed bottom-10 right-10 z-50">
-    <Button
+    <button
       type="button"
       @click="whatsappLink"
       variant="text"
@@ -38,7 +38,7 @@
           clip-rule="evenodd"
         ></path>
       </svg>
-    </Button>
+    </button>
   </div>
 </template>
 
