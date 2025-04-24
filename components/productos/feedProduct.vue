@@ -1,5 +1,5 @@
 <template>
-  <section v-if="data" class="flex flex-col px-4 py-12 md:p-14">
+  <section v-if="data" class="flex flex-col px-4 py-12 md:p-14 select-none">
     <div
       class="flex flex-col lg:flex-row items-center gap-10 lg:gap-32 md:p-14"
     >
@@ -8,7 +8,7 @@
       </div>
       <div class="flex flex-col w-full lg:w-1/2">
         <div class="flex flex-col gap-4">
-          <h1 class="text-2xl md:text-4xl font-bold">{{ data.name }}</h1>
+          <h1 class="text-2xl md:text-4xl font-bold text-shadow-lg/20">{{ data.name }}</h1>
           <breadcrumb
             :categorySlug="data.subCategory.category.slug"
             :categoryName="data.subCategory.category.name"
@@ -40,7 +40,7 @@
           Precio: <span class="font-bold">{{ data.price }}</span>
         </p>
         <button
-          class="bg-gray-800 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto shadow-xl shadow-neutral-800/50"
+          class="bg-gray-800 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto shadow-xl shadow-neutral-800/50  transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer"
         >
           Cotizar Producto
         </button>

@@ -4,7 +4,7 @@
   >
     <div class="">
       <NuxtLink :to="`/${slugProduct}`">
-        <NuxtImg :src="urlImg" alt="" class="w-40 rounded-2xl" />
+        <NuxtImg :src="urlImg" alt="" class="w-40 rounded-2xl mask-t-from-50%" />
       </NuxtLink>
     </div>
     <div>

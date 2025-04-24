@@ -1,17 +1,20 @@
 <template>
-  <div class="pt-10 pb-10 px-5">
-    <h1 class="text-4xl font-bold py-5">{{ props.category?.name }}</h1>
-    <breadcrumb
-      :categorySlug="props.category?.slug"
-      :categoryName="props.category?.name"
-    />
-    <div class="flex flex-wrap justify-center">
+  <section class="select-none">
+    <div class="flex flex-col px-10">
+      <h1 class="text-4xl font-bold py-5 text-shadow-lg/20">{{ props.category?.name }}</h1>
+      <breadcrumb
+        class="w-3/12"
+        :categorySlug="props.category?.slug"
+        :categoryName="props.category?.name"
+      />
+    </div>
+    <div class="flex flex-wrap justify-center pt-10">
       <div
         v-for="subcategory in props.category?.subCategories"
         :key="subcategory.name"
       >
         <div
-          class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-white p-3  hover:text-black"
+          class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-white p-3 hover:text-black drop-shadow-xl bg-white"
         >
           <div>
             <NuxtLink
@@ -21,7 +24,7 @@
               <NuxtImg
                 src="https://jdelectricos.com.co/wp-content/uploads/2015/02/10671457_350118441826896_5004478760188836471_n-150x150.jpg"
                 :alt="`Ver categoria ${subcategory.name}`"
-                class="w-40 h-40 rounded-2xl"
+                class="w-40 h-40 rounded-2xl hover:mask-b-from-20% hover:mask-b-to-80%"
               />
             </NuxtLink>
           </div>
@@ -32,14 +35,14 @@
                 <h2 class="font-bold text-center">{{ subcategory.name }}</h2>
               </NuxtLink>
               <NuxtLink :to="`/${subcategory.slug}`">
-                <p class="font-semibold">Ver Categoria</p>
+                <p class="font-semibold bg-gray-800 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-gray-500 text-white p-1 px-2 rounded-md">Ver Categoria</p>
               </NuxtLink>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
