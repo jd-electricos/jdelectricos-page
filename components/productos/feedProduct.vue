@@ -1,13 +1,5 @@
 <template>
   <section v-if="data" class="flex flex-col px-4 py-12 md:p-14">
-    <breadcrumb
-      :categorySlug="data.subCategory.category.slug"
-      :categoryName="data.subCategory.category.name"
-      :subcategorySlug="data.subCategory.slug"
-      :subcategoryName="data.subCategory.name"
-      :productSlug="data.slugProduct"
-      :productName="data.name"
-    />
     <div
       class="flex flex-col lg:flex-row items-center gap-10 lg:gap-32 md:p-14"
     >
@@ -15,8 +7,18 @@
         <carouselProducts :carouselImage="data.carouselImg" :alt="data.name" />
       </div>
       <div class="flex flex-col w-full lg:w-1/2">
-        <h1 class="text-2xl md:text-4xl font-bold">{{ data.name }}</h1>
-        <hr class="my-4" />
+        <div class="flex flex-col gap-4">
+          <h1 class="text-2xl md:text-4xl font-bold">{{ data.name }}</h1>
+          <breadcrumb
+            :categorySlug="data.subCategory.category.slug"
+            :categoryName="data.subCategory.category.name"
+            :subcategorySlug="data.subCategory.slug"
+            :subcategoryName="data.subCategory.name"
+            :productSlug="data.slugProduct"
+            :productName="data.name"
+          />
+          <hr />
+        </div>
         <div
           class="flex flex-col md:flex-row justify-between items-start md:items-center p-5 gap-4"
         >

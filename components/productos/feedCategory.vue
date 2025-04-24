@@ -5,7 +5,7 @@
       :categorySlug="props.category?.slug"
       :categoryName="props.category?.name"
     />
-    <div class="flex flex-wrap gap-5 p-5 justify-center">
+    <div class="flex flex-wrap justify-center">
       <div
         v-for="subcategory in props.category?.subCategories"
         :key="subcategory.name"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray-200 rounded-2xl p-4 overflow-x-auto whitespace-nowrap flex items-center gap-2 mb-10 text-gray-500 text-sm font-semibold scrollbar-hide"
+    class="bg-gray-100 rounded-2xl py-2 px-4 overflow-x-auto whitespace-nowrap flex items-center lg:justify-center gap-2 text-gray-500 text-sm font-semibold scrollbar-hide"
   >
     <NuxtLink to="/" class="text-gray-500 hover:text-gray-800 shrink-0">
       <p>Inicio</p>
@@ -19,6 +19,8 @@
       <NuxtLink
         :to="`/${categorySlug}`"
         class="text-gray-500 hover:text-gray-800 shrink-0"
+        :class="subcategoryName === undefined || null ? 'font-bold text-gray-800' : ''"
+
       >
         <p>{{ categoryName }}</p>
       </NuxtLink>
@@ -29,6 +31,7 @@
       <NuxtLink
         :to="`/${subcategorySlug}`"
         class="text-gray-500 hover:text-gray-800 shrink-0"
+        :class="productName === undefined || null ? 'font-bold text-gray-800' : ''"
       >
         <p>{{ subcategoryName }}</p>
       </NuxtLink>
@@ -37,7 +40,7 @@
       <ChevronRight class="shrink-0" />
       <NuxtLink
         :to="`/${productSlug}`"
-        class="text-gray-500 hover:text-gray-800 shrink-0"
+        class="hover:text-gray-800 shrink-0 font-bold text-gray-800"
       >
         <p>{{ productName }}</p>
       </NuxtLink>
