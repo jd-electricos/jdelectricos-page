@@ -74,7 +74,7 @@ const props = defineProps({
 });
 const data = computed(() => props.subcategory || {});
 
-const dataJsonLs = ref({
+const dataJsonLd = ref({
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -228,7 +228,7 @@ useHead({
   ],
   script: [
     {
-      innerHTML: computed(() => JSON.stringify(data.value.seo?.jsonld || dataJsonLs.value)),
+      innerHTML: computed(() => JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value)),
       type: "application/ld+json",
     },
   ],
