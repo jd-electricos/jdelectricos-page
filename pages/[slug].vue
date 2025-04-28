@@ -4,11 +4,11 @@
       <p>Cargando información...</p>
     </div>
 
-    <div v-else-if="isCategory" class="pt-10 pb-10 px-5">
+    <div v-else-if="isCategory">
       <feedCategory :products="products" :category="category" />
     </div>
 
-    <div v-else-if="isSubcategory" class="pt-10 pb-10 px-5">
+    <div v-else-if="isSubcategory">
       <feedSubcategory :subcategory="subcategory" />
     </div>
 
