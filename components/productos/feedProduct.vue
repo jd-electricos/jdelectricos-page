@@ -88,6 +88,11 @@ useSeoMeta({
   twitterImage: computed(() => data.value.carouselImg[0] || ""),
   robots:
     "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
+    keywords: computed(() => {
+      return Array.isArray(data.value.seo.keywords)
+        ? data.value.seo.keywords.join(", ")
+        : "";
+    }),
 });
 
 useHead({
