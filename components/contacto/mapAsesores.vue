@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-row gap-4 items-center justify-center">
-      <div class="flex flex-col gap-9">
+    <div class="flex lg:flex-row flex-col gap-4 items-center justify-center">
+      <div class="flex lg:flex-col flex-wrap justify-center gap-9">
         <div
           class="flex items-center gap-2"
           v-for="asesor in asesores"
@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="rounded-2xl shadow-xl shadow-neutral-800/50" id="map" style="height: 500px; width: 80%"></div>
+      <div class="rounded-2xl shadow-xl shadow-neutral-800/50 w-[80%] h-[250px] md:h-[400px] lg:h-[500px]" id="map"></div>
     </div>
   </template>
   
@@ -318,8 +318,5 @@
   </script>
   
   <style scoped>
-  #map {
-    height: 500px;
-    width: 100%;
-  }
+ 
   </style>

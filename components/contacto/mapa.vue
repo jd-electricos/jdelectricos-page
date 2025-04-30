@@ -9,7 +9,7 @@
       <mapAsesores />
     </div>
     <br /><br />
-    <em
+    <em class="mt-50 md:mt-0 lg:mt-0"
       >“Somos una empresa comercializadora de materiales eléctricos, cables
       electricos, alambres y cables, alambre de cobre desnudo y postes de
       concreto, de productos para la generación, transmisión y distribución de
