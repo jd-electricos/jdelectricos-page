@@ -34,7 +34,7 @@
         </select>
       </div>
       <div class="flex flex-col">
-        <div class="flex flex-wrap gap-10 justify-center">
+        <div class="flex flex-wrap justify-center">
           <cardCategoriesToFeed
             v-for="(categories, index) in paginatedCategories"
             :key="index"

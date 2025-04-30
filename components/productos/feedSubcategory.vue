@@ -11,7 +11,7 @@
       </div>
       <br />
       <breadcrumb
-        class="lg:w-4/12 w-15/12"
+        class="lg:w-5/12 w-15/12"
         :categorySlug="props.subcategory.category.slug"
         :categoryName="props.subcategory.category.name"
         :subcategorySlug="props.subcategory.slug"
@@ -111,6 +111,7 @@ const dataJsonLd = ref({
         },
         "logo": {
           "@type": "ImageObject",
+        // <- aca se debe cambiar la url por el paranetro de la imagen
           "url": "https://jdelectricos.com.co/wp-content/uploads/2017/03/jd-electricos1-300x71.png"
         },
         "contactPoint": [
