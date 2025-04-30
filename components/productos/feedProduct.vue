@@ -27,7 +27,6 @@
           <p class="font-semibold">
             Ref: <span class="font-bold">{{ data.sku }}</span>
           </p>
-
           <NuxtLink :to="data.subCategory.slug">
             <p class="font-semibold">
               Categoria:
