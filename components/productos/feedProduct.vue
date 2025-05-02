@@ -67,7 +67,7 @@ import { computed } from "vue";
 const props = defineProps({
   dataProducts: Object,
 });
-
+ 
 const data = computed(() => props.dataProducts || {});
 const phoneNumber = "573108023277"; // Número de WhatsApp
 const whatsappLink = computed(() => {
