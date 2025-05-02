@@ -40,11 +40,14 @@
         <p class="font-semibold py-5">
           Precio: <span class="font-bold">{{ data.price }}</span>
         </p>
-        <button
-          class="bg-gray-800 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto shadow-xl shadow-neutral-800/50 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer"
+        <a
+          :href="whatsappLink"
+          target="_blank"
+          itemprop="url"
+          class="bg-gray-800 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto shadow-xl shadow-neutral-800/50 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer text-center"
         >
           Cotizar Producto
-        </button>
+        </a>
         <div class="py-10">
           <h2 class="text-xl md:text-2xl font-bold mb-2">
             Caracteristicas Tecnicas de {{ data.subCategory.name }}
@@ -66,6 +69,11 @@ const props = defineProps({
 });
 
 const data = computed(() => props.dataProducts || {});
+const phoneNumber = "573108023277"; // Número de WhatsApp
+const whatsappLink = computed(() => {
+  const message = `Hola Japs, quiero cotizar ${props.dataProducts.name} con referencia ${props.dataProducts.sku}`;
+  return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+});
 useSeoMeta({
   title: computed(() => data.value.seo.ogtitle || ""),
   description: computed(() => data.value.seo.ogdescription || ""),
