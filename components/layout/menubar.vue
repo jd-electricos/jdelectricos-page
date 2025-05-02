@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex justify-between items-center bg-gray-800 text-white px-4 lg:px-20 py-2"
+    class="flex justify-between items-center bg-gray-800 text-white px-4 lg:px-20 py-2 shadow-xl shadow-gray-900/50"
   >
     <!-- logo de la empresa -->
     <div>

@@ -1,6 +1,6 @@
 <template>
   <div class="py-12 px-6">
-    <div class="max-w-screen-lg mx-auto p-10 ">
+    <div class="max-w-screen-lg mx-auto p-10 shadow-xl shadow-neutral-800/50 rounded-2xl bg-white">
       <!-- Logo -->
       <NuxtImg
         src="/img/logo/logo-jd-electricos.webp"
@@ -146,7 +146,7 @@
         su proyecto tenga éxito.
       </p>
     </div>
-    <div class="bg-gray-800 mt-16 rounded-2xl">
+    <div class="bg-gray-800 mt-16 rounded-2xl shadow-xl shadow-neutral-800/50">
       <div
         class="text-white py-12 px-6 sm:px-10 lg:px-40 flex flex-col sm:items-center lg:flex-row lg:justify-between gap-6 max-w-screen-xl mx-auto"
       >
