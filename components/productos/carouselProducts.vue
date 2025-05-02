@@ -1,10 +1,10 @@
 <template>
   <div class="relative w-full max-w-3xl mx-auto">
     <!-- Imagen principal -->
-    <div class="relative shadow-xl shadow-neutral-800/50">
-      <img
+    <div class="relative ">
+      <NuxtImg
         :src="carouselImage[currentIndex]"
-        class="w-full h-96 object-contain rounded-lg bg-gray-100"
+        class="w-full h-96 object-contain rounded-lg bg-gray-100 shadow-xl shadow-neutral-800/50"
         :alt="alt"
       />
 
@@ -31,14 +31,16 @@
 
     <!-- Miniaturas -->
     <div class="flex justify-center mt-4 space-x-2">
-      <img
+      <NuxtImg
         v-for="(image, index) in carouselImage"
         :key="index"
         :src="image"
         :alt="alt"
         @click="currentIndex = index"
-        class="w-16 h-16 object-cover cursor-pointer border-2 shadow-xl shadow-neutral-800/50"
+        class="w-16 h-16 object-cover cursor-pointer border-2 shadow-xl shadow-neutral-800/50 rounded-lg"
         :class="{ 'border-gray-800': currentIndex === index }"
+        width="64"
+        height="64"
       />
     </div>
   </div>

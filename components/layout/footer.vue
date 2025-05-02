@@ -15,7 +15,7 @@
 
       <!-- Secciones del Footer -->
       <div
-        class="flex flex-col sm:flex-row gap-10 md:gap-20 text-center sm:text-left w-full justify-around"
+        class="flex flex-col sm:flex-row gap-10 md:gap-20 text-center sm:text-left w-full justify-end"
       >
         <!-- Menú de navegación -->
         <nav aria-label="Menú principal" role="navigation">
