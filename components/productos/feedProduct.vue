@@ -48,13 +48,14 @@
         >
           Cotizar Producto
         </a>
-        <div class="py-10">
-          <h2 class="text-xl md:text-2xl font-bold mb-2">
-            Caracteristicas Tecnicas de {{ data.subCategory.name }}
-          </h2>
-          <p class="text-justify">{{ data.technical_parameters }}</p>
-        </div>
       </div>
+    </div>
+    <div class="py-10">
+      <h2 class="text-xl md:text-2xl font-bold mb-2">
+        Caracteristicas Tecnicas de {{ data.subCategory.name }}
+      </h2>
+      <!-- <p class="text-justify">{{ data.technical_parameters }}</p> -->
+      <parametersTable :technicalParameters="data.technical_parameters" />
     </div>
   </section>
 </template>
@@ -62,12 +63,13 @@
 <script setup>
 import carouselProducts from "./carouselProducts.vue";
 import breadcrumb from "../layout/breadcrumb.vue";
+import parametersTable from "./parametersTable.vue";
 import { computed } from "vue";
 
 const props = defineProps({
   dataProducts: Object,
 });
- 
+
 const data = computed(() => props.dataProducts || {});
 const phoneNumber = "573108023277"; // Número de WhatsApp
 const whatsappLink = computed(() => {
