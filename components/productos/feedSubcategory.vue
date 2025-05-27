@@ -34,6 +34,7 @@
               <NuxtImg
                 :src="product.previewImg"
                 :alt="`Ver categoria ${product.name}`"
+                :title="`Ver categoria ${product.name}`"
                 class="w-40 h-40 rounded-2xl hover:mask-b-from-20% hover:mask-b-to-80%"
                 width="160"
                 height="160"

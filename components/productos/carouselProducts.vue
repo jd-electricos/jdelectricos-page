@@ -6,6 +6,13 @@
         :src="carouselImage[currentIndex]"
         class="w-full h-96 object-contain rounded-lg bg-gray-100 shadow-xl shadow-neutral-800/50"
         :alt="alt"
+        width="640"
+        height="384"
+        :key="currentIndex"
+        loading="lazy"
+        decoding="async"
+        itemprop="image"
+        :title="alt"
       />
 
       <!-- Botón Izquierda -->
@@ -36,6 +43,7 @@
         :key="index"
         :src="image"
         :alt="alt"
+        :title="`minuatura de ${alt}`"
         @click="currentIndex = index"
         class="w-16 h-16 object-cover cursor-pointer border-2 shadow-xl shadow-neutral-800/50 rounded-lg"
         :class="{ 'border-gray-800': currentIndex === index }"

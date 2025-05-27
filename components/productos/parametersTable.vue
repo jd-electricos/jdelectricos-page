@@ -5,7 +5,7 @@
       aria-label="Tabla de parámetros técnicos del producto"
       role="table"
     >
-      <thead class="bg-gray-100 text-gray-700">
+      <thead class="bg-gray-800 text-white">
         <tr>
           <th
             v-for="param in technicalParameters"

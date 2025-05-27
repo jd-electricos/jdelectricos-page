@@ -1,5 +1,5 @@
 <template>
-  <section v-if="data" class="flex flex-col px-4 py-12 md:p-14 select-none">
+  <section v-if="data" class="flex flex-col px-4 py-12 md:p-14" @copy="handleCopy">
     <div
       class="flex flex-col lg:flex-row items-center gap-10 lg:gap-32 md:p-14"
     >
@@ -31,7 +31,7 @@
             <p class="font-semibold">
               Categoria:
               <span class="font-bold">{{
-                data.subCategory.name || "nada"
+                data.subCategory.category.name || "nada"
               }}</span>
             </p>
           </NuxtLink>
@@ -52,7 +52,7 @@
     </div>
     <div class="py-10">
       <h2 class="text-xl md:text-2xl font-bold mb-2">
-        Caracteristicas Tecnicas de {{ data.subCategory.name }}
+        Caracteristicas Tecnicas de {{ data.name }}
       </h2>
       <!-- <p class="text-justify">{{ data.technical_parameters }}</p> -->
       <parametersTable :technicalParameters="data.technical_parameters" />
@@ -246,4 +246,17 @@ useHead({
     },
   ],
 });
+
+const handleCopy = (event) => {
+  event.preventDefault();
+
+  const customText = `JD ELÉCTRICOS | ${data.value.name}  - https://jdelectricos.com.co/${data.value.slugProduct}`;
+  
+  if (event.clipboardData) {
+    event.clipboardData.setData("text/plain", customText);
+  } else if (window.clipboardData) {
+    // For IE (just in case)
+    window.clipboardData.setData("Text", customText);
+  }
+};
 </script>

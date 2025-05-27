@@ -18,7 +18,7 @@
     </div>
     <div class="flex flex-wrap justify-center pt-10">
       <div
-        v-for="subcategory in props.category?.subCategories"
+        v-for="subcategory in sortedSubCategories"
         :key="subcategory.name"
       >
         <div
@@ -32,6 +32,7 @@
               <NuxtImg
                 src="https://jdelectricos.com.co/wp-content/uploads/2015/02/10671457_350118441826896_5004478760188836471_n-150x150.jpg"
                 :alt="`Ver categoria ${subcategory.name}`"
+                :title="`Ver categoria ${subcategory.name}`"
                 class="w-40 h-40 rounded-2xl hover:mask-b-from-20% hover:mask-b-to-80%"
                 width="160"
                 height="160"
@@ -74,6 +75,14 @@ const props = defineProps({
   },
 });
 const data = computed(() => props.category || {});
+
+const sortedSubCategories = computed(() => {
+  if (!props.category?.subCategories) return [];
+  return [...props.category.subCategories].sort((a, b) =>
+    a.name.localeCompare(b.name, "es", { sensitivity: "base" })
+  );
+});
+
 useSeoMeta({
   title: computed(() => data.value.seo.ogtitle || ""),
   description: computed(() => data.value.seo.ogdescription || ""),
@@ -237,6 +246,7 @@ useHead({
     },
   ],
 });
+
 </script>
 
 <style scoped></style>

@@ -10,6 +10,7 @@
         <NuxtImg
           :src="urlImg"
           :alt="`Ver categoria ${nameCategory}`"
+          :title="`Ver categoria ${nameCategory}`"
           class="w-40 h-40 rounded-2xl"
         />
       </NuxtLink>
