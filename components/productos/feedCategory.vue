@@ -17,10 +17,7 @@
       />
     </div>
     <div class="flex flex-wrap justify-center pt-10">
-      <div
-        v-for="subcategory in sortedSubCategories"
-        :key="subcategory.name"
-      >
+      <div v-for="subcategory in sortedSubCategories" :key="subcategory.name">
         <div
           class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-gray-900 p-3 hover:text-black drop-shadow-xl bg-gray-800 drop-shadow-gray-900"
         >
@@ -90,6 +87,11 @@ useSeoMeta({
   ogDescription: computed(() => data.value.seo.ogdescription || ""),
   ogType: "product",
   ogUrl: computed(() => data.value.slugProduct || ""),
+  keywords: computed(() => {
+    return Array.isArray(data.value.seo.keywords)
+      ? data.value.seo.keywords.join(", ")
+      : "";
+  }),
   ogSiteName:
     "materiales electricos, productos electricos en colombia JD ELECTRICOS",
   // ogImage: computed(() => data.value.carouselImg || ""),
@@ -148,7 +150,7 @@ const dataJsonLd = ref({
       logo: {
         "@type": "ImageObject",
         // <- aca se debe cambiar la url por el paranetro de la imagen
-        url: "https://jdelectricos.com.co/wp-content/uploads/2017/03/jd-electricos1-300x71.png", 
+        url: "https://jdelectricos.com.co/wp-content/uploads/2017/03/jd-electricos1-300x71.png",
       },
       contactPoint: [
         {
@@ -233,7 +235,9 @@ useHead({
   ],
   script: [
     {
-      innerHTML: computed(() => JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value)),
+      innerHTML: computed(() =>
+        JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value)
+      ),
       type: "application/ld+json",
     },
   ],
@@ -246,7 +250,6 @@ useHead({
     },
   ],
 });
-
 </script>
 
 <style scoped></style>
