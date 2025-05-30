@@ -12,7 +12,7 @@
     <!-- Categorías -->
     <div
       v-if="open"
-      class="hidden md:block absolute bg-white rounded-l z-50 left-0 md:left-auto md:right-0 lg:min-w-[300px] max-w-screen-xl text-sm"
+      class="hidden md:block absolute bg-white rounded-l z-50 left-0 md:left-auto md:right-0 lg:min-w-[300px] max-w-screen-xl"
       @mouseenter="cancelCloseMenu"
       @mouseleave="delayedCloseMenu"
     >
@@ -26,7 +26,7 @@
         >
           <NuxtLink :to="cat.slug">
             <div
-              class="min-h-10 text-black text-sm px-2 py-2 hover:bg-gray-100 hover:text-black cursor-pointer flex justify-between items-center"
+              class="min-h-10 text-black px-2 py-2 hover:bg-gray-100 hover:text-black cursor-pointer flex justify-between items-center"
               :class="{ 'bg-gray-800 text-white': activeCategory === i }"
             >
               {{ cat.name }}
@@ -47,7 +47,7 @@
       @mouseleave="delayedCloseMenu"
       :style="{ top: `${submenuPosition.top}px`, left: `${submenuPosition.left}px` }"
     >
-      <ul class="lg:w-56 bg-white text-black border rounded shadow-md max-h-[300px] overflow-auto">
+      <ul class="lg:w-56 bg-white text-black border rounded shadow-md max-h-[500px] overflow-auto">
         <li
           v-for="(sub, j) in menu[activeCategory].subcategories"
           :key="j"
@@ -57,7 +57,7 @@
         >
           <NuxtLink :to="sub.slug">
             <div
-              class="min-h-10 text-sm px-4 py-2 hover:bg-blue-100 hover:text-black cursor-pointer flex justify-between items-center"
+              class="min-h-10 px-4 py-2 hover:bg-blue-100 hover:text-black cursor-pointer flex justify-between items-center"
               :class="{ 'bg-gray-800 text-white': activeSubcategory === j }"
             >
               {{ sub.name }}
