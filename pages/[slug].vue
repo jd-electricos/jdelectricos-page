@@ -17,7 +17,10 @@
     </div>
 
     <div v-else class="p-10">
-      <p>No se encontró ninguna categoría, subcategoría o producto con el slug proporcionado.</p>
+      <p>
+        No se encontró ninguna categoría, subcategoría o producto con el slug
+        proporcionado.
+      </p>
     </div>
   </div>
 </template>
@@ -47,7 +50,10 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
     // 1. Buscar categoría
     let categoryRes = null;
     try {
-      categoryRes = await $fetch(`http://localhost:5000/api/categories/slug/${slug}`);
+      categoryRes = await $fetch(
+        `http://localhost:5000/api/categories/slug/${slug}`
+      );
+      console.log("categoria");
     } catch {}
 
     if (categoryRes?.id) {
@@ -57,6 +63,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
         result.products = await $fetch(
           `http://localhost:5000/api/products/categories/${categoryRes.id}`
         );
+        console.log("categoria id");
       } catch {}
       return result;
     }
@@ -64,7 +71,10 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
     // 2. Buscar subcategoría
     let subcategoryRes = null;
     try {
-      subcategoryRes = await $fetch(`http://localhost:5000/api/subcategories/slug/${slug}`);
+      subcategoryRes = await $fetch(
+        `http://localhost:5000/api/subcategories/slug/${slug}`
+      );
+      console.log("subcategoria slug");
     } catch {}
 
     if (subcategoryRes?.id) {
@@ -74,6 +84,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
         result.products = await $fetch(
           `http://localhost:5000/api/products/subcategories/${subcategoryRes.id}`
         );
+        console.log("subcategoria id");
       } catch {}
       return result;
     }
@@ -81,7 +92,10 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
     // 3. Buscar producto
     let productRes = null;
     try {
-      productRes = await $fetch(`http://localhost:5000/api/products/slug/${slug}`);
+      productRes = await $fetch(
+        `http://localhost:5000/api/products/slug/${slug}`
+      );
+      console.log("producto");
     } catch {}
 
     if (Array.isArray(productRes) && productRes.length > 0) {
@@ -91,7 +105,6 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       result.product = productRes;
       result.isProduct = true;
     }
-
   } catch (e) {
     console.error("❌ Error general:", e);
   }
