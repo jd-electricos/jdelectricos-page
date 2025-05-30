@@ -27,7 +27,7 @@
           <p class="font-semibold">
             Ref: <span class="font-bold">{{ data.sku }}</span>
           </p>
-          <NuxtLink :to="data.subCategory.slug">
+          <NuxtLink :to="data.subCategory.category.slug">
             <p class="font-semibold">
               Categoria:
               <span class="font-bold">{{
@@ -55,7 +55,7 @@
         Caracteristicas Tecnicas de {{ data.name }}
       </h2>
       <!-- <p class="text-justify">{{ data.technical_parameters }}</p> -->
-      <parametersTable :technicalParameters="data.technical_parameters" />
+      <parametersTable :technicalParameters="data.technical_parameters" :id_category="data.id_category" />
     </div>
   </section>
 </template>

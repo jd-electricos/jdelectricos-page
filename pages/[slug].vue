@@ -53,7 +53,6 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       categoryRes = await $fetch(
         `http://localhost:5000/api/categories/slug/${slug}`
       );
-      console.log("categoria");
     } catch {}
 
     if (categoryRes?.id) {
@@ -63,7 +62,6 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
         result.products = await $fetch(
           `http://localhost:5000/api/products/categories/${categoryRes.id}`
         );
-        console.log("categoria id");
       } catch {}
       return result;
     }
@@ -74,7 +72,6 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       subcategoryRes = await $fetch(
         `http://localhost:5000/api/subcategories/slug/${slug}`
       );
-      console.log("subcategoria slug");
     } catch {}
 
     if (subcategoryRes?.id) {
@@ -84,7 +81,6 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
         result.products = await $fetch(
           `http://localhost:5000/api/products/subcategories/${subcategoryRes.id}`
         );
-        console.log("subcategoria id");
       } catch {}
       return result;
     }
@@ -95,7 +91,6 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       productRes = await $fetch(
         `http://localhost:5000/api/products/slug/${slug}`
       );
-      console.log("producto");
     } catch {}
 
     if (Array.isArray(productRes) && productRes.length > 0) {
