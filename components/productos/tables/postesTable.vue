@@ -2,7 +2,8 @@
   <div class="overflow-x-auto p-4">
     <table
       class="min-w-full text-sm text-center bg-white border border-gray-300 rounded-lg shadow-md"
-      aria-label="Tabla de parámetros técnicos del producto"
+      :aria-label="`Tabla de parámetros técnicos del producto ${props.name}`"
+      :title="`Tabla de parámetros técnicos del producto ${props.name}`"
       role="table"
     >
       <thead>
@@ -63,6 +64,10 @@
 const props = defineProps({
   technicalParameters: {
     type: Array,
+    required: true,
+  },
+  name: {
+    type: String,
     required: true,
   },
 });

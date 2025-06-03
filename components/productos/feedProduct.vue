@@ -36,7 +36,7 @@
             </p>
           </NuxtLink>
         </div>
-        <p class="py-5 text-justify">{{ data.description }}</p>
+        <p class="py-5">{{ data.description }}</p>
         <p class="font-semibold py-5">
           Precio: <span class="font-bold">{{ data.price }}</span>
         </p>
@@ -55,7 +55,7 @@
         Caracteristicas Tecnicas de {{ data.name }}
       </h2>
       <!-- <p class="text-justify">{{ data.technical_parameters }}</p> -->
-      <parametersTable :technicalParameters="data.technical_parameters" :id_category="data.id_category" />
+      <parametersTable :technicalParameters="data.technical_parameters" :id_category="data.id_category" :name="data.name" />
     </div>
   </section>
 </template>

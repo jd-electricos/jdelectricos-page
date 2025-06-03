@@ -2,7 +2,8 @@
   <div class="overflow-x-auto p-4">
     <table
       class="min-w-full text-sm text-center bg-white border border-gray-300 rounded-lg shadow-md"
-      aria-label="Tabla de parámetros técnicos del producto"
+      :aria-label="`Tabla de parámetros técnicos del producto ${props.name}`"
+      :title="`Tabla de parámetros técnicos del producto ${props.name}`"
       role="table"
     >
       <thead class="bg-gray-800 text-white">
@@ -37,6 +38,7 @@ import { ref, watch, computed } from "vue";
 
 const props = defineProps({
   technicalParameters: Array,
+  name: String,
 });
 
 const columns = [
@@ -46,11 +48,12 @@ const columns = [
 
 const products = ref([]);
 
-const formattedProducts = computed(() =>
-  props.technicalParameters?.map((param) => ({
-    label: param.label,
-    value: param.value,
-  })) || []
+const formattedProducts = computed(
+  () =>
+    props.technicalParameters?.map((param) => ({
+      label: param.label,
+      value: param.value,
+    })) || []
 );
 
 watch(

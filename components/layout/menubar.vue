@@ -14,7 +14,7 @@
     <!-- Botón móvil -->
     <button
       @click="drawer = !drawer"
-      class="p-4 rounded-md lg:hidden cursor-pointer"
+      class="p-6 rounded-md lg:hidden cursor-pointer"
       aria-label="Menu"
       title="Menu"
     >

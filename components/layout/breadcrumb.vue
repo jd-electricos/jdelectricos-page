@@ -1,15 +1,15 @@
 <template>
   <div
-    class="bg-gray-100 rounded-2xl py-2 px-4 overflow-x-auto whitespace-nowrap flex items-center gap-2 text-gray-500 text-sm font-semibold scrollbar-hide select-none"
+    class="bg-gray-200 rounded-2xl py-2 px-4 overflow-x-auto whitespace-nowrap flex items-center gap-2 text-gray-800 text-sm font-semibold scrollbar-hide select-none"
   >
-    <NuxtLink to="/" class="text-gray-500 hover:text-gray-800 shrink-0">
+    <NuxtLink to="/" class="text-gray-800 hover:text-gray-900 shrink-0">
       <p>Inicio</p>
     </NuxtLink>
     <ChevronRight class="shrink-0" />
 
     <NuxtLink
       to="/tienda-articulos-electricos"
-      class="text-gray-500 hover:text-gray-800 shrink-0"
+      class="text-gray-800 hover:text-gray-900 shrink-0"
     >
       <p>Productos</p>
     </NuxtLink>
@@ -18,9 +18,8 @@
     <div :class="categoryName === undefined || null ? 'hidden' : 'flex flex-row items-center'">
       <NuxtLink
         :to="`/${categorySlug}`"
-        class="text-gray-500 hover:text-gray-800 shrink-0"
-        :class="subcategoryName === undefined || null ? 'font-bold text-gray-800' : ''"
-
+        class="text-gray-800 hover:text-gray-900 shrink-0"
+        :class="subcategoryName === undefined || null ? 'font-bold text-gray-900' : ''"
       >
         <p>{{ categoryName }}</p>
       </NuxtLink>
@@ -30,8 +29,8 @@
       <ChevronRight class="shrink-0" />
       <NuxtLink
         :to="`/${subcategorySlug}`"
-        class="text-gray-500 hover:text-gray-800 shrink-0"
-        :class="productName === undefined || null ? 'font-bold text-gray-800' : ''"
+        class="text-gray-800 hover:text-gray-900 shrink-0"
+        :class="productName === undefined || null ? 'font-bold text-gray-900' : ''"
       >
         <p>{{ subcategoryName }}</p>
       </NuxtLink>
@@ -40,7 +39,7 @@
       <ChevronRight class="shrink-0" />
       <NuxtLink
         :to="`/${productSlug}`"
-        class="hover:text-gray-800 shrink-0 font-bold text-gray-800"
+        class="hover:text-gray-900 shrink-0 font-bold text-gray-900"
       >
         <p>{{ productName }}</p>
       </NuxtLink>

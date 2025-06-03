@@ -9,10 +9,12 @@
         width="640"
         height="384"
         :key="currentIndex"
-        loading="lazy"
         decoding="async"
         itemprop="image"
         :title="alt"
+        :aria-label="`Imagen del producto ${alt}`"
+        :aria-describedby="`Descripción de la imagen del producto ${alt}`"
+        fetchpriority="high"
       />
 
       <!-- Botón Izquierda -->
