@@ -34,7 +34,13 @@
 const props = defineProps({
   data: {
     type: Object,
-    required: true,
+    required: false,
+    default: () => ({
+      title: "",
+      slug: "",
+      image: "",
+      previewText: "",
+    }),
   },
 });
 </script>
