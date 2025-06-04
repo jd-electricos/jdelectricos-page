@@ -16,6 +16,10 @@
       <feedProduct :dataProducts="product" />
     </div>
 
+    <div v-else-if="isBlog">
+      <feedBlog/>
+    </div>
+
     <div v-else class="p-10">
       <p>
         No se encontró ninguna categoría, subcategoría o producto con el slug
@@ -31,6 +35,7 @@ import { computed } from "vue";
 import feedProduct from "~/components/productos/feedProduct.vue";
 import feedCategory from "~/components/productos/feedCategory.vue";
 import feedSubcategory from "~/components/productos/feedSubcategory.vue"; // Asegúrate de crearlo
+import feedBlog from "~/components/blog/feedBlog.vue";
 
 const route = useRoute();
 const slug = route.params.slug;
@@ -40,6 +45,8 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
     isCategory: false,
     isSubcategory: false,
     isProduct: false,
+    isBlog: false,
+    blog: null,
     category: null,
     subcategory: null,
     product: null,
@@ -100,6 +107,25 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       result.product = productRes;
       result.isProduct = true;
     }
+
+     // 4. Buscar blog
+    let blogRes = null;
+    try {
+      blogRes = await $fetch(
+        `http://localhost:5000/api/blog/slug/${slug}`
+      );
+    } catch {}
+
+    if (blogRes?.id) {
+      result.blog = blogRes;
+      result.isBlog = true;
+      try {
+        result.products = await $fetch(
+          `http://localhost:5000/api/blog/${blogRes.id}`
+        );
+      } catch {}
+      return result;
+    }
   } catch (e) {
     console.error("❌ Error general:", e);
   }
@@ -111,9 +137,11 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
 const isCategory = computed(() => data.value?.isCategory);
 const isSubcategory = computed(() => data.value?.isSubcategory);
 const isProduct = computed(() => data.value?.isProduct);
+const isBlog = computed(() => data.value?.isBlog);
 
 const category = computed(() => data.value?.category);
 const subcategory = computed(() => data.value?.subcategory);
 const product = computed(() => data.value?.product);
 const products = computed(() => data.value?.products);
+const blog = computed(() => data.value?.blog); 
 </script>
