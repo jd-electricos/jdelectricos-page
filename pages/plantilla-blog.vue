@@ -1,7 +1,7 @@
 <template>
-
-
- <!-- items para el post -->
+<article class="max-w-4xl mx-auto p-6 space-y-5 pt-16">
+ 
+    <!-- items para el post -->
     <!-- items para el post -->
     <!-- items para el post -->
     <!-- titulo post -->
@@ -23,9 +23,11 @@
     <h2 class="py-3 text-2xl font-bold mb-6 text-gray-800">subtitulo</h2>
 
     <!-- listas -->
-    <ul class="list-disc">
+    <ul class="list-disc px-10">
         <li><strong>listas:</strong> con su contenido</li>
     </ul>
+
+</article>
 </template>
 
 <script setup></script>

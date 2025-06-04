@@ -17,7 +17,7 @@
     </div>
 
     <div v-else-if="isBlog">
-      <feedBlog/>
+      <feedBlog :dataBlog="blog"/>
     </div>
 
     <div v-else class="p-10">
@@ -129,7 +129,6 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
   } catch (e) {
     console.error("❌ Error general:", e);
   }
-
   return result;
 });
 

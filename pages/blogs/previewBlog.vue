@@ -7,7 +7,7 @@
       <div>
         <NuxtLink
           :to="`/${props.data.slug}`"
-          class="text-blue-500 hover:underline"
+          class="text-gray-800 hover:underline"
         >
           <h2 class="font-bold">{{ props.data.title }}</h2>
         </NuxtLink>
