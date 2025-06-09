@@ -11,12 +11,23 @@
         >
           <h2 class="font-bold">{{ props.data.title }}</h2>
         </NuxtLink>
+        <div class="font-bold opacity-40 flex gap-1">
+          <AlarmClockCheck class="w-4" />
+          <p>
+            {{ props.data.createdAt.split("T")[0] }}
+          </p>
+        </div>
         <p>{{ props.data.previewText }}</p>
       </div>
       <!-- imagen a la izquierda -->
       <div>
         <NuxtLink :to="`/${props.data.slug}`">
-          <NuxtImg :src="props.data.image" width="300" :title="props.data.title" :alt="`imagen de la noticia ${props.data.slug}`" />
+          <NuxtImg
+            :src="props.data.image"
+            width="300"
+            :title="props.data.title"
+            :alt="`imagen de la noticia ${props.data.slug}`"
+          />
         </NuxtLink>
       </div>
     </div>
@@ -31,6 +42,7 @@
 </template>
 
 <script setup>
+import { AlarmClockCheck } from "lucide-vue-next";
 const props = defineProps({
   data: {
     type: Object,
