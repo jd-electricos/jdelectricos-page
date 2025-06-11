@@ -14,7 +14,11 @@
         <div class="font-bold opacity-40 flex gap-1">
           <AlarmClockCheck class="w-4" />
           <p>
-            {{ props.data.createdAt.split("T")[0] }}
+            {{
+              typeof props.data.createdAt === "string"
+                ? props.data.createdAt.split("T")[0]
+                : "Fecha no disponible"
+            }}
           </p>
         </div>
         <p>{{ props.data.previewText }}</p>

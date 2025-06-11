@@ -27,7 +27,7 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
-import previewBlog from "./blogs/previewBlog.vue";
+import previewBlog from "../components/blog/previewBlog.vue";
 
 // ✅ Cambiamos a useAsyncData
 const { data: posts } = await useAsyncData("posts", () =>
