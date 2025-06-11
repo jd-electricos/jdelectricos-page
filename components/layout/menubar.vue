@@ -55,9 +55,12 @@
               <li
                 v-for="subitem in item.items"
                 :key="subitem.label"
-                class="text-sm hover:text-yellow-300 p-2"
+                class="p-2"
               >
-                <NuxtLink :to="subitem.href">
+                <NuxtLink :to="subitem.href"
+                class="text-sm hover:text-yellow-300 p-2 hover:bg-gray-800 rounded-md"
+                
+                >
                   {{ subitem.label }}
                 </NuxtLink>
               </li>
