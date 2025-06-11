@@ -1,5 +1,7 @@
 <template>
 <article class="max-w-4xl mx-auto p-6 space-y-5 pt-16">
+
+
     <!-- items para el post -->
     <!-- titulo post -->
     <h1 class="py-3 text-4xl font-bold mb-6 text-gray-800">titulo1</h1>

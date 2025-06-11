@@ -2,12 +2,10 @@
   <div class="pt-16 pb-8 px-4">
     <!-- Títulos del blog -->
     <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 pb-8">
-      Blog, Noticias e Innovacion: Sector Eléctrico
+      Blog, Noticias e Innovacion: Herrajes Eléctricos
     </h1>
     <!-- Filtros -->
-    <div
-      class="flex flex-wrap items-center justify-center gap-4 pb-8"
-    >
+    <div class="flex flex-wrap items-center justify-center gap-4 pb-8">
       <!-- Filtro de búsqueda por título -->
       <div>
         <input
@@ -16,20 +14,6 @@
           placeholder="Buscar por título"
           class="px-4 py-2 border rounded-lg"
         />
-      </div>
-
-      <!-- Filtro de categoría -->
-      <div class="">
-        <select v-model="selectedCategory" class="px-4 py-2 border rounded-lg">
-          <option value="">Seleccionar categoría</option>
-          <option
-            v-for="category in categories"
-            :key="category"
-            :value="category"
-          >
-            {{ category }}
-          </option>
-        </select>
       </div>
     </div>
 
@@ -46,7 +30,9 @@ import { ref, computed } from "vue";
 import previewBlog from "./blogs/previewBlog.vue";
 
 // ✅ Cambiamos a useAsyncData
-const { data: posts } = await useAsyncData("posts", () => $fetch("http://localhost:5000/api/blog"));
+const { data: posts } = await useAsyncData("posts", () =>
+  $fetch("http://localhost:5000/api/blog/category/Herrajes Eléctricos")
+);
 
 // Variables para los filtros
 const searchQuery = ref("");
@@ -72,11 +58,11 @@ const filteredPosts = computed(() => {
 
 // SEO de blog
 useHead({
-  title: "Blog, Noticias e Innovacion: Sector Eléctrico",
+  title: "Blog Herraje Electricos",
   meta: [
     {
       name: "description",
-      content: "Blog, Noticias e Innovacion: Sector Eléctrico",
+      content: "Blog Herraje Electricos",
     },
     {
       name: "keywords",
@@ -99,6 +85,6 @@ useHead({
       content: "Blog, Noticias e Innovacion: Sector Eléctrico",
     },
   ],
-  link: [{ rel: "canonical", href: "https://jdelectricos.com.co/blog" }],
+  link: [{ rel: "canonical", href: "https://jdelectricos.com.co/blog-herrajes-electricos/" }],
 });
 </script>
