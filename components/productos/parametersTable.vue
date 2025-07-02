@@ -11,6 +11,11 @@
       :name="name"
     />
   </div>
+  <cablesTable
+      v-if="id_category === 48 || 49 || 50 || 51 || 52"
+      :technicalParameters="technicalParameters"
+      :name="name"
+    />
 </template>
 
 <script setup>
