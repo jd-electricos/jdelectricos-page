@@ -71,7 +71,7 @@
           :class="[
             'w-8 h-8 flex items-center justify-center rounded-full text-sm font-medium transition',
             page === currentPage
-              ? 'bg-gray-900'
+              ? 'bg-gray-900 text-white'
               : 'text-gray-600 hover:bg-gray-200',
           ]"
         >
