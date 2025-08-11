@@ -11,7 +11,6 @@
       <div>
         <input
           v-model="searchQuery"
-          @input="fetchPosts"
           type="text"
           placeholder="Buscar por título"
           class="px-4 py-2 border rounded-lg"
@@ -20,42 +19,31 @@
 
       <!-- Filtro de categoría -->
       <div>
-        <label for="categorySelect" class="sr-only"
-          >Filtrar por categoría</label
-        >
-        <select
-          v-model="selectedCategory"
-          @change="changeCategory"
-          class="px-4 py-2 border rounded-lg"
-        >
+        <select v-model="selectedCategory" class="px-4 py-2 border rounded-lg">
           <option value="">Seleccionar categoría</option>
-          <option
-            v-for="category in categories"
-            :key="category"
-            :value="category"
-          >
+          <option v-for="category in categories" :key="category" :value="category">
             {{ category }}
           </option>
         </select>
       </div>
     </div>
 
-    <!-- Render posts -->
+    <!-- render posts -->
     <div class="flex flex-wrap justify-center gap-4">
-      <div v-for="post in posts" :key="post.id" class="flex flex-wrap">
+      <div v-for="post in filteredPosts" :key="post.id" class="flex flex-wrap">
         <previewBlog :data="post" />
       </div>
     </div>
 
     <!-- Paginador minimalista -->
     <div
-      v-if="pagination.totalPages > 1"
+      v-if="totalPages > 1"
       class="flex justify-center items-center space-x-2 mt-8"
     >
       <!-- Ir a primera página -->
       <button
-        @click="goToPage(1)"
-        :disabled="pagination.currentPage === 1"
+       @click="goToPage(1)"
+        :disabled="currentPage === 1"
         aria-label="Ir a la primera página"
         title="Primera página"
         class="px-2 py-1 text-gray-500 hover:text-black disabled:opacity-30"
@@ -65,8 +53,8 @@
 
       <!-- Anterior -->
       <button
-        @click="goToPage(pagination.currentPage - 1)"
-        :disabled="pagination.currentPage === 1"
+        @click="goToPage(currentPage - 1)"
+        :disabled="currentPage === 1"
         aria-label="Página anterior"
         title="Página anterior"
         class="px-2 py-1 text-gray-500 hover:text-black disabled:opacity-30"
@@ -82,8 +70,8 @@
           :title="`Página ${page}`"
           :class="[
             'w-8 h-8 flex items-center justify-center rounded-full text-sm font-medium transition',
-            page === pagination.currentPage
-              ? 'bg-gray-900 text-white'
+            page === currentPage
+              ? 'bg-gray-900'
               : 'text-gray-600 hover:bg-gray-200',
           ]"
         >
@@ -93,8 +81,8 @@
 
       <!-- Siguiente -->
       <button
-        @click="goToPage(pagination.currentPage + 1)"
-        :disabled="pagination.currentPage === pagination.totalPages"
+            @click="goToPage(currentPage + 1)"
+        :disabled="currentPage === totalPages"
         aria-label="Página siguiente"
         title="Página siguiente"
         class="px-2 py-1 text-gray-500 hover:text-black disabled:opacity-30"
@@ -104,8 +92,8 @@
 
       <!-- Ir a última página -->
       <button
-        @click="goToPage(pagination.totalPages)"
-        :disabled="pagination.currentPage === pagination.totalPages"
+          @click="goToPage(totalPages)"
+        :disabled="currentPage === totalPages"
         aria-label="Ir a la última página"
         title="Última página"
         class="px-2 py-1 text-gray-500 hover:text-black disabled:opacity-30"
@@ -117,129 +105,107 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import previewBlog from "../components/blog/previewBlog.vue";
-import {
-  ChevronsLeft,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsRight,
-} from "lucide-vue-next";
+import { ref, computed, watchEffect } from 'vue'
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-vue-next'
+import previewBlog from '../components/blog/previewBlog.vue'
 
-const posts = ref([]);
-const categories = ref([]);
-const pagination = ref({
-  totalPages: 1,
-  currentPage: 1,
-  totalItems: 0,
-  pageSize: 6,
-});
+// Estados de filtros
+const searchQuery = ref('')
+const selectedCategory = ref('')
 
-const searchQuery = ref("");
-const selectedCategory = ref("");
+// Estados de paginación
+const currentPage = ref(1)
+const totalPages = ref(1)
+const pageSize = 16
 
-// Función para obtener posts desde el backend con paginación
-const fetchPosts = async (page = 1) => {
-  try {
-    const queryParams = new URLSearchParams({
-      page,
-      limit: pagination.value.pageSize,
-    });
+// Obtener los datos desde el backend paginado
+const { data: paginatedData, refresh } = await useAsyncData('posts', () =>
+  $fetch(`http://localhost:5000/api/blog?page=${currentPage.value}&limit=${pageSize}`)
+)
 
-    let endpoint = "http://localhost:5000/api/blog";
-    if (selectedCategory.value) {
-      endpoint = `http://localhost:5000/api/blog/category/${selectedCategory.value}`;
-    }
+// Computar posts actuales
+const posts = computed(() => paginatedData.value?.data || [])
 
-    if (searchQuery.value) {
-      queryParams.append("search", searchQuery.value);
-    }
-
-    const { data, pagination: meta } = await $fetch(
-      `${endpoint}?${queryParams}`
-    );
-
-    posts.value = data;
-    pagination.value = meta;
-
-    // Obtener categorías solo una vez
-    if (categories.value.length === 0) {
-      const allPosts = await $fetch("http://localhost:5000/api/blog");
-      categories.value = [
-        ...new Set(allPosts.data.map((post) => post.category)),
-      ];
-    }
-  } catch (error) {
-    console.error("Error al cargar posts", error);
+// Actualizar total de páginas cuando se actualicen los datos
+watchEffect(() => {
+  if (paginatedData.value?.pagination) {
+    totalPages.value = paginatedData.value.pagination.totalPages
   }
-};
+})
+
+// Computar categorías únicas desde los posts
+const categories = computed(() => {
+  return [...new Set(posts.value.map((post) => post.category))]
+})
+
+// Filtrar posts según búsqueda y categoría
+const filteredPosts = computed(() => {
+  return posts.value.filter((post) => {
+    const matchesSearch = post.title
+      .toLowerCase()
+      .includes(searchQuery.value.toLowerCase())
+    const matchesCategory = selectedCategory.value
+      ? post.category === selectedCategory.value
+      : true
+    return matchesSearch && matchesCategory
+  })
+})
 
 // Cambiar de página
-const goToPage = (page) => {
-  if (page >= 1 && page <= pagination.value.totalPages) {
-    fetchPosts(page);
+function goToPage(page) {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page
+    refresh()
   }
-};
-
-// Cambio de categoría
-const changeCategory = () => {
-  pagination.value.currentPage = 1;
-  fetchPosts(1);
-};
-
-// Páginas visibles (solo 3: actual + anterior + siguiente)
+}
 const visiblePages = computed(() => {
-  const total = pagination.value.totalPages;
-  const current = pagination.value.currentPage;
-  const delta = 1;
-  let start = Math.max(1, current - delta);
-  let end = Math.min(total, current + delta);
+  const maxVisible = 5
+  const pages = []
 
-  if (current <= delta) {
-    end = Math.min(total, 1 + delta * 2);
+  let startPage = Math.max(1, currentPage.value - Math.floor(maxVisible / 2))
+  let endPage = startPage + maxVisible - 1
+
+  if (endPage > totalPages.value) {
+    endPage = totalPages.value
+    startPage = Math.max(1, endPage - maxVisible + 1)
   }
 
-  if (current > total - delta) {
-    start = Math.max(1, total - delta * 2);
+  for (let i = startPage; i <= endPage; i++) {
+    pages.push(i)
   }
 
-  const pages = [];
-  for (let i = start; i <= end; i++) {
-    pages.push(i);
-  }
-  return pages;
-});
+  return pages
+})
 
-onMounted(() => {
-  fetchPosts();
-});
-
-// SEO del blog
+// SEO
 useHead({
-  title: "Blog, Noticias e Innovacion: Sector Eléctrico",
+  title: 'Blog, Noticias e Innovacion: Sector Eléctrico',
   meta: [
     {
-      name: "description",
-      content: "Blog, Noticias e Innovacion: Sector Eléctrico",
+      name: 'description',
+      content: 'Blog, Noticias e Innovacion: Sector Eléctrico'
     },
     {
-      name: "keywords",
+      name: 'keywords',
       content:
-        "Blog, Noticias e Innovacion, Sector Eléctrico, Jd Electricos, sector electrico, noticias, innovacion",
+        'Blog, Noticias e Innovacion, Sector Eléctrico, Jd Electricos, sector electrico, noticias, innovacion'
     },
-    { name: "robots", content: "index, follow" },
-    { name: "author", content: "Jd Electricos" },
-    { name: "publisher", content: "Jd Electricos" },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'author', content: 'Jd Electricos' },
+    { name: 'publisher', content: 'Jd Electricos' },
     {
-      property: "og:title",
-      content: "Blog, Noticias e Innovacion: Sector Eléctrico",
+      property: 'og:title',
+      content: 'Blog, Noticias e Innovacion: Sector Eléctrico'
     },
     {
-      property: "og:description",
-      content: "Blog, Noticias e Innovacion: Sector Eléctrico",
+      property: 'og:description',
+      content: 'Blog, Noticias e Innovacion: Sector Eléctrico'
     },
-    { property: "og:url", content: "https://jdelectricos.com.co/blog" },
+    {
+      property: 'og:url',
+      content: 'Blog, Noticias e Innovacion: Sector Eléctrico'
+    }
   ],
-  link: [{ rel: "canonical", href: "https://jdelectricos.com.co/blog" }],
-});
+  link: [{ rel: 'canonical', href: 'https://jdelectricos.com.co/blog' }]
+})
 </script>
