@@ -1,8 +1,8 @@
 <template>
   <section class="select-none">
-    <div class="p-3 bg-white w-full">
+    <!-- <div class="p-3 bg-white w-full">
       <bannerPromotions roundedStyle="rounded-2xl" />
-    </div>
+    </div> -->
     <div class="bg-gray-800 px-10">
       <div class="lg:text-6xl text-4xl font-bold font-serif text-white p-10">
         <h1 class="text-shadow-lg/20 text-shadow-gray-950">Materiales Electricos</h1>
