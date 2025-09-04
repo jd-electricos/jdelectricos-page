@@ -25,7 +25,8 @@
             :key="param.label"
             class="px-4 py-3 border text-gray-800"
           >
-            {{ param.value }}
+            <!-- {{ param.value }} parametro que renderiza los string o textos sin modificar mi zo -->
+            {{ param.value.toLowerCase().charAt(0).toUpperCase() + param.value.toLowerCase().slice(1) }}
           </td>
         </tr>
       </tbody>
