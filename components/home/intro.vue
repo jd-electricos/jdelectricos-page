@@ -1,6 +1,6 @@
 <template>
     <div class="bg-gray-800 flex flex-col-reverse items-center lg:flex-row justify-between px-6 sm:px-12 lg:px-50 py-10 sm:py-16 lg:py-20">
-      <div class="text-white flex-1 lg:w-1/2 text-center lg:text-left pt-10 lg:pt-0">
+      <div class="text-white flex-1 lg:w-1/2 text-base lg:text-left pt-10 lg:pt-0">
         <h2 class="text-2xl sm:text-3xl lg:text-8xl font-extrabold font-serif">
           JD Eléctricos
         </h2>

@@ -9,6 +9,14 @@
           {{ props.category?.name }}
         </h1>
       </div>
+      <div class="flex justify-center">
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Buscar productos..."
+          class="w-full sm:w-72 px-4 py-2 border rounded-lg bg-white"
+        />
+      </div>
       <br />
       <breadcrumb
         class="lg:w-3/12 w-15/12"
@@ -17,7 +25,7 @@
       />
     </div>
     <div class="flex flex-wrap justify-center pt-10">
-      <div v-for="subcategory in sortedSubCategories" :key="subcategory.name">
+      <div v-for="subcategory in filteredProducts" :key="subcategory.name">
         <div
           class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-gray-900 p-3 hover:text-black drop-shadow-xl bg-gray-800 drop-shadow-gray-900"
         >
@@ -77,6 +85,18 @@ const sortedSubCategories = computed(() => {
   if (!props.category?.subCategories) return [];
   return [...props.category.subCategories].sort((a, b) =>
     a.name.localeCompare(b.name, "es", { sensitivity: "base" })
+  );
+});
+
+const searchQuery = ref("");
+
+const filteredProducts = computed(() => {
+  const list = sortedSubCategories.value || [];
+
+  if (!Array.isArray(list)) return [];
+
+  return list.filter((p) =>
+    p.name?.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 
