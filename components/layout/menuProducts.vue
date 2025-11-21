@@ -5,7 +5,7 @@
     @mouseleave="delayedCloseMenu"
   >
     <!-- Botón principal -->
-    <button @mouseenter="toggleMenu" class="rounded">
+    <button @mouseenter="toggleMenu" class="rounded" @click="send">
       <NuxtLink to="/tienda-articulos-electricos">Productos</NuxtLink>
     </button>
 
@@ -103,6 +103,11 @@ const submenuPosition = ref({ top: 0, left: 0 });
 const productMenuPosition = ref({ top: 0, left: 0 });
 const menu = ref([]);
 let closeTimeout;
+const emit = defineEmits(["closeDrawer"]);
+
+function send() {
+  emit('closeDrawer', false)
+}
 
 const fetchMenuData = async () => {
   try {

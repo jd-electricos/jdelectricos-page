@@ -74,7 +74,7 @@
   <!-- Fondo oscuro cuando el drawer está abierto -->
   <div
     v-if="drawer"
-    class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+    class="fixed inset-0 bg-black opacity-80 z-40 lg:hidden"
     @click="closeDrawerAndSubmenu"
   ></div>
 
@@ -96,12 +96,12 @@
         class="text-white p-4 relative"
       >
         <!-- Si es 'Productos', también renderizamos el componente en móvil -->
-        <menuProducts v-if="item.label === 'Productos'" />
+        <menuProducts  @closeDrawer="closeDrawerOfChild" v-if="item.label === 'Productos'" />
 
         <!-- Otros ítems -->
         <template v-else>
           <div class="flex justify-between items-center cursor-pointer">
-            <NuxtLink :to="item.href">{{ item.label }}</NuxtLink>
+            <NuxtLink :to="item.href" @click="closeDrawerAndSubmenu">{{ item.label }}</NuxtLink>
             <span v-if="item.items" @click="toggleSubMenu(index)">
               <svg
                 :class="{ 'rotate-180': item.isOpen }"
@@ -135,6 +135,7 @@
                 <NuxtLink
                   :to="subitem.href"
                   class="block p-2 hover:text-yellow-300 text-sm"
+                  @click="closeDrawerAndSubmenu"
                 >
                   {{ subitem.label }}
                 </NuxtLink>
@@ -284,4 +285,8 @@ const closeDrawerAndSubmenu = () => {
   drawer.value = false;
   closeSubMenu();
 };
+
+function closeDrawerOfChild(value) {
+  drawer.value = value;
+}
 </script>

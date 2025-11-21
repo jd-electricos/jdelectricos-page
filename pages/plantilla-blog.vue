@@ -13,7 +13,7 @@ const fecthData = async () => {
   const response = await fetch(`http://localhost:5000/api/blog`);
   const data = await response.json();
   slugs.value = data;
-  console.log(data.map((x) => x.slug));
+  // console.log(data.map((x) => x.slug));
 };
 fecthData();
 </script>
