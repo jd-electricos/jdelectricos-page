@@ -8,7 +8,7 @@
           class="w-32 sm:w-48 md:w-56 lg:w-64"
         />
       </div>
-      <div class="lg:flex-1/2 lg:pr-80 ">
+      <div class="lg:flex-1/2 lg:pr-80 p-6">
         <p
           class="text-justify bg-[#fff9df] p-5 rounded-2xl font-serif max-w-xl mx-auto shadow-xl shadow-neutral-800/50"
         >

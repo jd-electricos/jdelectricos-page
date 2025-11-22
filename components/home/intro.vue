@@ -21,7 +21,7 @@
         <NuxtImg
           src="/img/logo/jd-electricos-intro.webp"
           alt="logo de jd electricos"
-          class=" lg:w-[34rem] lg:h-[34rem]"
+          class="lg:w-[34rem] lg:h-[34rem] w-[24rem] h-[24rem] object-contain"
         />
       </div>
     </div>
