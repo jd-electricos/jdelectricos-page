@@ -5,7 +5,7 @@
     >
       <div class="flex flex-col items-center justify-center text-center">
         <h2 class="sm:text-5xl text-3xl font-extrabold text-gray-800 font-serif">
-          Conoce algunos de nuestros proveedores
+          Conoce algunos de nuestros clientes
         </h2>
       </div>
       <!-- Contenedor del fondo con opacidad -->
@@ -54,48 +54,48 @@ onMounted(() => {
   images.value = [
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "cedenar",
+        "/img/carousel-customers/logo-air-e.webp",
+      alt: "logo air-e",
     },
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "edeq",
+        "/img/carousel-customers/logo-cedenar.webp",
+      alt: "logo cedenar",
     },
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "emcali",
+        "/img/carousel-customers/logo-cens.webp",
+      alt: "logo cens",
     },
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "epm",
+        "/img/carousel-customers/logo-edeq.webp",
+      alt: "logo edeq",
     },
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "cens",
+        "/img/carousel-customers/logo-emcali.webp",
+      alt: "logo emcali",
     },
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "air-e",
+        "/img/carousel-customers/logo-emsa.webp",
+      alt: "logo emsa",
     },
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "emsa",
+        "/img/carousel-customers/logo-enam.webp",
+      alt: "logo enam",
     },
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "enam",
+        "/img/carousel-customers/logo-energiapereira.webp",
+      alt: "logo energiapereira",
     },
     {
       itemImageSrc:
-        "https://jdelectricos.com.co/wp-content/uploads/2015/05/logo_abb-80x80.jpg",
-      alt: "energiapereira",
+        "/img/carousel-customers/logo-epm.webp",
+      alt: "logo epm",
     },
   ];
 });

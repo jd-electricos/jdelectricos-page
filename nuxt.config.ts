@@ -33,7 +33,7 @@ export default defineNuxtConfig({
         {
           rel: "icon",
           type: "image/png",
-          href: "/img/logo/logo-jd-electricos.webp",
+          href: "/img/logo/logo-menu-jd.webp",
         },
       ],
     },
@@ -44,50 +44,45 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
     },
-    // routeRules: {
-    //   // Paginas principales cacheadas 1 semana
-    //   "/tienda-articulos-electricos": {
-    //     headers: {
-    //       "cache-control": "public, max-age=604800, must-revalidate",
-    //     },
-    //   },
-    //   "/contacto-jd-electricos-colombia": {
-    //     headers: {
-    //       "cache-control": "public, max-age=604800, must-revalidate",
-    //     },
-    //   },
-    //   "/empresa-distribuidora-de-materiales-electricos-en-colombia": {
-    //     headers: {
-    //       "cache-control": "public, max-age=604800, must-revalidate",
-    //     },
-    //   },
-    //   "/blog": {
-    //     headers: {
-    //       "cache-control": "public, max-age=604800, must-revalidate",
-    //     },
-    //   },
-    //   // Rutas dinámicas (categorías, productos)
-    //   "/:slug": {
-    //     headers: {
-    //       "cache-control": "public, max-age=604800, must-revalidate",
-    //     },
-    //   },
-    //   // Archivos estáticos de /public (imagenes, logos, etc)
-    //   "/logo/**": {
-    //     headers: {
-    //       "cache-control": "public, max-age=604800, immutable",
-    //     },
-    //   },
-    //   "/images/**": {
-    //     headers: {
-    //       "cache-control": "public, max-age=604800, immutable",
-    //     },
-    //   },
-    //   "/_nuxt/**": {
-    //     headers: {
-    //       "cache-control": "public, max-age=31536000, immutable",
-    //     },
-    //   },
-    // },
+    routeRules: {
+      // Páginas principales
+      "/": {
+        headers: {
+          "cache-control": "public, max-age=3600, stale-while-revalidate=600",
+        },
+      },
+      "/tienda-articulos-electricos": {
+        headers: {
+          "cache-control": "public, max-age=3600, stale-while-revalidate=600",
+        },
+      },
+      // Imágenes y logos
+      "/img/logo/**": {
+        headers: {
+          "cache-control": "public, max-age=31536000, immutable",
+        },
+      },
+      "/img/mobile/**": {
+        headers: {
+          "cache-control": "public, max-age=31536000, immutable",
+        },
+      },
+      "/img/desktop/**": {
+        headers: {
+          "cache-control": "public, max-age=31536000, immutable",
+        },
+      },
+      "/_nuxt/**": {
+        headers: {
+          "cache-control": "public, max-age=31536000, immutable",
+        },
+      },
+      // APIs (si quieres caché SSR)
+      "/api/**": {
+        headers: {
+          "cache-control": "public, max-age=60, stale-while-revalidate=30",
+        },
+      },
+    },
   },
 });

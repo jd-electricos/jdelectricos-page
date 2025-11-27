@@ -2,7 +2,7 @@
   <div>
     <intro />
     <sectionCategory />
-    <bannerPromotions />
+    <!-- <bannerPromotions /> -->
     <carouselDistributor />
     <introProducts />
     <ImageAndText />

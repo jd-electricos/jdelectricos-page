@@ -5,7 +5,7 @@
     <!-- logo de la empresa -->
     <div>
       <NuxtImg
-        src="/img/logo/logo-jd-electricos.webp"
+        src="/img/logo/logo-menu-jd.webp"
         alt="logo de jd electricos"
         class="w-16 h-16"
       />

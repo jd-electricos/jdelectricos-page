@@ -9,7 +9,7 @@
         TENSIÓN
       </h2>
       <NuxtImg
-        src="https://jdelectricos.com.co/wp-content/uploads/2020/09/productos-electricos-1250x565.jpg"
+        src="/img/logo/banner-distribuidores.webp"
         alt="Bodega JD Eléctricos"
         class="w-full h-auto rounded-lg shadow-md"
       />

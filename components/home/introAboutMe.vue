@@ -3,7 +3,7 @@
     <div class="flex flex-col lg:flex-row items-center justify-center">
       <div class="lg:flex-1/2 flex justify-center">
         <NuxtImg
-          src="/img/logo/logo-jd-electricos.webp"
+          src="/img/logo/resize-LOGO-JD-CTA.webp"
           alt="logo de jd electricos"
           class="w-32 sm:w-48 md:w-56 lg:w-64"
         />

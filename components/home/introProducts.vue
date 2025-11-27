@@ -14,8 +14,8 @@
         </h2>
         <br />
         <NuxtImg
-          src="/img/logo/bodega-jd-electricos.jpg"
-          alt="logo de jd electricos"
+          src="/img/logo/IMAGE-STORE.webp"
+          alt="imagen bodega jd electricos"
           class="w-full h-auto rounded-lg shadow-md"
         />
       </div>

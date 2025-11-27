@@ -8,6 +8,8 @@
         :aria-label="`Ver categoria ${nameCategory}`"
       >
         <NuxtImg
+          format="webp"
+          loading="lazy"
           :src="urlImg"
           :alt="`Ver categoria ${nameCategory}`"
           :title="`Ver categoria ${nameCategory}`"

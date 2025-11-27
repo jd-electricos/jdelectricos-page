@@ -3,7 +3,7 @@
     <div class="max-w-screen-lg mx-auto p-10 shadow-xl shadow-neutral-800/50 rounded-2xl bg-white">
       <!-- Logo -->
       <NuxtImg
-        src="/img/logo/logo-jd-electricos.webp"
+        src="/img/logo/resize-LOGO-JD-CTA.webp"
         alt="logo de JD Electricos"
         class="w-28 h-28 mx-auto mb-4 "
         width="112"
@@ -152,7 +152,7 @@
       >
         <div class="flex-1 flex justify-end">
           <NuxtImg
-            src="/img/logo/Aislamientos.jpg"
+            src="/img/logo/postes-nosotros.webp"
             alt="Electricos"
             class="lg:w-[30rem] lg:h-[40rem] max-w-[30rem] w-full sm:w-auto object-cover rounded-2xl"
             width="480"

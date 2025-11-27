@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4 items-center pt-10 bg-gray-800">
     <h2 class="sm:text-6xl text-3xl font-extrabold text-white px-12">
-      Categoría de Materiales Eléctricos
+      Nuestros Materiales Eléctricos
     </h2>
     <div class="carousel-container">
       <div class="slide-track">
@@ -9,7 +9,7 @@
         <cardCategoriesToFeed
           v-for="(categories, index) in repeatedProducts"
           :key="index"
-          urlImg="/img/logo/logo-jd-electricos.webp"
+          urlImg="/img/logo/logo-menu-jd.webp"
           :slugCategory="categories.slug"
           :nameCategory="categories.name"
         />
