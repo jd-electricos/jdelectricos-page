@@ -35,9 +35,9 @@
               :aria-label="`Ver categoria ${subcategory.name}`"
             >
               <NuxtImg
-                src="https://jdelectricos.com.co/wp-content/uploads/2015/02/10671457_350118441826896_5004478760188836471_n-150x150.jpg"
-                :alt="`Ver categoria ${subcategory.name}`"
-                :title="`Ver categoria ${subcategory.name}`"
+                :src="subcategory.previewImg !== null ? subcategory.previewImg : '/img/logo/LOGO-JD-ICONO.webp'"
+                :alt="`Ver subcategoria ${subcategory.name}`"
+                :title="`Ver subcategoria ${subcategory.name}`"
                 class="w-40 h-40 rounded-2xl hover:mask-b-from-20% hover:mask-b-to-80%"
                 width="160"
                 height="160"
