@@ -38,7 +38,7 @@
           <cardCategoriesToFeed
             v-for="(categories, index) in paginatedCategories"
             :key="index"
-            urlImg="/img/logo/logo-jd-electricos.webp"
+            :urlImg="categories.previewImg"
             :slugCategory="categories.slug"
             :nameCategory="categories.name"
           />

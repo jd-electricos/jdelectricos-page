@@ -24,7 +24,7 @@
         <div
           class="flex flex-col md:flex-row justify-between items-start md:items-center p-5 gap-4"
         >
-          <p class="font-semibold">
+          <p class="font-semibold opacity-0 cursor-default">
             Ref: <span class="font-bold">{{ data.sku }}</span>
           </p>
           <NuxtLink :to="data.subCategory.category.slug">
@@ -37,9 +37,9 @@
           </NuxtLink>
         </div>
         <p class="py-5">{{ data.description }}</p>
-        <p class="font-semibold py-5">
+        <!-- <p class="font-semibold py-5">
           Precio: <span class="font-bold">{{ data.price }}</span>
-        </p>
+        </p> -->
         <a
           :href="whatsappLink"
           target="_blank"

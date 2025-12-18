@@ -10,7 +10,7 @@
         <NuxtImg
           format="webp"
           loading="lazy"
-          :src="urlImg"
+          :src="urlImg !== null ? urlImg : '/img/logo/LOGO-JD-ICONO.webp'"
           :alt="`Ver categoria ${nameCategory}`"
           :title="`Ver categoria ${nameCategory}`"
           class="w-40 h-40 rounded-2xl"
