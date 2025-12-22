@@ -27,7 +27,7 @@ useHead({
     {
       name: "description",
       content:
-        "En JD Eléctricos somos importadores directos de materiales y productos eléctricos para alta, media y baja tensión, con despachos a nivel nacional.",
+        "En JD Eléctricos somos importadores directos de materiales eléctricos para alta, media y baja tensión. Contamos con un amplio catálogo de productos eléctricos certificados, con despachos a nivel nacional",
     },
     {
       name: "robots",
@@ -43,7 +43,7 @@ useHead({
     {
       property: "og:description",
       content:
-        "En JD Eléctricos somos importadores directos de materiales y productos eléctricos para alta, media y baja tensión, con despachos a nivel nacional.",
+        "En JD Eléctricos somos importadores directos de materiales eléctricos para alta, media y baja tensión. Contamos con un amplio catálogo de productos eléctricos certificados, con despachos a nivel nacional",
     },
     { property: "og:url", content: "https://jdelectricos.com.co/" },
     {
@@ -74,7 +74,7 @@ useHead({
     {
       name: "twitter:description",
       content:
-        "En JD Eléctricos somos importadores directos de materiales y productos eléctricos para alta, media y baja tensión, con despachos a nivel nacional.",
+        "En JD Eléctricos somos importadores directos de materiales eléctricos para alta, media y baja tensión. Contamos con un amplio catálogo de productos eléctricos certificados, con despachos a nivel nacional",
     },
     { name: "twitter:site", content: "@JD_ELECTRICOS" },
     { name: "twitter:creator", content: "@JD_ELECTRICOS" },
