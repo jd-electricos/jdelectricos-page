@@ -160,26 +160,27 @@ const items = ref([
     label: "Nosotros",
     href: "/empresa-distribuidora-de-materiales-electricos-en-colombia",
   },
-  {
-    label: "Certificados",
-    items: [
-      { label: "Aisladores", href: "/" },
-      { label: "Cables", href: "/" },
-      { label: "Cintas y Hebillas", href: "/" },
-      { label: "Herrajes", href: "/" },
-      { label: "Luminarias", href: "/" },
-      { label: "Pararrayos", href: "/" },
-      { label: "Postes de Concreto", href: "/" },
-    ],
-    isOpen: false,
-  },
+  // {
+  //   label: "Certificados",
+  //   items: [
+  //     { label: "Aisladores", href: "/" },
+  //     { label: "Cables", href: "/" },
+  //     { label: "Cintas y Hebillas", href: "/" },
+  //     { label: "Herrajes", href: "/" },
+  //     { label: "Luminarias", href: "/" },
+  //     { label: "Pararrayos", href: "/" },
+  //     { label: "Postes de Concreto", href: "/" },
+  //   ],
+  //   isOpen: false,
+  // },
   {
     label: "Catálogo",
-    items: [
-      { label: "Postes de Concreto", href: "/" },
-      { label: "Transformadores abb", href: "/" },
-    ],
-    isOpen: false,
+    href: "/catalogo-materiales-electricos",
+    // items: [
+    //   { label: "Postes de Concreto", href: "/" },
+    //   { label: "Transformadores abb", href: "/" },
+    // ],
+    // isOpen: false,
   },
   { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
   {

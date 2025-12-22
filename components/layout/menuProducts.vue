@@ -85,7 +85,15 @@
               class="min-h-10 px-4 py-2 hover:bg-blue-100 hover:text-black cursor-pointer flex justify-between items-center"
               :class="{ 'bg-gray-800 text-white': activeSubcategory === j }"
             >
-              {{ sub.name }}
+              {{
+                sub.name
+                  .toLocaleLowerCase("es-ES")
+                  .split(" ")
+                  .map(
+                    (w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1)
+                  )
+                  .join(" ")
+              }}
               <svg
                 class="w-4 h-4 ml-2 rotate-180"
                 fill="none"
@@ -126,7 +134,13 @@
           :key="k"
           class="px-4 py-2 hover:bg-blue-100 cursor-pointer"
         >
-          <NuxtLink :to="prod.slugProduct">{{ prod.name }}</NuxtLink>
+          <NuxtLink :to="prod.slugProduct">{{
+            prod.name
+              .toLocaleLowerCase("es-ES")
+              .split(" ")
+              .map((w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1))
+              .join(" ")
+          }}</NuxtLink>
         </li>
       </ul>
     </div>
