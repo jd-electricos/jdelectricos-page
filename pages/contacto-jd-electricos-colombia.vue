@@ -6,7 +6,7 @@
 </template>
 <script setup>
 import formContacto from "~/components/contacto/formContacto.vue";
-import mapa from "../components/contacto/mapa.vue";
+import mapa from "~/components/contacto/mapa.vue";
 useHead({
   title: "Contacto JD ELECTRICOS | DISTRIBUIDOR DE MATERIALES",
   meta: [

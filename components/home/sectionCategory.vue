@@ -9,7 +9,7 @@
         <cardCategoriesToFeed
           v-for="(categories, index) in repeatedProducts"
           :key="index"
-          urlImg="/img/logo/logo-menu-jd.webp"
+          :urlImg="categories.previewImg !== null ? categories.previewImg : '/img/logo/LOGO-JD-ICONO.webp'"
           :slugCategory="categories.slug"
           :nameCategory="categories.name"
         />
