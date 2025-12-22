@@ -16,4 +16,5 @@ const fecthData = async () => {
   // console.log(data.map((x) => x.slug));
 };
 fecthData();
+
 </script>
