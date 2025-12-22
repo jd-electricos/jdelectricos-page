@@ -219,7 +219,6 @@ const verifyRecaptcha = async () => {
       "https://monkfish-app-lsohl.ondigitalocean.app/api/recaptcha/verify-recaptcha",
       { recaptchaResponse }
     );
-
     return response.data?.success === true;
   } catch {
     return false;
