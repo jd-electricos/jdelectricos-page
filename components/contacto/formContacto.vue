@@ -178,7 +178,7 @@ const dataAffair = ref("");
 const dataMessage = ref("");
 
 const errors = ref({});
-const siteKey = "6LeRIXgqAAAAAJvfTC0RidvG62l7jYOfQlsO8eQU";
+const siteKey = "6LcIktcqAAAAADELG70wM3fL_l9fsdi-RY9tOuzL";
 
 onMounted(() => {
   isRecaptchaVisible.value = true;
