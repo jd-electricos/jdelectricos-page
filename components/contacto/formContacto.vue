@@ -178,7 +178,7 @@ const dataAffair = ref("");
 const dataMessage = ref("");
 
 const errors = ref({});
-const siteKey = "6LcIktcqAAAAADELG70wM3fL_l9fsdi-RY9tOuzL";
+const siteKey = "6LeRIXgqAAAAAJvfTC0RidvG62l7jYOfQlsO8eQU";
 
 onMounted(() => {
   isRecaptchaVisible.value = true;
@@ -216,7 +216,7 @@ const verifyRecaptcha = async () => {
 
   try {
     const response = await axios.post(
-      "https://clownfish-app-xjood.ondigitalocean.app/api/recaptcha/verify-recaptcha",
+      "https://monkfish-app-lsohl.ondigitalocean.app/api/recaptcha/verify-recaptcha",
       { recaptchaResponse }
     );
 
