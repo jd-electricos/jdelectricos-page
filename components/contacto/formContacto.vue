@@ -166,7 +166,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
-
+import { FilePen, Phone, Mail } from "lucide-vue-next";
 const isLoading = ref(false);
 const isRecaptchaVisible = ref(false);
 
