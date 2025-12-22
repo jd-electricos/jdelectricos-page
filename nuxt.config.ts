@@ -6,7 +6,12 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css", "~/assets/css/animationtopage.css"],
-  modules: ["@nuxt/image"],
+  modules: ["@nuxt/image", "@nuxtjs/sitemap"],
+  sitemap: { 
+  sources: ["/api/urls"],
+  siteUrl: "https://jdelectricos.com.co",
+  trailingSlash: false,
+},
   image: {
     providers: {
       localProvider: {

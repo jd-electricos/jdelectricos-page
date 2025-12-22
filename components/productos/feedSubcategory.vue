@@ -55,7 +55,16 @@
               <!-- <NuxtLink :to="`/${slugCategory}`">  este codigo es el de los slug se debe remplazar el de abajo por el de arriba -->
               <NuxtLink :to="`/${product.slugProduct}`">
                 <h2 class="font-bold text-center text-white">
-                  {{ product.name }}
+                  {{
+                    product.name
+                      .toLocaleLowerCase("es-ES")
+                      .split(" ")
+                      .map(
+                        (w) =>
+                          w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1)
+                      )
+                      .join(" ")
+                  }}
                 </h2>
               </NuxtLink>
               <NuxtLink :to="`/${product.slugProduct}`">
