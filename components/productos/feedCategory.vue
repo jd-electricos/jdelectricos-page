@@ -35,7 +35,11 @@
               :aria-label="`Ver categoria ${subcategory.name}`"
             >
               <NuxtImg
-                :src="subcategory.previewImg !== null ? subcategory.previewImg : '/img/logo/LOGO-JD-ICONO.webp'"
+                :src="
+                  subcategory.previewImg !== null
+                    ? subcategory.previewImg
+                    : '/img/logo/LOGO-JD-ICONO.webp'
+                "
                 :alt="`Ver subcategoria ${subcategory.name}`"
                 :title="`Ver subcategoria ${subcategory.name}`"
                 class="w-40 h-40 rounded-2xl hover:mask-b-from-20% hover:mask-b-to-80%"
@@ -53,7 +57,16 @@
               <!-- <NuxtLink :to="`/${slugCategory}`">  este codigo es el de los slug se debe remplazar el de abajo por el de arriba -->
               <NuxtLink :to="`/${subcategory.slug}`">
                 <h2 class="font-bold text-center text-white">
-                  {{ subcategory.name }}
+                  {{
+                    subcategory.name
+                      .toLocaleLowerCase("es-ES")
+                      .split(" ")
+                      .map(
+                        (w) =>
+                          w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1)
+                      )
+                      .join(" ")
+                  }}
                 </h2>
               </NuxtLink>
               <NuxtLink :to="`/${subcategory.slug}`">

@@ -109,7 +109,12 @@ const itemsMenu = ref([
 ]);
 
 const itemsInfo = ref({
-  phone: ["301 234 5678", "301 234 5678", "301 234 5678"],
+  phone: [
+    "PBX:(+601) 341 10 60",
+    "+57 320 270 57 34",
+    "+57 320 339 25 65",
+    "+57 310 492 84 93",
+  ],
   email: ["ventas@jdelectricos.com.co"],
 });
 </script>

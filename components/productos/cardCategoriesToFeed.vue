@@ -21,7 +21,15 @@
       <div class="flex flex-col items-center gap-4">
         <!-- <NuxtLink :to="`/${slugCategory}`">  este codigo es el de los slug se debe remplazar el de abajo por el de arriba -->
         <NuxtLink :to="`/${slugCategory}`">
-          <h2 class="font-bold text-center">{{ nameCategory }}</h2>
+          <h2 class="font-bold text-center">
+            {{
+              nameCategory
+                .toLocaleLowerCase("es-ES")
+                .split(" ")
+                .map((w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1))
+                .join(" ")
+            }}
+          </h2>
         </NuxtLink>
         <NuxtLink :to="`/${slugCategory}`">
           <p class="font-semibold">Ver Categoria</p>

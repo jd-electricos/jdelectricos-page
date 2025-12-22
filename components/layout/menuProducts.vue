@@ -16,7 +16,9 @@
       @mouseenter="cancelCloseMenu"
       @mouseleave="delayedCloseMenu"
     >
-      <ul class="border rounded shadow-md p-2 flex flex-col max-h-[300px] overflow-auto">
+      <ul
+        class="border rounded shadow-md p-2 flex flex-col max-h-[300px] overflow-auto"
+      >
         <li
           v-for="(cat, i) in menu"
           :key="i"
@@ -29,9 +31,27 @@
               class="min-h-10 text-black px-2 py-2 hover:bg-gray-100 hover:text-black cursor-pointer flex justify-between items-center"
               :class="{ 'bg-gray-800 text-white': activeCategory === i }"
             >
-              {{ cat.name }}
-              <svg class="w-4 h-4 ml-2 rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+              {{
+                cat.name
+                  .toLocaleLowerCase("es-ES")
+                  .split(" ")
+                  .map(
+                    (w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1)
+                  )
+                  .join(" ")
+              }}
+              <svg
+                class="w-4 h-4 ml-2 rotate-180"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9 5l7 7-7 7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </div>
           </NuxtLink>
@@ -45,9 +65,14 @@
       class="fixed z-50"
       @mouseenter="cancelCloseMenu"
       @mouseleave="delayedCloseMenu"
-      :style="{ top: `${submenuPosition.top}px`, left: `${submenuPosition.left}px` }"
+      :style="{
+        top: `${submenuPosition.top}px`,
+        left: `${submenuPosition.left}px`,
+      }"
     >
-      <ul class="lg:w-56 bg-white text-black border rounded shadow-md max-h-[500px] overflow-auto">
+      <ul
+        class="lg:w-56 bg-white text-black border rounded shadow-md max-h-[500px] overflow-auto"
+      >
         <li
           v-for="(sub, j) in menu[activeCategory].subcategories"
           :key="j"
@@ -61,8 +86,18 @@
               :class="{ 'bg-gray-800 text-white': activeSubcategory === j }"
             >
               {{ sub.name }}
-              <svg class="w-4 h-4 ml-2 rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+              <svg
+                class="w-4 h-4 ml-2 rotate-180"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9 5l7 7-7 7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </div>
           </NuxtLink>
@@ -76,11 +111,18 @@
       class="fixed z-50"
       @mouseenter="cancelCloseMenu"
       @mouseleave="delayedCloseMenu"
-      :style="{ top: `${productMenuPosition.top}px`, left: `${productMenuPosition.left}px` }"
+      :style="{
+        top: `${productMenuPosition.top}px`,
+        left: `${productMenuPosition.left}px`,
+      }"
     >
-      <ul class="bg-white text-black border rounded shadow-md lg:w-64 w-36 max-h-[300px] overflow-auto">
+      <ul
+        class="bg-white text-black border rounded shadow-md lg:w-64 w-36 max-h-[300px] overflow-auto"
+      >
         <li
-          v-for="(prod, k) in menu[activeCategory].subcategories[activeSubcategory].products"
+          v-for="(prod, k) in menu[activeCategory].subcategories[
+            activeSubcategory
+          ].products"
           :key="k"
           class="px-4 py-2 hover:bg-blue-100 cursor-pointer"
         >
@@ -106,12 +148,14 @@ let closeTimeout;
 const emit = defineEmits(["closeDrawer"]);
 
 function send() {
-  emit('closeDrawer', false)
+  emit("closeDrawer", false);
 }
 
 const fetchMenuData = async () => {
   try {
-    const response = await fetch("https://clownfish-app-xjood.ondigitalocean.app/api/products/menujd");
+    const response = await fetch(
+      "https://clownfish-app-xjood.ondigitalocean.app/api/products/menujd"
+    );
     const data = await response.json();
     menu.value = data.map((cat) => ({
       name: cat.name,
