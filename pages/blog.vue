@@ -120,7 +120,7 @@ const pageSize = 16
 
 // Obtener los datos desde el backend paginado
 const { data: paginatedData, refresh } = await useAsyncData('posts', () =>
-  $fetch(`http://localhost:5000/api/blog?page=${currentPage.value}&limit=${pageSize}`)
+  $fetch(`https://clownfish-app-xjood.ondigitalocean.app/api/blog?page=${currentPage.value}&limit=${pageSize}`)
 )
 
 // Computar posts actuales
