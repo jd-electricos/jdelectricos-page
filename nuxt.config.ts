@@ -1,7 +1,6 @@
 import { Base } from "./.nuxt/components.d";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
-
 export default defineNuxtConfig({
   ssr: true,
   compatibilityDate: "2024-11-01",
