@@ -28,10 +28,11 @@
 <script setup>
 import { ref, computed } from "vue";
 import previewBlog from "../components/blog/previewBlog.vue";
+const category = encodeURIComponent("News")
 
 // ✅ Cambiamos a useAsyncData
 const { data: posts } = await useAsyncData("posts", () =>
-  $fetch("/api/blog/category/News")
+  $fetch(`/api/blog/category/${category}`)
 );
 
 // Variables para los filtros
