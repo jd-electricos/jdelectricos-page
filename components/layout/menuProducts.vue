@@ -111,7 +111,7 @@ function send() {
 
 const fetchMenuData = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/products/menujd");
+    const response = await fetch("/api/products/menujd");
     const data = await response.json();
     menu.value = data.map((cat) => ({
       name: cat.name,

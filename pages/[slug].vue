@@ -58,7 +58,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
     let categoryRes = null;
     try {
       categoryRes = await $fetch(
-        `http://localhost:5000/api/categories/slug/${slug}`
+        `/api/categories/slug/${slug}`
       );
     } catch {}
 
@@ -67,7 +67,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       result.isCategory = true;
       try {
         result.products = await $fetch(
-          `http://localhost:5000/api/products/categories/${categoryRes.id}`
+          `/api/products/categories/${categoryRes.id}`
         );
       } catch {}
       return result;
@@ -77,7 +77,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
     let subcategoryRes = null;
     try {
       subcategoryRes = await $fetch(
-        `http://localhost:5000/api/subcategories/slug/${slug}`
+        `/api/subcategories/slug/${slug}`
       );
     } catch {}
 
@@ -86,7 +86,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       result.isSubcategory = true;
       try {
         result.products = await $fetch(
-          `http://localhost:5000/api/products/subcategories/${subcategoryRes.id}`
+          `/api/products/subcategories/${subcategoryRes.id}`
         );
       } catch {}
       return result;
@@ -96,7 +96,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
     let productRes = null;
     try {
       productRes = await $fetch(
-        `http://localhost:5000/api/products/slug/${slug}`
+        `/api/products/slug/${slug}`
       );
     } catch {}
 
@@ -112,7 +112,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
     let blogRes = null;
     try {
       blogRes = await $fetch(
-        `http://localhost:5000/api/blog/slug/${slug}`
+        `/api/blog/slug/${slug}`
       );
     } catch {}
 
@@ -121,7 +121,7 @@ const { data, pending } = await useAsyncData(`slug-${slug}`, async () => {
       result.isBlog = true;
       try {
         result.products = await $fetch(
-          `http://localhost:5000/api/blog/${blogRes.id}`
+          `/api/blog/${blogRes.id}`
         );
       } catch {}
       return result;

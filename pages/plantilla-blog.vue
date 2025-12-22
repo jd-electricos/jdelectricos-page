@@ -10,7 +10,7 @@
 <script setup>
 const slugs = ref();
 const fecthData = async () => {
-  const response = await fetch(`http://localhost:5000/api/blog`);
+  const response = await fetch(`/api/blog`);
   const data = await response.json();
   slugs.value = data;
   // console.log(data.map((x) => x.slug));
