@@ -1,23 +1,30 @@
 <template>
-  <div class="card flex justify-center">
-    <Drawer
-      v-model:visible="visible"
-      modal
-      style="height: auto"
-      :style="{ width: '25rem' }"
-      position="bottom"
-      class="rounded-xl"
+  <!-- Overlay -->
+  <div
+    v-if="visible"
+    class="fixed inset-0 z-50 flex items-end justify-center bg-black/50"
+  >
+    <!-- Drawer inferior -->
+    <div
+      class="w-full max-w-md bg-white rounded-t-xl p-6 shadow-2xl animate-slide-up"
     >
-      <div class="flex flex-col justify-center items-center gap-5">
-        <p>
+      <div class="flex flex-col justify-center items-center gap-5 text-center">
+        <p class="text-gray-700">
           Este sitio web utiliza cookies para mejorar la experiencia del
           usuario. Al continuar navegando, acepta el uso de cookies.
         </p>
-        <Button severity="warn" label="Aceptar" @click="acceptCookies" />
+
+        <button
+          @click="acceptCookies"
+          class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-2 rounded-lg transition"
+        >
+          Aceptar
+        </button>
       </div>
-    </Drawer>
+    </div>
   </div>
 </template>
+
 
 
 <script setup>

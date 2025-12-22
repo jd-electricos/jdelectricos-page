@@ -6,7 +6,7 @@
     <carouselDistributor />
     <introProducts />
     <ImageAndText />
-    <!-- <cookies /> -->
+    <cookies />
     <introAboutMe />
   </div>
 </template>
