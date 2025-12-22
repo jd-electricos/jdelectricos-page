@@ -27,7 +27,7 @@ useHead({
     {
       name: "description",
       content:
-        "Materiales Electricos Colombia, Distribuidor productos electricos. Importador. herrajes , cables acsr, aisladores poliméricos, soldadura exotermica. Of Bogotá",
+        "En JD Eléctricos somos importadores directos de materiales y productos eléctricos para alta, media y baja tensión, con despachos a nivel nacional.",
     },
     {
       name: "robots",
@@ -43,7 +43,7 @@ useHead({
     {
       property: "og:description",
       content:
-        "Materiales Electricos Colombia, Distribuidor productos electricos. Importador. herrajes , cables acsr, aisladores poliméricos, soldadura exotermica. Of Bogotá",
+        "En JD Eléctricos somos importadores directos de materiales y productos eléctricos para alta, media y baja tensión, con despachos a nivel nacional.",
     },
     { property: "og:url", content: "https://jdelectricos.com.co/" },
     {
@@ -74,7 +74,7 @@ useHead({
     {
       name: "twitter:description",
       content:
-        "Materiales Electricos Colombia, Distribuidor productos electricos. Importador. herrajes , cables acsr, aisladores poliméricos, soldadura exotermica. Of Bogotá",
+        "En JD Eléctricos somos importadores directos de materiales y productos eléctricos para alta, media y baja tensión, con despachos a nivel nacional.",
     },
     { name: "twitter:site", content: "@JD_ELECTRICOS" },
     { name: "twitter:creator", content: "@JD_ELECTRICOS" },
