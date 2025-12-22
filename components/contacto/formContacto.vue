@@ -216,7 +216,7 @@ const verifyRecaptcha = async () => {
 
   try {
     const response = await axios.post(
-      "https://clownfish-app-xjood.ondigitalocean.app//api/recaptcha/verify-recaptcha",
+      "https://clownfish-app-xjood.ondigitalocean.app/api/recaptcha/verify-recaptcha",
       { recaptchaResponse }
     );
 
