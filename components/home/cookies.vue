@@ -11,18 +11,11 @@
       <div class="flex flex-col gap-4 text-center">
         <p class="text-gray-700 text-sm">
           Utilizamos cookies necesarias y analíticas para mejorar tu experiencia.
-          Puedes aceptar todas, rechazarlas o configurar tus preferencias.
+          Puedes aceptar todas o rechazarlas.
         </p>
 
-        <a
-          href="/politica-de-cookies"
-          class="text-xs text-blue-600 underline"
-        >
-          Ver política de cookies
-        </a>
-
         <!-- Botones -->
-        <div class="flex flex-col sm:flex-row gap-2 mt-4">
+        <div class="flex flex-col sm:flex-row gap-2 mt-4 justify-center">
           <button
             @click="rejectCookies"
             class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded-lg transition"
