@@ -240,6 +240,8 @@ watch(
 
       if (match) {
         router.replace(`/${match}`);
+      } else {
+        router.replace("/");
       }
     }
   },
