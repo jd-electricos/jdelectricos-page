@@ -44,7 +44,7 @@
 
 <script setup>
 const whatsappLink = () => {
-  const message = `Hola Japs, quiero asesorarme sobre sus equipos eléctricos`;
+  const message = `Hola JD Eléctricos, quiero asesorarme sobre sus materiales eléctricos`;
   const url = `https://wa.me/573108023277?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank"); // Esto abre el enlace en una nueva pestaña
 };
