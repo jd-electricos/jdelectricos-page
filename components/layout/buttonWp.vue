@@ -4,7 +4,7 @@
       type="button"
       @click="whatsappLink"
       variant="text"
-      class="flex items-center justify-center rounded-full hover:bg-green-600 transition-colors"
+      class="flex items-center justify-center rounded-full hover:bg-green-600 transition-colors cursor-pointer"
       aria-label="Chat with us on WhatsApp"
     >
       <svg
