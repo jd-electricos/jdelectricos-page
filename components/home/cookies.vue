@@ -13,19 +13,24 @@
           Este sitio web utiliza cookies para mejorar la experiencia del
           usuario. Al continuar navegando, acepta el uso de cookies.
         </p>
-
-        <button
-          @click="acceptCookies"
-          class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-2 rounded-lg transition"
-        >
-          Aceptar
-        </button>
+        <div class="flex gap-2">
+          <button
+            @click="visible = false"
+            class="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-6 py-2 rounded-lg transition cursor-pointer"
+          >
+            Rechazar
+          </button>
+          <button
+            @click="acceptCookies"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-2 rounded-lg transition cursor-pointer"
+          >
+            Aceptar
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </template>
-
-
 
 <script setup>
 import { ref, onMounted } from "vue";
@@ -44,7 +49,7 @@ onMounted(() => {
 
 function acceptCookies() {
   // Save consent and hide the dialog
-  localStorage.setItem('cookieConsent', 'true');
+  localStorage.setItem("cookieConsent", "true");
   visible.value = false;
 
   // Load gtag.js only after the user accepts cookies
@@ -62,11 +67,13 @@ function loadGtagScript() {
   script.onload = () => {
     // Initialize the dataLayer and gtag
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ window.dataLayer.push(arguments); }
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
     window.gtag = gtag;
-    
-    gtag('js', new Date());
-    gtag('config', 'G-N3QD7X9PCW'); // Reemplaza con tu ID de GTM
+
+    gtag("js", new Date());
+    gtag("config", "G-N3QD7X9PCW"); // Reemplaza con tu ID de GTM
   };
 }
 </script>
