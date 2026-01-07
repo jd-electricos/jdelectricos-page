@@ -6,7 +6,7 @@
     </h1>
 
     <div
-      class="flex flex-col lg:flex-row justify-between p-5 gap-12 border-[1px] rounded-2xl border-gray-600"
+      class="flex flex-col lg:flex-row justify-between p-5 gap-12 border-2 rounded-2xl border-gray-600"
     >
       <!-- Información de Contacto -->
       <div class="lg:w-1/2 space-y-4">
