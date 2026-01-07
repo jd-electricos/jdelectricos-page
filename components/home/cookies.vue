@@ -4,25 +4,28 @@
     v-if="visible"
     class="fixed inset-0 z-50 flex items-end justify-center bg-black/50"
   >
-    <!-- Drawer inferior -->
+    <!-- Drawer -->
     <div
-      class="w-full max-w-md bg-white rounded-t-xl p-6 shadow-2xl animate-slide-up"
+      class="w-full max-w-md bg-white rounded-t-2xl p-6 shadow-2xl animate-slide-up"
     >
-      <div class="flex flex-col justify-center items-center gap-5 text-center">
-        <p class="text-gray-700">
-          Este sitio web utiliza cookies para mejorar la experiencia del
-          usuario. Al continuar navegando, acepta el uso de cookies.
+      <div class="flex flex-col gap-4 text-center">
+        <p class="text-gray-700 text-sm">
+          Utilizamos cookies necesarias y analíticas para mejorar tu experiencia.
+          Puedes aceptar todas o rechazarlas.
         </p>
-        <div class="flex gap-2">
+
+        <!-- Botones -->
+        <div class="flex flex-col sm:flex-row gap-2 mt-4 justify-center">
           <button
-            @click="visible = false"
-            class="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-6 py-2 rounded-lg transition cursor-pointer"
+            @click="rejectCookies"
+            class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded-lg transition"
           >
             Rechazar
           </button>
+
           <button
             @click="acceptCookies"
-            class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-2 rounded-lg transition cursor-pointer"
+            class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded-lg transition"
           >
             Aceptar
           </button>
@@ -34,38 +37,49 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRuntimeConfig } from "#imports";
 
 const visible = ref(false);
+const config = useRuntimeConfig();
 
 onMounted(() => {
-  // Show cookies consent drawer only after LCP is rendered
+  // Mostrar después del LCP
   setTimeout(() => {
-    // Check if consent was already given
-    if (!localStorage.getItem("cookieConsent")) {
+    const consent = localStorage.getItem("cookieConsent");
+    if (!consent) {
       visible.value = true;
+    } else if (consent === "accepted") {
+      loadAnalytics();
     }
-  }, 2000); // Delay to make sure LCP is prioritized
+  }, 2000);
 });
 
 function acceptCookies() {
-  // Save consent and hide the dialog
-  localStorage.setItem("cookieConsent", "true");
+  localStorage.setItem("cookieConsent", "accepted");
+  localStorage.setItem("analytics", "true");
   visible.value = false;
-
-  // Load gtag.js only after the user accepts cookies
-  loadGtagScript();
+  loadAnalytics();
 }
 
-function loadGtagScript() {
-  // Dynamically load the gtag.js script
+function rejectCookies() {
+  localStorage.setItem("cookieConsent", "rejected");
+  localStorage.setItem("analytics", "false");
+  visible.value = false;
+}
+
+function loadAnalytics() {
+  if (localStorage.getItem("analytics") !== "true") return;
+
+  // Evitar doble carga
+  if (window.gtagLoaded) return;
+  window.gtagLoaded = true;
+
   const script = document.createElement("script");
-  script.src = "https://www.googletagmanager.com/gtag/js?id=G-N3QD7X9PCW"; // Reemplaza con tu ID de GTM
+  script.src = `https://www.googletagmanager.com/gtag/js?id=G-N3QD7X9PCW`;
   script.async = true;
   document.head.appendChild(script);
 
-  // Initialize Google Analytics/GTAG after the script has loaded
   script.onload = () => {
-    // Initialize the dataLayer and gtag
     window.dataLayer = window.dataLayer || [];
     function gtag() {
       window.dataLayer.push(arguments);
@@ -73,7 +87,9 @@ function loadGtagScript() {
     window.gtag = gtag;
 
     gtag("js", new Date());
-    gtag("config", "G-N3QD7X9PCW"); // Reemplaza con tu ID de GTM
+    gtag("config", "G-N3QD7X9PCW", {
+      anonymize_ip: true,
+    });
   };
 }
 </script>
