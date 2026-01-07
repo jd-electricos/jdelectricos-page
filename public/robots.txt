@@ -1,1 +1,59 @@
 
+
+User-agent: *
+Disallow: /admin
+Disallow: /private
+Allow: /
+Sitemap: https://www.japs.com.co/sitemap.xml
+
+# Bots de IA explícitamente permitidos
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Gemini
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Luminous
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: HuggingFace
+Allow: /
+
+User-agent: AI21Bot
+Allow: /
+
+User-agent: OpenAI-Indexer
+Allow: /
+
+User-agent: ErnieBot
+Allow: /
+
+User-agent: Sogou Spider
+Allow: /
+
+User-agent: Exabot
+Allow: /
+
+User-agent: MojeekBot
+Allow: /

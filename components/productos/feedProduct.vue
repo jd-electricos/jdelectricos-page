@@ -145,7 +145,7 @@ const dataJsonLd = ref({
       logo: {
         "@type": "ImageObject",
         // <- aca se debe cambiar la url por el paranetro de la imagen
-        url: "https://jdelectricos.com.co/wp-content/uploads/2017/03/jd-electricos1-300x71.png",
+        url: "/public/img/logo/logo-jd-electricos.webp",
       },
       contactPoint: [
         {
@@ -186,7 +186,7 @@ const dataJsonLd = ref({
     {
       "@type": "ImageObject",
       "@id": `https://jdelectricos.com.co/${data.value.slugProduct}/#primaryImage`,
-      url: "https://jdelectricos.com.co/wp-content/uploads/2020/09/cable-acsr-por-mayor.jpg",
+      url: data.value.carouselImg[0],
       width: "500",
       height: "500",
     },
