@@ -19,7 +19,7 @@
       </div>
       <br />
       <breadcrumb
-        class="lg:w-3/12 w-15/12"
+        class="lg:w-3/12 md:w-auto w-15/12"
         :categorySlug="props.category?.slug"
         :categoryName="props.category?.name"
       />
