@@ -112,7 +112,6 @@ const filteredProducts = computed(() => {
     p.name?.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
-
 useSeoMeta({
   title: computed(() => data.value.seo.ogtitle || ""),
   description: computed(() => data.value.seo.ogdescription || ""),
@@ -125,10 +124,9 @@ useSeoMeta({
       ? data.value.seo.keywords.join(", ")
       : "";
   }),
-  ogSiteName:
-    "materiales electricos, productos electricos en colombia JD ELECTRICOS",
-  // ogImage: computed(() => data.value.carouselImg || ""),
-  // ogImageSecureUrl: computed(() => data.value.carouselImg || ""),
+  ogSiteName: computed(() => data.value.seo.ogtitle || ""),
+  ogImage: computed(() => data.value.previewImg || ""),
+  ogImageSecureUrl: computed(() => data.value.previewImg || ""),
   ogImageWidth: "800",
   ogImageHeight: "800",
   ogImageAlt: computed(() => data.value.name || ""),
@@ -138,8 +136,7 @@ useSeoMeta({
   twitterDescription: computed(() => data.value.description || ""),
   twitterSite: "@JD_ELECTRICOS",
   twitterCreator: "@JD_ELECTRICOS",
-  twitterImage:
-    "https://jdelectricos.com.co/wp-content/uploads/2020/04/distribuidor-de-materiales-electricos.jpg",
+  twitterImage: computed(() => data.value.previewImg || ""),
   robots:
     "follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
 });
@@ -183,7 +180,7 @@ const dataJsonLd = ref({
       logo: {
         "@type": "ImageObject",
         // <- aca se debe cambiar la url por el paranetro de la imagen
-        url: "https://jdelectricos.com.co/wp-content/uploads/2017/03/jd-electricos1-300x71.png",
+        url: computed(() => data.value.previewImg || ""),
       },
       contactPoint: [
         {
@@ -224,7 +221,7 @@ const dataJsonLd = ref({
     {
       "@type": "ImageObject",
       "@id": `https://jdelectricos.com.co/${data.value.slug}/#primaryImage`,
-      url: "https://jdelectricos.com.co/wp-content/uploads/2020/09/cable-acsr-por-mayor.jpg",
+      url: computed(() => data.value.previewImg || ""),
       width: "500",
       height: "500",
     },
