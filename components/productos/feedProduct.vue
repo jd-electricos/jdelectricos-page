@@ -9,7 +9,12 @@
       <div class="flex flex-col w-full lg:w-1/2">
         <div class="flex flex-col gap-4">
           <h1 class="text-2xl md:text-4xl font-bold text-shadow-lg/20">
-            {{ data.name }}
+            {{ data.name.toLocaleLowerCase("es-ES")
+                  .split(" ")
+                  .map(
+                    (w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1)
+                  )
+                  .join(" ") }}
           </h1>
           <breadcrumb
             :categorySlug="data.subCategory.category.slug"
