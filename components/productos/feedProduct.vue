@@ -145,7 +145,7 @@ const dataJsonLd = ref({
       logo: {
         "@type": "ImageObject",
         // <- aca se debe cambiar la url por el paranetro de la imagen
-        url: "/public/img/logo/logo-jd-electricos.webp",
+        url: computed(() => data.value.previewImg || ""),
       },
       contactPoint: [
         {
