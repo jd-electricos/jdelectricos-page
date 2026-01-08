@@ -12,7 +12,7 @@
     <!-- Categorías -->
     <div
       v-if="open"
-      class="hidden md:block absolute bg-white rounded-l z-50 left-0 md:left-auto md:right-0 lg:min-w-[300px] max-w-screen-xl"
+      class="hidden lg:block absolute bg-white rounded-l z-50 left-0 md:left-auto md:right-0 lg:min-w-[300px] max-w-screen-xl"
       @mouseenter="cancelCloseMenu"
       @mouseleave="delayedCloseMenu"
     >
