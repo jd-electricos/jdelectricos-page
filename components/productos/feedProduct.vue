@@ -57,6 +57,9 @@
       <!-- <p class="text-justify">{{ data.technical_parameters }}</p> -->
       <parametersTable :technicalParameters="data.technical_parameters" :id_category="data.id_category" :name="data.name" />
     </div>
+    <div class="py-10">
+      <suggestionsProducts :dataSlug="data.subCategory.slug" />
+    </div>
   </section>
 </template>
 
@@ -64,6 +67,7 @@
 import carouselProducts from "./carouselProducts.vue";
 import breadcrumb from "../layout/breadcrumb.vue";
 import parametersTable from "./parametersTable.vue";
+import suggestionsProducts from "./suggestionsProducts.vue";
 import { computed } from "vue";
 
 const props = defineProps({
