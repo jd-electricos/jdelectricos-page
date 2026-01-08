@@ -1,5 +1,9 @@
 <template>
-  <section v-if="data" class="flex flex-col px-4 py-12 md:p-14" @copy="handleCopy">
+  <section
+    v-if="data"
+    class="flex flex-col px-4 py-12 md:p-14"
+    @copy="handleCopy"
+  >
     <div
       class="flex flex-col lg:flex-row items-center gap-10 lg:gap-32 md:p-14"
     >
@@ -9,12 +13,13 @@
       <div class="flex flex-col w-full lg:w-1/2">
         <div class="flex flex-col gap-4">
           <h1 class="text-2xl md:text-4xl font-bold text-shadow-lg/20">
-            {{ data.name.toLocaleLowerCase("es-ES")
-                  .split(" ")
-                  .map(
-                    (w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1)
-                  )
-                  .join(" ") }}
+            {{
+              data.name
+                .toLocaleLowerCase("es-ES")
+                .split(" ")
+                .map((w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1))
+                .join(" ")
+            }}
           </h1>
           <breadcrumb
             :categorySlug="data.subCategory.category.slug"
@@ -60,7 +65,11 @@
         Caracteristicas Tecnicas de {{ data.name }}
       </h2>
       <!-- <p class="text-justify">{{ data.technical_parameters }}</p> -->
-      <parametersTable :technicalParameters="data.technical_parameters" :id_category="data.id_category" :name="data.name" />
+      <parametersTable
+        :technicalParameters="data.technical_parameters"
+        :id_category="data.id_category"
+        :name="data.name"
+      />
     </div>
     <div class="py-10">
       <suggestionsProducts :dataSlug="data.subCategory.slug" />
@@ -86,9 +95,25 @@ const whatsappLink = computed(() => {
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 });
 useSeoMeta({
-  title: computed(() => data.value.seo.ogtitle || ""),
+  title: computed(
+    () =>
+      data.value.seo.ogtitle
+        .toLocaleLowerCase("es-ES")
+        .split(" ")
+        .map((w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1))
+        .join(" ") || ""
+  ),
   description: computed(() => data.value.seo.ogdescription || ""),
-  ogTitle: computed(() => data.value.seo.ogtitle || ""),
+  ogTitle: computed(
+    () =>
+      data.value.seo.ogtitle
+        .toLocaleLowerCase("es-ES")
+        .split(" ")
+        .map((w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1))
+        .join(" ") ||
+      "" ||
+      ""
+  ),
   ogDescription: computed(() => data.value.seo.ogdescription || ""),
   ogType: "product",
   ogUrl: computed(() => data.value.slugProduct || ""),
@@ -260,7 +285,7 @@ const handleCopy = (event) => {
   event.preventDefault();
 
   const customText = `JD ELÉCTRICOS | ${data.value.name}  - https://jdelectricos.com.co/${data.value.slugProduct}`;
-  
+
   if (event.clipboardData) {
     event.clipboardData.setData("text/plain", customText);
   } else if (window.clipboardData) {
