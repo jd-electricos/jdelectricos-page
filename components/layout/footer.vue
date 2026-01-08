@@ -49,8 +49,9 @@
             <ul class="space-y-2">
               <li v-for="phone in itemsInfo.phone" :key="phone">
                 <a
-                  :href="'tel:' + phone.replace(/\s+/g, '')"
+                  :href="`https://wa.me/${phone.replace(/\s+/g, '')}?text=Hola%20JD%20Eléctricos`"
                   class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
+                  target="_blank"
                 >
                   {{ phone }}
                 </a>
