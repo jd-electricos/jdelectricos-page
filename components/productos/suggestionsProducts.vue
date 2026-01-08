@@ -18,8 +18,10 @@
           <NuxtLink :to="`/${product.slugProduct}`">
             <NuxtImg
               :src="product.previewImg"
-              alt=""
+              :alt="product.name"
               class="w-40 rounded-2xl hover:mask-b-from-50%"
+              width="160"
+              height="160"
             />
           </NuxtLink>
 
