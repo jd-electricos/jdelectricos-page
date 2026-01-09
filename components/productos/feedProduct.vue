@@ -91,7 +91,7 @@ const props = defineProps({
 const data = computed(() => props.dataProducts || {});
 const phoneNumber = "573108023277"; // Número de WhatsApp
 const whatsappLink = computed(() => {
-  const message = `Hola Japs, quiero cotizar ${props.dataProducts.name} con referencia ${props.dataProducts.sku}`;
+  const message = `Hola JD Eléctricos, quiero cotizar ${props.dataProducts.name}. Aquí está el enlace del producto: https://jdelectricos.com.co/${props.dataProducts.slugProduct}`;
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 });
 useSeoMeta({
