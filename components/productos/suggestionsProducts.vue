@@ -5,15 +5,11 @@
     <!-- VIEWPORT -->
     <div class="relative w-full overflow-hidden">
       <!-- TRACK -->
-      <div
-        class="flex flex-nowrap gap-4 animate-carousel hover:[animation-play-state:paused] carousel-track"
-      >
+      <div class="flex flex-nowrap gap-4 animate-carousel carousel-track">
         <div
           v-for="product in duplicatedProducts"
           :key="product.uid"
-          class="w-48 flex-shrink-0 flex flex-col items-center justify-between
-                 border-2 border-gray-600 rounded-2xl
-                 hover:border-yellow-500 hover:bg-white gap-3 p-4"
+          class="w-48 shrink-0 flex flex-col items-center justify-between border-2 border-gray-600 rounded-2xl hover:border-yellow-500 hover:bg-white gap-3 p-4"
         >
           <NuxtLink :to="`/${product.slugProduct}`">
             <NuxtImg
@@ -55,7 +51,6 @@ const duplicatedProducts = computed(() =>
     uid: `${p.id}-${i}`,
   }))
 );
-
 const fetchData = async () => {
   const response = await fetch(
     `https://clownfish-app-xjood.ondigitalocean.app/api/subcategories/slug/${props.dataSlug}`
@@ -63,7 +58,6 @@ const fetchData = async () => {
   const data = await response.json();
   products.value = data.productsInSubcategory;
 };
-
 onMounted(fetchData);
 </script>
 <style scoped>
@@ -75,19 +69,11 @@ onMounted(fetchData);
     transform: translateX(-80%);
   }
 }
-
 .animate-carousel {
   animation: carousel 20s linear infinite;
 }
-
 /* PAUSA cuando el mouse está sobre cualquier card */
 .carousel-track:hover {
   animation-play-state: paused;
 }
-
-/* También pausa si el hover es sobre una tarjeta */
-.carousel-track > div:hover {
-  animation-play-state: paused;
-}
 </style>
-
