@@ -6,7 +6,6 @@
     <carouselDistributor />
     <introProducts />
     <ImageAndText />
-    <cookies />
     <introAboutMe />
   </div>
 </template>
@@ -18,7 +17,6 @@ import sectionCategory from "../components/home/sectionCategory.vue";
 import bannerPromotions from "../components/layout/bannerPromotions.vue";
 import introAboutMe from "../components/home/introAboutMe.vue";
 import ImageAndText from "../components/home/ImageAndText.vue";
-import cookies from "../components/home/cookies.vue";
 
 // seo para el home
 useHead({
