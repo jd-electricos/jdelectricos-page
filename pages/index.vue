@@ -14,7 +14,7 @@ import intro from "../components/home/intro.vue";
 import carouselDistributor from "../components/home/carouselDistributor.vue";
 import introProducts from "../components/home/introProducts.vue";
 import sectionCategory from "../components/home/sectionCategory.vue";
-import bannerPromotions from "../components/layout/bannerPromotions.vue";
+// import bannerPromotions from "../components/layout/bannerPromotions.vue";
 import introAboutMe from "../components/home/introAboutMe.vue";
 import ImageAndText from "../components/home/ImageAndText.vue";
 
