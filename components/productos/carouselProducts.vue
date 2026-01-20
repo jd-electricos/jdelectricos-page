@@ -8,7 +8,7 @@
         :alt="alt"
         width="640"
         height="384"
-        :key="carouselImage[0]"
+        :key="currentIndex"
         decoding="async"
         itemprop="image"
         :title="alt"
@@ -61,16 +61,6 @@
 <script setup>
 import { ArrowBigLeft, ArrowBigRight } from "lucide-vue-next";
 import { ref } from "vue";
-
-useHead({
-  link: [
-    {
-      rel: 'preload',
-      as: 'image',
-      href: carouselImage[0]
-    }
-  ]
-})
 
 const props = defineProps({
   carouselImage: {
