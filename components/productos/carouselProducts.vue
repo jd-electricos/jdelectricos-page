@@ -74,7 +74,6 @@ const props = defineProps({
 });
 
 const currentIndex = ref(0);
-
 const prevSlide = () => {
   currentIndex.value =
     (currentIndex.value - 1 + props.carouselImage.length) %
