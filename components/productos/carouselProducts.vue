@@ -15,7 +15,6 @@
         :aria-label="`Imagen del producto ${alt}`"
         :aria-describedby="`Descripción de la imagen del producto ${alt}`"
         fetchpriority="high"
-        preload
       />
 
       <!-- Botón Izquierda -->
@@ -52,8 +51,6 @@
         :class="{ 'border-gray-800': currentIndex === index }"
         width="64"
         height="64"
-        fetchpriority="high"
-        preload
       />
     </div>
   </div>
@@ -74,6 +71,7 @@ const props = defineProps({
 });
 
 const currentIndex = ref(0);
+
 const prevSlide = () => {
   currentIndex.value =
     (currentIndex.value - 1 + props.carouselImage.length) %
