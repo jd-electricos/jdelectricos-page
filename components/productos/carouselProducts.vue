@@ -8,13 +8,14 @@
         :alt="alt"
         width="640"
         height="384"
-        :key="currentIndex"
+        :key="carouselImage[0]"
         decoding="async"
         itemprop="image"
         :title="alt"
         :aria-label="`Imagen del producto ${alt}`"
         :aria-describedby="`Descripción de la imagen del producto ${alt}`"
         fetchpriority="high"
+        preload
       />
 
       <!-- Botón Izquierda -->
@@ -51,6 +52,7 @@
         :class="{ 'border-gray-800': currentIndex === index }"
         width="64"
         height="64"
+        preload
       />
     </div>
   </div>
@@ -59,6 +61,16 @@
 <script setup>
 import { ArrowBigLeft, ArrowBigRight } from "lucide-vue-next";
 import { ref } from "vue";
+
+useHead({
+  link: [
+    {
+      rel: 'preload',
+      as: 'image',
+      href: carouselImage[0]
+    }
+  ]
+})
 
 const props = defineProps({
   carouselImage: {
