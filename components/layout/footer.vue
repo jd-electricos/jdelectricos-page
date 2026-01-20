@@ -11,8 +11,8 @@
         loading="lazy"
         width="176"
         height="176"
-        sizes="(max-width: 640px) 128px, (max-width: 768px) 144px, 176px"
-        densities="1"
+        sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 176px"
+        densities="1,2"
       />
 
       <!-- Secciones del Footer -->
