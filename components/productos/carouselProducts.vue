@@ -14,6 +14,7 @@
         :title="alt"
         :aria-label="`Imagen del producto ${alt}`"
         :aria-describedby="`Descripción de la imagen del producto ${alt}`"
+        loading="eager"
         fetchpriority="high"
         preload
       />
@@ -52,6 +53,8 @@
         :class="{ 'border-gray-800': currentIndex === index }"
         width="64"
         height="64"
+        loading="eager"
+        fetchpriority="high"
         preload
       />
     </div>
