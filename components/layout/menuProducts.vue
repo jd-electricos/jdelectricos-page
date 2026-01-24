@@ -26,7 +26,7 @@
           @mouseenter="hoverCategory(i)"
           :ref="(el) => setCategoryRef(el, i)"
         >
-          <NuxtLink :to="cat.slug">
+          <NuxtLink :to="`/${cat.slug}`">
             <div
               class="min-h-10 text-black px-2 py-2 hover:bg-gray-100 hover:text-black cursor-pointer flex justify-between items-center"
               :class="{ 'bg-gray-800 text-white': activeCategory === i }"
@@ -80,7 +80,7 @@
           @mouseenter="hoverSubcategory(j)"
           :ref="(el) => setSubcategoryRef(el, j)"
         >
-          <NuxtLink :to="sub.slug">
+          <NuxtLink :to="`/${sub.slug}`">
             <div
               class="min-h-10 px-4 py-2 hover:bg-blue-100 hover:text-black cursor-pointer flex justify-between items-center"
               :class="{ 'bg-gray-800 text-white': activeSubcategory === j }"
@@ -134,7 +134,7 @@
           :key="k"
           class="px-4 py-2 hover:bg-blue-100 cursor-pointer"
         >
-          <NuxtLink :to="prod.slugProduct">{{
+          <NuxtLink :to="`/${prod.slugProduct}`">{{
             prod.name
               .toLocaleLowerCase("es-ES")
               .split(" ")
