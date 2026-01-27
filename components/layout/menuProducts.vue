@@ -168,7 +168,7 @@ function send() {
 const fetchMenuData = async () => {
   try {
     const response = await fetch(
-      "https://clownfish-app-xjood.ondigitalocean.app/api/products/menujd"
+      "https://apijd.jdelectricos.com.co/api/products/menujd"
     );
     const data = await response.json();
     menu.value = data.map((cat) => ({

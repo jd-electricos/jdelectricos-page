@@ -62,7 +62,7 @@ const { data, pending } = await useAsyncData(
       let categoryRes = null;
       try {
         categoryRes = await $fetch(
-          `https://clownfish-app-xjood.ondigitalocean.app/api/categories/slug/${slug}`
+          `https://apijd.jdelectricos.com.co/api/categories/slug/${slug}`
         );
       } catch {}
 
@@ -71,7 +71,7 @@ const { data, pending } = await useAsyncData(
         result.isCategory = true;
         try {
           result.products = await $fetch(
-            `https://clownfish-app-xjood.ondigitalocean.app/api/products/categories/${categoryRes.id}`
+            `https://apijd.jdelectricos.com.co/api/products/categories/${categoryRes.id}`
           );
         } catch {}
         return result;
@@ -81,7 +81,7 @@ const { data, pending } = await useAsyncData(
       let subcategoryRes = null;
       try {
         subcategoryRes = await $fetch(
-          `https://clownfish-app-xjood.ondigitalocean.app/api/subcategories/slug/${slug}`
+          `https://apijd.jdelectricos.com.co/api/subcategories/slug/${slug}`
         );
       } catch {}
 
@@ -90,7 +90,7 @@ const { data, pending } = await useAsyncData(
         result.isSubcategory = true;
         try {
           result.products = await $fetch(
-            `https://clownfish-app-xjood.ondigitalocean.app/api/products/subcategories/${subcategoryRes.id}`
+            `https://apijd.jdelectricos.com.co/api/products/subcategories/${subcategoryRes.id}`
           );
         } catch {}
         return result;
@@ -100,7 +100,7 @@ const { data, pending } = await useAsyncData(
       let productRes = null;
       try {
         productRes = await $fetch(
-          `https://clownfish-app-xjood.ondigitalocean.app/api/products/slug/${slug}`
+          `https://apijd.jdelectricos.com.co/api/products/slug/${slug}`
         );
       } catch {}
 
@@ -116,7 +116,7 @@ const { data, pending } = await useAsyncData(
       let blogRes = null;
       try {
         blogRes = await $fetch(
-          `https://clownfish-app-xjood.ondigitalocean.app/api/blog/slug/${slug}`
+          `https://apijd.jdelectricos.com.co/api/blog/slug/${slug}`
         );
       } catch {}
 
@@ -125,7 +125,7 @@ const { data, pending } = await useAsyncData(
         result.isBlog = true;
         try {
           result.products = await $fetch(
-            `https://clownfish-app-xjood.ondigitalocean.app/api/blog/${blogRes.id}`
+            `https://apijd.jdelectricos.com.co/api/blog/${blogRes.id}`
           );
         } catch {}
         return result;
@@ -185,7 +185,7 @@ const keywordBoost = (a, b) => {
 };
 
 const getAllSlugs = async () => {
-  const base = "https://clownfish-app-xjood.ondigitalocean.app/api";
+  const base = "https://apijd.jdelectricos.com.co/api";
 
   const [catsRes, subsRes, prodsRes, blogsRes] = await Promise.all([
     $fetch(`${base}/categories`).catch(() => []),

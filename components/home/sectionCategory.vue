@@ -27,7 +27,7 @@ const categories = ref([]);
 
 const fetchCategories = async () => {
   try {
-    const response = await fetch("https://clownfish-app-xjood.ondigitalocean.app/api/categories");
+    const response = await fetch("https://apijd.jdelectricos.com.co/api/categories");
     const data = await response.json();
     categories.value = data.items;
   } catch (error) {

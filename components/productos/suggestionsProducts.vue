@@ -53,7 +53,7 @@ const duplicatedProducts = computed(() =>
 );
 const fetchData = async () => {
   const response = await fetch(
-    `https://clownfish-app-xjood.ondigitalocean.app/api/subcategories/slug/${props.dataSlug}`
+    `https://apijd.jdelectricos.com.co/api/subcategories/slug/${props.dataSlug}`
   );
   const data = await response.json();
   products.value = data.productsInSubcategory;
