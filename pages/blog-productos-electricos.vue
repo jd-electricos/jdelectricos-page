@@ -31,7 +31,7 @@ import previewBlog from "../components/blog/previewBlog.vue";
 
 // ✅ Cambiamos a useAsyncData
 const { data: posts } = await useAsyncData("posts", () =>
-  $fetch("https://clownfish-app-xjood.ondigitalocean.app/api/blog/category/Productos Eléctricos")
+  $fetch("https://apijd.jdelectricos.com.co/api/blog/category/Productos Eléctricos")
 );
 
 // Variables para los filtros

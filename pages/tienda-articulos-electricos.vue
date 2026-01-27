@@ -71,7 +71,7 @@ const selectedCategory = ref("");
 const fetchAllCategories = async () => {
   try {
     const response = await fetch(
-      `https://clownfish-app-xjood.ondigitalocean.app/api/categories?all=true`
+      `https://apijd.jdelectricos.com.co/api/categories?all=true`
     );
     const data = await response.json();
     allCategories.value = data.items;
