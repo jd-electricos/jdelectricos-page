@@ -1,20 +1,20 @@
 <template>
   <div class="relative w-full max-w-3xl mx-auto">
     <!-- Imagen principal -->
-    <div class="relative ">
+    <div class="relative">
       <NuxtImg
         :src="carouselImage[currentIndex]"
         class="w-full h-96 object-contain rounded-lg bg-gray-100 shadow-xl shadow-neutral-800/50"
         :alt="alt"
         width="640"
         height="384"
-        :key="currentIndex"
         decoding="async"
         itemprop="image"
         :title="alt"
         :aria-label="`Imagen del producto ${alt}`"
         :aria-describedby="`Descripción de la imagen del producto ${alt}`"
         fetchpriority="high"
+        loading="eager"
       />
 
       <!-- Botón Izquierda -->
@@ -45,6 +45,9 @@
         :key="index"
         :src="image"
         :alt="alt"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="low"
         :title="`minuatura de ${alt}`"
         @click="currentIndex = index"
         class="w-16 h-16 object-cover cursor-pointer border-2 shadow-xl shadow-neutral-800/50 rounded-lg"
@@ -71,6 +74,8 @@ const props = defineProps({
 });
 
 const currentIndex = ref(0);
+const lcpImage = computed(() => props.carouselImage[0]);
+
 
 const prevSlide = () => {
   currentIndex.value =
