@@ -9,7 +9,10 @@
 
 <script setup>
 import { computed, ref } from "vue";
-import sectionCategory from "../home/sectionCategory.vue";
+// import sectionCategory from "../home/sectionCategory.vue";
+const SectionCategory = defineAsyncComponent(
+  () => import("../components/home/sectionCategory.vue")
+);
 
 const props = defineProps({
   dataBlog: Object,
