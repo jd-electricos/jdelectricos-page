@@ -45,11 +45,11 @@ onMounted(() => {
     localStorage.setItem("cookieInformed", "true");
   }
 
-  loadAnalytics();
 });
 
 function closeBanner() {
   visible.value = false;
+  loadAnalytics();
 }
 
 function loadAnalytics() {
