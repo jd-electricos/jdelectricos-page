@@ -22,7 +22,7 @@
 
           <button
             @click="closeBanner"
-            class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded-lg transition"
+            class="bg-yellow-500 hover:bg-yellow-600 text-gray-800 font-semibold px-4 py-2 rounded-lg transition"
           >
             Aceptar
           </button>
