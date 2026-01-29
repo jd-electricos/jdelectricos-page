@@ -78,10 +78,19 @@
 </template>
 
 <script setup>
-import carouselProducts from "./carouselProducts.vue";
-import breadcrumb from "../layout/breadcrumb.vue";
-import parametersTable from "./parametersTable.vue";
-import suggestionsProducts from "./suggestionsProducts.vue";
+const carouselProducts = defineAsyncComponent(
+  () => import("./carouselProducts.vue"),
+);
+const suggestionsProducts = defineAsyncComponent(
+  () => import("./suggestionsProducts.vue"),
+);
+const parametersTable = defineAsyncComponent(
+  () => import("./parametersTable.vue"),
+);
+const breadcrumb = defineAsyncComponent(
+  () => import("../layout/breadcrumb.vue"),
+);
+
 import { computed } from "vue";
 
 const props = defineProps({
@@ -101,7 +110,7 @@ useSeoMeta({
         .toLocaleLowerCase("es-ES")
         .split(" ")
         .map((w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1))
-        .join(" ") || ""
+        .join(" ") || "",
   ),
   description: computed(() => data.value.seo.ogdescription || ""),
   ogTitle: computed(
@@ -112,7 +121,7 @@ useSeoMeta({
         .map((w) => w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1))
         .join(" ") ||
       "" ||
-      ""
+      "",
   ),
   ogDescription: computed(() => data.value.seo.ogdescription || ""),
   ogType: "product",
@@ -266,7 +275,7 @@ useHead({
   script: [
     {
       innerHTML: computed(() =>
-        JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value)
+        JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value),
       ),
       type: "application/ld+json",
     },
@@ -275,7 +284,7 @@ useHead({
     {
       rel: "canonical",
       href: computed(
-        () => `https://jdelectricos.com.co/${data.value.slugProduct}` || ""
+        () => `https://jdelectricos.com.co/${data.value.slugProduct}` || "",
       ),
     },
   ],

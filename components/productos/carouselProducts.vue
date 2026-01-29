@@ -60,8 +60,14 @@
 </template>
 
 <script setup>
-import { ArrowBigLeft, ArrowBigRight } from "lucide-vue-next";
 import { ref } from "vue";
+// import { ArrowBigLeft, ArrowBigRight } from "lucide-vue-next";
+const ArrowBigLeft = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.ArrowBigLeft)
+);
+const ArrowBigRight = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.ArrowBigRight)
+);
 
 const props = defineProps({
   carouselImage: {

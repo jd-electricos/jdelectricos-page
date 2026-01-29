@@ -106,7 +106,19 @@
 
 <script setup>
 import { ref, computed, watchEffect } from 'vue'
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-vue-next'
+// import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-vue-next'
+const ChevronLeft = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.ChevronLeft)
+);
+const ChevronRight = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.ChevronRight)
+);
+const ChevronsLeft = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.ChevronsLeft)
+);
+const ChevronsRight = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.ChevronsRight)
+);
 import previewBlog from '../components/blog/previewBlog.vue'
 
 // Estados de filtros

@@ -166,7 +166,20 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
-import { FilePen, Phone, Mail } from "lucide-vue-next";
+import { defineAsyncComponent } from "vue";
+// import { FilePen, Phone, Mail } from "lucide-vue-next";
+
+const FilePen = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.FilePen)
+);
+
+const Phone = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.Phone)
+);
+
+const Mail = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.Mail)
+);
 const isLoading = ref(false);
 const isRecaptchaVisible = ref(false);
 

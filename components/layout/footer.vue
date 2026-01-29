@@ -97,7 +97,16 @@
 </template>
 
 <script setup>
-import { SquareMenu, Phone, Mail } from "lucide-vue-next";
+// import { SquareMenu, Phone, Mail } from "lucide-vue-next";
+const SquareMenu = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.SquareMenu)
+);
+const Phone = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.Phone)
+);
+const Mail = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.Mail)
+);
 import { ref } from "vue";
 
 const itemsMenu = ref([
