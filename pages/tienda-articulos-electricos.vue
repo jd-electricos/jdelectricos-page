@@ -41,6 +41,7 @@
             :urlImg="categories.previewImg"
             :slugCategory="categories.slug"
             :nameCategory="categories.name"
+            :isFirst="index === 0"
           />
         </div>
         <Paginator
