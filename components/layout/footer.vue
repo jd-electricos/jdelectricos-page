@@ -7,6 +7,7 @@
       <NuxtImg
         src="/img/logo/LOGO-JD-ICONO.webp"
         alt="Logo de JD Eléctricos"
+        class="w-32 sm:w-28 md:w-36 lg:w-44 mb-6 md:mb-0"
         width="176"
         height="176"
         loading="lazy"
@@ -18,7 +19,7 @@
 
       <!-- Secciones del Footer -->
       <div
-        class="flex flex-col sm:flex-row gap-10 lg:gap-20 md:gap-14 text-center sm:text-left w-full justify-end pt-5"
+        class="flex flex-col sm:flex-row gap-10 lg:gap-20 md:gap-14 text-center sm:text-left w-full justify-end"
       >
         <!-- Menú de navegación -->
         <nav aria-label="Menú principal" role="navigation">
