@@ -46,6 +46,7 @@
                 format="webp"
                 loading="eager"
                 decoding="async"
+                fetchpriority="high"
                 preload
               />
             </NuxtLink>
@@ -61,7 +62,7 @@
                       .split(" ")
                       .map(
                         (w) =>
-                          w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1)
+                          w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1),
                       )
                       .join(" ")
                   }}
@@ -95,7 +96,7 @@ const filteredProducts = computed(() => {
   if (!props.subcategory?.productsInSubcategory) return [];
 
   return props.subcategory.productsInSubcategory.filter((p) =>
-    p.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    p.name.toLowerCase().includes(searchQuery.value.toLowerCase()),
   );
 });
 
@@ -254,7 +255,7 @@ useHead({
   script: [
     {
       innerHTML: computed(() =>
-        JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value)
+        JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value),
       ),
       type: "application/ld+json",
     },
@@ -263,7 +264,7 @@ useHead({
     {
       rel: "canonical",
       href: computed(
-        () => `https://jdelectricos.com.co/${data.value.slug}` || ""
+        () => `https://jdelectricos.com.co/${data.value.slug}` || "",
       ),
     },
   ],
