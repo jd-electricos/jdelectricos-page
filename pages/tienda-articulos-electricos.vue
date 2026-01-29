@@ -5,7 +5,9 @@
     </div> -->
     <div class="bg-gray-800 px-10">
       <div class="lg:text-6xl text-4xl font-bold font-serif text-white p-10">
-        <h1 class="text-shadow-lg/20 text-shadow-gray-950">Materiales Electricos</h1>
+        <h1 class="text-shadow-lg/20 text-shadow-gray-950">
+          Materiales Electricos
+        </h1>
         <h2 class="text-shadow-lg/20 text-shadow-gray-950">Por Categorias</h2>
       </div>
       <!-- Filtros -->
@@ -19,6 +21,9 @@
         />
 
         <!-- Filtro por categoría -->
+        <label for="categoryFilter" class="sr-only">
+          Filtrar por categoría
+        </label>
         <select
           v-model="selectedCategory"
           class="w-full sm:w-72 px-4 py-2 border rounded-lg bg-white"
@@ -52,7 +57,7 @@
       </div>
     </div>
     <!-- Paginador -->
-</section>
+  </section>
 </template>
 <script setup>
 import { ref, computed, watchEffect } from "vue";
@@ -62,9 +67,11 @@ import { ref, computed, watchEffect } from "vue";
 
 const cardCategoriesToFeed = defineAsyncComponent(
   () => import("~/components/productos/cardCategoriesToFeed.vue"),
-);const bannerPromotions = defineAsyncComponent(
+);
+const bannerPromotions = defineAsyncComponent(
   () => import("../components/layout/bannerPromotions.vue"),
-);const Paginator = defineAsyncComponent(
+);
+const Paginator = defineAsyncComponent(
   () => import("../components/productos/paginator.vue"),
 );
 
@@ -80,7 +87,7 @@ const selectedCategory = ref("");
 const fetchAllCategories = async () => {
   try {
     const response = await fetch(
-      `https://apijd.jdelectricos.com.co/api/categories?all=true`
+      `https://apijd.jdelectricos.com.co/api/categories?all=true`,
     );
     const data = await response.json();
     allCategories.value = data.items;
@@ -136,7 +143,7 @@ useSeoMeta({
   ogUrl: "https://jdelectricos.com.co/tienda-articulos-electricos",
   ogSiteName:
     "materiales electricos, productos electricos en colombia JD ELECTRICOS",
-'article:publisher': 'https://www.facebook.com/jd.materialeselectricos',
+  "article:publisher": "https://www.facebook.com/jd.materialeselectricos",
   ogImage:
     "https://jdelectricos.com.co/wp-content/uploads/2020/04/jd-electricos.jpg",
   ogImageSecureUrl:
