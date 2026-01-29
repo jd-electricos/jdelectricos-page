@@ -9,11 +9,15 @@
       >
         <NuxtImg
           format="webp"
-          loading="lazy"
           :src="urlImg !== null ? urlImg : '/img/logo/LOGO-JD-ICONO.webp'"
           :alt="`Ver categoria ${nameCategory}`"
           :title="`Ver categoria ${nameCategory}`"
           class="w-40 h-40 rounded-2xl"
+          width="160"
+          height="160"
+          decoding="async"
+          :loading="isFirst ? 'eager' : 'lazy'"
+          :fetchpriority="isFirst ? 'high' : 'auto'"
         />
       </NuxtLink>
     </div>
@@ -44,6 +48,10 @@ defineProps({
   urlImg: String,
   slugCategory: String,
   nameCategory: String,
+  isFirst: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
