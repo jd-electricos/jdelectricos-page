@@ -8,11 +8,13 @@
         src="/img/logo/LOGO-JD-ICONO.webp"
         alt="Logo de JD Eléctricos"
         class="w-32 sm:w-28 md:w-36 lg:w-44 mb-6 md:mb-0"
-        loading="lazy"
         width="176"
         height="176"
-        sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 176px"
-        densities="1,2"
+        loading="lazy"
+        decoding="async"
+        sizes="176px"
+        densities="1"
+        quality="65"
       />
 
       <!-- Secciones del Footer -->
@@ -99,13 +101,13 @@
 <script setup>
 // import { SquareMenu, Phone, Mail } from "lucide-vue-next";
 const SquareMenu = defineAsyncComponent(() =>
-  import("lucide-vue-next").then(m => m.SquareMenu)
+  import("lucide-vue-next").then((m) => m.SquareMenu),
 );
 const Phone = defineAsyncComponent(() =>
-  import("lucide-vue-next").then(m => m.Phone)
+  import("lucide-vue-next").then((m) => m.Phone),
 );
 const Mail = defineAsyncComponent(() =>
-  import("lucide-vue-next").then(m => m.Mail)
+  import("lucide-vue-next").then((m) => m.Mail),
 );
 import { ref } from "vue";
 
