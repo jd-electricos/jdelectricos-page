@@ -27,7 +27,7 @@
       />
     </div>
     <div class="flex flex-wrap justify-center pt-10 select-none">
-      <div v-for="product in filteredProducts" :key="product.id">
+      <div v-for="(product, index) in filteredProducts" :key="product.id">
         <div
           class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-gray-900 p-3 hover:text-black drop-shadow-xl bg-gray-800 drop-shadow-gray-900"
         >
@@ -36,7 +36,7 @@
               :to="`/${product.slugProduct}`"
               :aria-label="`Ver categoria ${product.name}`"
             >
-              <NuxtImg
+              <!-- <NuxtImg
                 :src="product.previewImg"
                 :alt="`Ver categoria ${product.name}`"
                 :title="`Ver categoria ${product.name}`"
@@ -48,6 +48,17 @@
                 decoding="async"
                 fetchpriority="high"
                 preload
+              /> -->
+              <NuxtImg
+                :src="product.previewImg"
+                :alt="`Ver categoria ${product.name}`"
+                width="160"
+                height="160"
+                class="w-40 h-40 rounded-2xl"
+                format="webp"
+                decoding="async"
+                :loading="index === 0 ? 'eager' : 'lazy'"
+                :fetchpriority="index === 0 ? 'high' : 'auto'"
               />
             </NuxtLink>
           </div>
