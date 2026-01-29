@@ -25,6 +25,7 @@
           Filtrar por categoría
         </label>
         <select
+          id="categoryFilter"
           v-model="selectedCategory"
           class="w-full sm:w-72 px-4 py-2 border rounded-lg bg-white"
         >
