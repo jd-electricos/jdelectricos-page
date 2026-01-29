@@ -15,7 +15,10 @@
 </template>
 
 <script setup>
-import { PhoneCall } from "lucide-vue-next";
+// import { PhoneCall } from "lucide-vue-next";
+const PhoneCall = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.PhoneCall)
+);
 import { ref } from "vue";
 const items = ref([
   {

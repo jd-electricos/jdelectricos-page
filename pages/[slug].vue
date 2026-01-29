@@ -32,11 +32,21 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { computed, onMounted, watch } from "vue";
-import feedProduct from "~/components/productos/feedProduct.vue";
-import feedCategory from "~/components/productos/feedCategory.vue";
-import feedSubcategory from "~/components/productos/feedSubcategory.vue"; // Asegúrate de crearlo
-import feedBlog from "~/components/blog/feedBlog.vue";
-import loading from "~/components/layout/loading.vue";
+const feedProduct = defineAsyncComponent(
+  () => import("~/components/productos/feedProduct.vue"),
+);
+const feedCategory = defineAsyncComponent(
+  () => import("~/components/productos/feedCategory.vue"),
+);
+const feedSubcategory = defineAsyncComponent(
+  () => import("~/components/productos/feedSubcategory.vue"),
+); // Asegúrate de crearlo
+const feedBlog = defineAsyncComponent(
+  () => import("~/components/blog/feedBlog.vue"),
+);
+const loading = defineAsyncComponent(
+  () => import("~/components/layout/loading.vue"),
+);
 
 const route = useRoute();
 const router = useRouter();
@@ -62,7 +72,7 @@ const { data, pending } = await useAsyncData(
       let categoryRes = null;
       try {
         categoryRes = await $fetch(
-          `https://apijd.jdelectricos.com.co/api/categories/slug/${slug}`
+          `https://apijd.jdelectricos.com.co/api/categories/slug/${slug}`,
         );
       } catch {}
 
@@ -71,7 +81,7 @@ const { data, pending } = await useAsyncData(
         result.isCategory = true;
         try {
           result.products = await $fetch(
-            `https://apijd.jdelectricos.com.co/api/products/categories/${categoryRes.id}`
+            `https://apijd.jdelectricos.com.co/api/products/categories/${categoryRes.id}`,
           );
         } catch {}
         return result;
@@ -81,7 +91,7 @@ const { data, pending } = await useAsyncData(
       let subcategoryRes = null;
       try {
         subcategoryRes = await $fetch(
-          `https://apijd.jdelectricos.com.co/api/subcategories/slug/${slug}`
+          `https://apijd.jdelectricos.com.co/api/subcategories/slug/${slug}`,
         );
       } catch {}
 
@@ -90,7 +100,7 @@ const { data, pending } = await useAsyncData(
         result.isSubcategory = true;
         try {
           result.products = await $fetch(
-            `https://apijd.jdelectricos.com.co/api/products/subcategories/${subcategoryRes.id}`
+            `https://apijd.jdelectricos.com.co/api/products/subcategories/${subcategoryRes.id}`,
           );
         } catch {}
         return result;
@@ -100,7 +110,7 @@ const { data, pending } = await useAsyncData(
       let productRes = null;
       try {
         productRes = await $fetch(
-          `https://apijd.jdelectricos.com.co/api/products/slug/${slug}`
+          `https://apijd.jdelectricos.com.co/api/products/slug/${slug}`,
         );
       } catch {}
 
@@ -116,7 +126,7 @@ const { data, pending } = await useAsyncData(
       let blogRes = null;
       try {
         blogRes = await $fetch(
-          `https://apijd.jdelectricos.com.co/api/blog/slug/${slug}`
+          `https://apijd.jdelectricos.com.co/api/blog/slug/${slug}`,
         );
       } catch {}
 
@@ -125,7 +135,7 @@ const { data, pending } = await useAsyncData(
         result.isBlog = true;
         try {
           result.products = await $fetch(
-            `https://apijd.jdelectricos.com.co/api/blog/${blogRes.id}`
+            `https://apijd.jdelectricos.com.co/api/blog/${blogRes.id}`,
           );
         } catch {}
         return result;
@@ -135,7 +145,7 @@ const { data, pending } = await useAsyncData(
     }
     return result;
   },
-  { lazy: true }
+  { lazy: true },
 );
 
 // Computed
@@ -245,6 +255,6 @@ watch(
       }
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>

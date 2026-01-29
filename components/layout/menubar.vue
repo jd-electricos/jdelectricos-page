@@ -150,7 +150,13 @@
 
 <script setup>
 import menuProducts from "./menuProducts.vue";
-import { Menu, X } from "lucide-vue-next";
+// import { Menu, X } from "lucide-vue-next";
+const Menu = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.Menu)
+);
+const X = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.X)
+);
 import { ref } from "vue";
 const drawer = ref(false);
 const activeSubMenu = ref(null);

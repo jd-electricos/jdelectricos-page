@@ -48,7 +48,10 @@
 </template>
 
 <script setup>
-import { ChevronRight } from "lucide-vue-next";
+// import { ChevronRight } from "lucide-vue-next";
+const ChevronRight = defineAsyncComponent(() =>
+  import("lucide-vue-next").then(m => m.ChevronRight)
+);
 const props = defineProps({
   categorySlug: String,
   categoryName: String,
