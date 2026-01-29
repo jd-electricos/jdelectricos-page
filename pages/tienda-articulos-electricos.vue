@@ -56,9 +56,17 @@
 </template>
 <script setup>
 import { ref, computed, watchEffect } from "vue";
-import cardCategoriesToFeed from "~/components/productos/cardCategoriesToFeed.vue";
-import bannerPromotions from "../components/layout/bannerPromotions.vue";
-import Paginator from "../components/productos/paginator.vue";
+// import cardCategoriesToFeed from "~/components/productos/cardCategoriesToFeed.vue";
+// import bannerPromotions from "../components/layout/bannerPromotions.vue";
+// import Paginator from "../components/productos/paginator.vue";
+
+const cardCategoriesToFeed = defineAsyncComponent(
+  () => import("~/components/productos/cardCategoriesToFeed.vue"),
+);const bannerPromotions = defineAsyncComponent(
+  () => import("../components/layout/bannerPromotions.vue"),
+);const Paginator = defineAsyncComponent(
+  () => import("../components/productos/paginator.vue"),
+);
 
 const page = ref(1);
 const limit = 15;
