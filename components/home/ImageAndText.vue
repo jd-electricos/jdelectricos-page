@@ -11,11 +11,6 @@
       <NuxtImg
         src="/img/logo/banner-distribuidores.webp"
         alt="Bodega JD Eléctricos"
-        width="1600"
-        height="900"
-        sizes="100vw"
-        format="webp"
-        quality="75"
         class="w-full h-auto rounded-lg shadow-md"
       />
       <h2 class="font-bold text-sm text-gray-800 text-center">
