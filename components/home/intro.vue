@@ -24,7 +24,7 @@
     <div
       class="flex-1 lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0"
     >
-      <NuxtImg
+      <img
         src="/img/logo/intro.webp"
         class="lg:w-[34rem] lg:h-[34rem] w-[24rem] h-[24rem] object-contain drop-shadow-lg drop-shadow-stone-400"
         width="544"
