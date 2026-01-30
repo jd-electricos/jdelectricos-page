@@ -1,10 +1,17 @@
 <template>
-  <section class=" py-2">
+  <section class="py-2">
     <div class="flex flex-col lg:flex-row items-center justify-center">
       <div class="lg:flex-1/2 flex justify-center">
         <NuxtImg
           src="/img/logo/resize-LOGO-JD-CTA.webp"
           alt="logo de jd electricos"
+          width="256"
+          height="256"
+          sizes="(max-width: 640px) 128px,
+         (max-width: 768px) 192px,
+         256px"
+          format="webp"
+          quality="70"
           class="w-32 sm:w-48 md:w-56 lg:w-64"
         />
       </div>
