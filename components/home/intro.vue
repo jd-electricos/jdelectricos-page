@@ -26,10 +26,15 @@
     >
       <img
         src="/img/logo/intro.webp"
-        alt="logo de jd electricos"
         class="lg:w-[34rem] lg:h-[34rem] w-[24rem] h-[24rem] object-contain drop-shadow-lg drop-shadow-stone-400"
-        fetchpriority="high"
+        width="544"
+        height="544"
+        sizes="(max-width: 640px) 384px, 544px"
+        format="webp"
+        quality="70"
         preload
+        fetchpriority="high"
+        alt="JD Eléctricos – Equipos y materiales eléctricos"
       />
     </div>
   </div>
