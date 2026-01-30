@@ -16,16 +16,21 @@
         <NuxtImg
           src="/img/logo/IMAGE-STORE.webp"
           alt="imagen bodega jd electricos"
+          width="1600"
+          height="900"
+          sizes="100vw"
+          format="webp"
+          quality="75"
           class="w-full h-auto rounded-lg shadow-md"
         />
       </div>
 
       <div class="relative flex-1/2 space-y-6 z-10">
         <p>
-          Nuestros materiales electricos como cable ACSR, aislador polimérico, pararrayo polimérico, aislador pin,
-          aislador carrete, aislador tensor, poste de concreto, interruptores,
-          equipos eléctricos, toma de tierra, transformador, generadores, cables
-          baja tensión, transformadores.
+          Nuestros materiales electricos como cable ACSR, aislador polimérico,
+          pararrayo polimérico, aislador pin, aislador carrete, aislador tensor,
+          poste de concreto, interruptores, equipos eléctricos, toma de tierra,
+          transformador, generadores, cables baja tensión, transformadores.
         </p>
         <h3 class="text-xl sm:text-xl lg:text-2xl font-extrabold font-serif">
           DISTRIBUIMOS CABLES ELÉCTRICOS AL POR MAYOR
@@ -49,7 +54,11 @@
         </p>
       </div>
     </div>
-    <em class="font-bold">Distribuimos materiales eléctricos para toda Colombia: industriales eléctricos en Bogotá, materiales eléctricos en Medellín, Barranquilla, Cali y Bucaramanga.</em>
+    <em class="font-bold"
+      >Distribuimos materiales eléctricos para toda Colombia: industriales
+      eléctricos en Bogotá, materiales eléctricos en Medellín, Barranquilla,
+      Cali y Bucaramanga.</em
+    >
   </div>
 </template>
 
