@@ -264,6 +264,7 @@ const dataJsonLd = ref({
       offers: {
         "@type": "Offer",
         url: `https://jdelectricos.com.co/${data.value.slugProduct}`,
+        price: data.value.price,
         priceCurrency: "COP",
         availability: "https://schema.org/InStock",
         seller: {
