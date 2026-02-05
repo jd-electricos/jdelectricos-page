@@ -223,6 +223,16 @@ const dataJsonLd = ref({
       image: {
         "@id": `https://jdelectricos.com.co/${data.value.slug}/#primaryImage`,
       },
+      offers: {
+        "@type": "Offer",
+        url: `https://jdelectricos.com.co/${data.value.slug}`,
+        price: 1000,
+        priceCurrency: "COP",
+        availability: "https://schema.org/InStock",
+        seller: {
+          "@id": "https://jdelectricos.com.co/#organization",
+        },
+      },
     },
   ],
 });

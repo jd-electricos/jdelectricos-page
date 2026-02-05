@@ -63,7 +63,7 @@
                       .split(" ")
                       .map(
                         (w) =>
-                          w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1)
+                          w.charAt(0).toLocaleUpperCase("es-ES") + w.slice(1),
                       )
                       .join(" ")
                   }}
@@ -97,7 +97,7 @@ const data = computed(() => props.category || {});
 const sortedSubCategories = computed(() => {
   if (!props.category?.subCategories) return [];
   return [...props.category.subCategories].sort((a, b) =>
-    a.name.localeCompare(b.name, "es", { sensitivity: "base" })
+    a.name.localeCompare(b.name, "es", { sensitivity: "base" }),
   );
 });
 
@@ -109,7 +109,7 @@ const filteredProducts = computed(() => {
   if (!Array.isArray(list)) return [];
 
   return list.filter((p) =>
-    p.name?.toLowerCase().includes(searchQuery.value.toLowerCase())
+    p.name?.toLowerCase().includes(searchQuery.value.toLowerCase()),
   );
 });
 useSeoMeta({
@@ -253,6 +253,16 @@ const dataJsonLd = ref({
       image: {
         "@id": `https://jdelectricos.com.co/${data.value.slug}/#primaryImage`,
       },
+      offers: {
+        "@type": "Offer",
+        url: `https://jdelectricos.com.co/${data.value.slug}`,
+        price: 1000,
+        priceCurrency: "COP",
+        availability: "https://schema.org/InStock",
+        seller: {
+          "@id": "https://jdelectricos.com.co/#organization",
+        },
+      },
     },
   ],
 });
@@ -266,7 +276,7 @@ useHead({
   script: [
     {
       innerHTML: computed(() =>
-        JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value)
+        JSON.stringify(data.value.seo?.jsonld || dataJsonLd.value),
       ),
       type: "application/ld+json",
     },
@@ -275,7 +285,7 @@ useHead({
     {
       rel: "canonical",
       href: computed(
-        () => `https://jdelectricos.com.co/${data.value.slug}` || ""
+        () => `https://jdelectricos.com.co/${data.value.slug}` || "",
       ),
     },
   ],
