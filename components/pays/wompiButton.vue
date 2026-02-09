@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <button @click="pay" class="bg-green-600 text-white px-4 py-2 rounded">
+    <button @click="pay" class="bg-[#b0f2ae] font-bold px-4 py-2 rounded w-full">
       Pagar con Wompi
     </button>
   </ClientOnly>
