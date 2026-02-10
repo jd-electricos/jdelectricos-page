@@ -17,7 +17,7 @@ const props = defineProps({
     required: true,
   },
 });
-const emit = defineEmits(["loading:start", "loading:end"]);
+const emit = defineEmits(["loading:start", "loading:end", "payment:result"]);
 
 const loadWompi = () => {
   return new Promise((resolve) => {
@@ -52,8 +52,25 @@ const pay = async () => {
     redirectUrl: "https://tusitio.com/pagos",
   });
 
-  checkout.open((result) => {
-    sendmail(result);
+  checkout.open(async (result) => {
+    try {
+      await sendmail(result);
+
+      emit("payment:result", {
+        status: result.transaction.status,
+        reference: result.transaction.reference,
+        amount: result.transaction.amountInCents / 100,
+        method: result.transaction.paymentMethod.type,
+      });
+
+      emit("loading:end");
+    } catch (e) {
+      emit("payment:result", {
+        status: "ERROR",
+        message: "Ocurrió un error procesando el pago",
+      });
+      emit("loading:end");
+    }
   });
 };
 
