@@ -30,6 +30,7 @@ Referencia: ${paymentResult.reference}`
       <div>
         <ClientOnly>
           <WompiForm
+            ref="wompiFormRef"
             @loading:start="isLoading = true"
             @loading:end="isLoading = false"
             @payment:result="handlePaymentResult"
@@ -56,10 +57,15 @@ import PaymentResultModal from "~/components/pays/paymentResultModal.vue";
 const isLoading = ref(false);
 const showModal = ref(false);
 const paymentResult = ref(null);
+const wompiFormRef = ref(null);
 
 const handlePaymentResult = (result) => {
   paymentResult.value = result;
   showModal.value = true;
+
+  if (result.status === "APPROVED" || result.status === "DECLINED") {
+    wompiFormRef.value?.resetForm();
+  }
 };
 
 useSeoMeta({
