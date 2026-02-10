@@ -174,6 +174,23 @@ onMounted(() => {
   isRecaptchaVisible.value = true;
   loadRecaptchaScript();
 });
+const resetForm = () => {
+  form.name = "";
+  form.document = "";
+  form.concept = "";
+  form.amountInCents = null;
+  form.email = "";
+  form.phone = "";
+
+  // Limpia reCAPTCHA si existe
+  if (window.grecaptcha) {
+    window.grecaptcha.reset();
+  }
+};
+
+defineExpose({
+  resetForm,
+});
 </script>
 
 <style scoped>
