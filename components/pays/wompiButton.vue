@@ -61,23 +61,24 @@ const pay = async () => {
 const sendmail = async (result) => {
   const formData = {
     name: props.customer.name,
-    company: `${result.legalName} / razon social o cc o documento: ${result.legalId}`,
+    company: `${result.transaction.merchant.legalName} / razon social o cc o documento: ${result.transaction.merchant.legalId}`,
     phone: props.customer.phone,
-    email: props.customer.email,
-    affair: `Confirmación de pago Wompi - ${props.customer.concept}`,
+    email: `${props.customer.email} / ${result.transaction.customerEmail}`,
+    affair: `Confirmación de pago Wompi - ${props.customer.concept} - Referencia Wompi: ${result.transaction.reference}`,
     message: `
       Pago realizado correctamente.
 
       Cliente: ${props.customer.name}
-      Documento: ${result.legalName} / razon social o cc o documento: ${result.legalId}
-      Monto: ${props.customer.amountInCents / 100} COP
-      Referencia Wompi: ${result.reference}
-      Estado: ${result.transaction?.status}
+      Documento: ${result.transaction.merchant.legalName} / razon social o cc o documento: ${result.transaction.merchant.legalId}
+      Metodo y Monto: ${result.transaction.paymentMethod.type} / ${result.transaction.amountInCents / 100} COP
+      Referencia Wompi: ${result.transaction.reference}
+      Estado: ${result.transaction.status}
     `,
   };
+  console.log("Enviando email con datos:", formData);
   try {
     await axios.post(
-      "https://apijaps.jdelectricos.com.co/api/email/send-email",
+      "https://apijaps.jdelectricos.com.co/api/email/send-email-pays",
       formData,
     );
     emit("loading:end");
