@@ -53,7 +53,6 @@ const pay = async () => {
   });
 
   checkout.open((result) => {
-    console.log("Resultado:", result);
     sendmail(result);
   });
 };
@@ -75,7 +74,6 @@ const sendmail = async (result) => {
       Estado: ${result.transaction.status}
     `,
   };
-  console.log("Enviando email con datos:", formData);
   try {
     await axios.post(
       "https://apijaps.jdelectricos.com.co/api/email/send-email-pays",
@@ -83,7 +81,7 @@ const sendmail = async (result) => {
     );
     emit("loading:end");
   } catch (error) {
-    console.error("Error al enviar el correo:", error);
+    console.error(error);
   }
 };
 </script>
