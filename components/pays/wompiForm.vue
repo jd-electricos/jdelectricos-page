@@ -100,6 +100,7 @@
       :customer="form"
       @loading:start="$emit('loading:start')"
       @loading:end="$emit('loading:end')"
+      @payment:result="$emit('payment:result', $event)"
     />
   </form>
 </template>
@@ -116,7 +117,7 @@ const ShieldCheck = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.ShieldCheck),
 );
 
-const emit = defineEmits(["loading:start", "loading:end"]);
+const emit = defineEmits(["loading:start", "loading:end", "payment:result"]);
 const isRecaptchaVisible = ref(true);
 const siteKey = "6LeRIXgqAAAAAJvfTC0RidvG62l7jYOfQlsO8eQU";
 
