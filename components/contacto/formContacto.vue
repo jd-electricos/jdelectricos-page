@@ -229,7 +229,7 @@ const verifyRecaptcha = async () => {
 
   try {
     const response = await axios.post(
-      "https://monkfish-app-lsohl.ondigitalocean.app/api/recaptcha/verify-recaptcha",
+      "https://apijaps.jdelectricos.com.co/api/recaptcha/verify-recaptcha",
       { recaptchaResponse }
     );
     return response.data?.success === true;
@@ -260,7 +260,7 @@ const sendData = async () => {
 
   try {
     await axios.post(
-      "https://monkfish-app-lsohl.ondigitalocean.app/api/email/send-email",
+      "https://apijaps.jdelectricos.com.co/api/email/send-email",
       formData
     );
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-2xl shadow p-6 space-y-10 bg-blue-50 flex flex-col justify-center">
+  <div class="rounded-2xl shadow p-6 space-y-12 bg-blue-50 flex flex-col justify-center">
     <!-- Header -->
     <div class="flex items-center gap-4 bg-white rounded-xl shadow-sm p-6">
       <div class="bg-blue-100 text-blue-600 p-3 rounded-2xl">
@@ -82,13 +82,13 @@
         <p class="text-xs text-gray-500 uppercase">Titular de la cuenta</p>
         <p class="font-bold text-gray-800">JD ELÉCTRICOS E INDUSTRIA LTDA</p>
         <span
-          class="inline-block mt-2 px-3 py-1 text-sm font-semibold text-blue-700 bg-blue-100 rounded-full"
+          class="inline-block mt-2 px-3 py-1 md:text-sm text-[9px] font-semibold text-blue-700 bg-blue-100 rounded-full"
         >
           NIT: 900.313.054-6
         </span>
       </div>
     </div>
-    <div class="flex gap-4">
+    <div class="flex gap-4 flex-wrap justify-center">
       <div class="flex flex-col items-center rounded-2xl shadow p-3 bg-white">
         <p>⚡</p>
         <h3 class="font-bold">Acreditacion Rapida</h3>
