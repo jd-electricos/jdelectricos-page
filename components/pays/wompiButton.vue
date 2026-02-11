@@ -91,6 +91,10 @@ const sendmail = async (result) => {
       Estado: ${result.transaction.status}
     `,
     status: result.transaction.status,
+    price: result.transaction.amountInCents / 100,
+    reference: result.transaction.reference,
+
+
   };
   try {
     await axios.post(
