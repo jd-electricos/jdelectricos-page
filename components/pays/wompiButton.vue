@@ -90,6 +90,7 @@ const sendmail = async (result) => {
       Referencia Wompi: ${result.transaction.reference}
       Estado: ${result.transaction.status}
     `,
+    status: result.transaction.status,
   };
   try {
     await axios.post(
