@@ -38,7 +38,8 @@ const pay = async () => {
     "https://apijd.jdelectricos.com.co/api/payments/create",
     {
       method: "POST",
-      body: { amountInCents: props.customer.amountInCents },
+      body: { amountInCents: props.customer.amountInCents, customer: props.customer },
+      
     },
   );
   const checkout = new window.WidgetCheckout({
@@ -49,12 +50,12 @@ const pay = async () => {
     signature: {
       integrity: data.signature,
     },
-    redirectUrl: "https://tusitio.com/pagos",
+    redirectUrl: "https://www.jdelectricos.com.co/pagos",
   });
 
   checkout.open(async (result) => {
     try {
-      await sendmail(result);
+      // await sendmail(result);
 
       emit("payment:result", {
         status: result.transaction.status,
@@ -74,35 +75,35 @@ const pay = async () => {
   });
 };
 
-const sendmail = async (result) => {
-  const formData = {
-    name: props.customer.name,
-    company: `${result.transaction.merchant.legalName} / razon social o cc o documento: ${result.transaction.merchant.legalId}`,
-    phone: props.customer.phone,
-    email: `${props.customer.email} / ${result.transaction.customerEmail}`,
-    affair: `Confirmación de pago Wompi - ${props.customer.concept} - Referencia Wompi: ${result.transaction.reference}`,
-    message: `
-      Pago realizado correctamente.
+// const sendmail = async (result) => {
+//   const formData = {
+//     name: props.customer.name,
+//     company: `${result.transaction.merchant.legalName} / razon social o cc o documento: ${result.transaction.merchant.legalId}`,
+//     phone: props.customer.phone,
+//     email: `${props.customer.email} / ${result.transaction.customerEmail}`,
+//     affair: `Confirmación de pago Wompi - ${props.customer.concept} - Referencia Wompi: ${result.transaction.reference}`,
+//     message: `
+//       Pago realizado correctamente.
 
-      Cliente: ${props.customer.name}
-      Documento: ${result.transaction.merchant.legalName} / razon social o cc o documento: ${result.transaction.merchant.legalId}
-      Metodo y Monto: ${result.transaction.paymentMethod.type} / ${result.transaction.amountInCents / 100} COP
-      Referencia Wompi: ${result.transaction.reference}
-      Estado: ${result.transaction.status}
-    `,
-    status: result.transaction.status,
-    price: result.transaction.amountInCents / 100,
-    reference: result.transaction.reference,
+//       Cliente: ${props.customer.name}
+//       Documento: ${result.transaction.merchant.legalName} / razon social o cc o documento: ${result.transaction.merchant.legalId}
+//       Metodo y Monto: ${result.transaction.paymentMethod.type} / ${result.transaction.amountInCents / 100} COP
+//       Referencia Wompi: ${result.transaction.reference}
+//       Estado: ${result.transaction.status}
+//     `,
+//     status: result.transaction.status,
+//     price: result.transaction.amountInCents / 100,
+//     reference: result.transaction.reference,
 
-  };
-  try {
-    await axios.post(
-      "https://apijaps.jdelectricos.com.co/api/email/send-email-pays",
-      formData,
-    );
-    emit("loading:end");
-  } catch (error) {
-    console.error(error);
-  }
-};
+//   };
+//   try {
+//     await axios.post(
+//       "https://apijaps.jdelectricos.com.co/api/email/send-email-pays",
+//       formData,
+//     );
+//     emit("loading:end");
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 </script>
