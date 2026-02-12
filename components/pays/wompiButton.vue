@@ -94,7 +94,6 @@ const sendmail = async (result) => {
     price: result.transaction.amountInCents / 100,
     reference: result.transaction.reference,
 
-
   };
   try {
     await axios.post(
