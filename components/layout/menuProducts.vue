@@ -160,6 +160,7 @@ const productMenuPosition = ref({ top: 0, left: 0 });
 const menu = ref([]);
 let closeTimeout;
 const emit = defineEmits(["closeDrawer"]);
+const config = useRuntimeConfig();
 
 function send() {
   emit("closeDrawer", false);
@@ -168,7 +169,7 @@ function send() {
 const fetchMenuData = async () => {
   try {
     const response = await fetch(
-      "https://apijd.jdelectricos.com.co/api/products/menujd"
+      `${config.public.apiBase}/products/menujd`
     );
     const data = await response.json();
     menu.value = data.map((cat) => ({

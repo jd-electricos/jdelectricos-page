@@ -116,7 +116,7 @@ const CreditCard = defineAsyncComponent(() =>
 const ShieldCheck = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.ShieldCheck),
 );
-
+const config = useRuntimeConfig();
 const emit = defineEmits(["loading:start", "loading:end", "payment:result"]);
 const isRecaptchaVisible = ref(true);
 const siteKey = "6LeRIXgqAAAAAJvfTC0RidvG62l7jYOfQlsO8eQU";
@@ -152,7 +152,8 @@ const verifyRecaptcha = async () => {
 
   try {
     const response = await axios.post(
-      "https://apijaps.jdelectricos.com.co/api/recaptcha/verify-recaptcha",
+      
+      `${config.public.apiBasesDos}/recaptcha/verify-recaptcha`,
       { recaptchaResponse },
     );
     return response.data?.success === true;

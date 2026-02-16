@@ -11,6 +11,11 @@
 
 <script setup>
 import axios from "axios";
+const config = useRuntimeConfig();
+
+const token = await $fetch(
+  `${config.public.apiBase}/service-token/service-token`,
+);
 const props = defineProps({
   customer: {
     type: Object,
@@ -35,11 +40,17 @@ const pay = async () => {
   await loadWompi();
 
   const data = await $fetch(
-    "https://apijd.jdelectricos.com.co/api/payments/create",
+    `${config.public.apiBase}/payments/create`,
     {
       method: "POST",
-      body: { amountInCents: props.customer.amountInCents, customer: props.customer, billing: props.customer.concept },
-      
+      body: {
+        amountInCents: props.customer.amountInCents,
+        customer: props.customer,
+        billing: props.customer.concept,
+      },
+      headers: {
+        Authorization: `Bearer ${token.token}`,
+      },
     },
   );
   const checkout = new window.WidgetCheckout({
