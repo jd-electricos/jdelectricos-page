@@ -4,8 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      apiBase: process.env.API_BASE,
-      apiBasesDos: process.env.API_BASE_DOS,
+      apiBase: process.env.API_BASE || "https://apijd.jdelectricos.com.co/api",
+      apiBasesDos: process.env.API_BASE_DOS || "https://apijaps.jdelectricos.com.co/api",
     },
   },
   experimental: {
