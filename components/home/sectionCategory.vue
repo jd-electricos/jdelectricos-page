@@ -22,12 +22,13 @@
 import { ref, computed, onMounted } from "vue";
 import cardCategoriesToFeed from "~/components/productos/cardCategoriesToFeed.vue";
 
+const config = useRuntimeConfig();
 
 const categories = ref([]);
 
 const fetchCategories = async () => {
   try {
-    const response = await fetch("https://apijd.jdelectricos.com.co/api/categories");
+    const response = await fetch(`${config.public.apiBase}/categories`);
     const data = await response.json();
     categories.value = data.items;
   } catch (error) {

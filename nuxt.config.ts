@@ -2,6 +2,12 @@ import { Base } from "./.nuxt/components.d";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.API_BASE,
+      apiBasesDos: process.env.API_BASE_DOS,
+    },
+  },
   experimental: {
     inlineSSRStyles: true
   },

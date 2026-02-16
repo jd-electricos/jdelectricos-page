@@ -121,6 +121,8 @@ const ChevronsRight = defineAsyncComponent(() =>
 );
 import previewBlog from '../components/blog/previewBlog.vue'
 
+const config = useRuntimeConfig();
+
 // Estados de filtros
 const searchQuery = ref('')
 const selectedCategory = ref('')
@@ -132,7 +134,7 @@ const pageSize = 16
 
 // Obtener los datos desde el backend paginado
 const { data: paginatedData, refresh } = await useAsyncData('posts', () =>
-  $fetch(`https://apijd.jdelectricos.com.co/api/blog?page=${currentPage.value}&limit=${pageSize}`)
+  $fetch(`${config.public.apiBase}/blog?page=${currentPage.value}&limit=${pageSize}`)
 )
 
 // Computar posts actuales

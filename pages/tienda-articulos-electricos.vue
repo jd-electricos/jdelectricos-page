@@ -83,12 +83,13 @@ const allCategories = ref([]); // Todas las categorías (para filtros)
 const filteredCategories = ref([]); // Categorías filtradas (para paginar)
 const searchQuery = ref("");
 const selectedCategory = ref("");
+const config = useRuntimeConfig();
 
 // Cargar TODAS las categorías solo una vez
 const fetchAllCategories = async () => {
   try {
     const response = await fetch(
-      `https://apijd.jdelectricos.com.co/api/categories?all=true`,
+      `${config.public.apiBase}/categories?all=true`,
     );
     const data = await response.json();
     allCategories.value = data.items;

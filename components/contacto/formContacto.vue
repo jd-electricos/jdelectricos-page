@@ -180,6 +180,8 @@ const Phone = defineAsyncComponent(() =>
 const Mail = defineAsyncComponent(() =>
   import("lucide-vue-next").then(m => m.Mail)
 );
+const config = useRuntimeConfig();
+
 const isLoading = ref(false);
 const isRecaptchaVisible = ref(false);
 
@@ -229,7 +231,7 @@ const verifyRecaptcha = async () => {
 
   try {
     const response = await axios.post(
-      "https://apijaps.jdelectricos.com.co/api/recaptcha/verify-recaptcha",
+      `${config.public.apiBasesDos}/recaptcha/verify-recaptcha`,
       { recaptchaResponse }
     );
     return response.data?.success === true;
@@ -260,7 +262,7 @@ const sendData = async () => {
 
   try {
     await axios.post(
-      "https://apijaps.jdelectricos.com.co/api/email/send-email",
+      `${config.public.apiBasesDos}/email/send-email`,
       formData
     );
 

@@ -28,10 +28,11 @@
 <script setup>
 import { ref, computed } from "vue";
 import previewBlog from "../components/blog/previewBlog.vue";
+const config = useRuntimeConfig();
 
 // ✅ Cambiamos a useAsyncData
 const { data: posts } = await useAsyncData("posts", () =>
-  $fetch("https://apijd.jdelectricos.com.co/api/blog/category/News")
+  $fetch(`${config.public.apiBase}/blog/category/News`)
 );
 
 // Variables para los filtros

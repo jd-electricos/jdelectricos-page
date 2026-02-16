@@ -39,6 +39,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 
+const config = useRuntimeConfig();
 const props = defineProps({
   dataSlug: String,
 });
@@ -53,7 +54,7 @@ const duplicatedProducts = computed(() =>
 );
 const fetchData = async () => {
   const response = await fetch(
-    `https://apijd.jdelectricos.com.co/api/subcategories/slug/${props.dataSlug}`
+    `${config.public.apiBase}/subcategories/slug/${props.dataSlug}`
   );
   const data = await response.json();
   products.value = data.productsInSubcategory;
