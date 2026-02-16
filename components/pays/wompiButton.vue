@@ -38,7 +38,7 @@ const pay = async () => {
     "https://apijd.jdelectricos.com.co/api/payments/create",
     {
       method: "POST",
-      body: { amountInCents: props.customer.amountInCents, customer: props.customer },
+      body: { amountInCents: props.customer.amountInCents, customer: props.customer, billing: props.customer.concept },
       
     },
   );
@@ -54,6 +54,7 @@ const pay = async () => {
   });
 
   checkout.open(async (result) => {
+    console.log(result.transaction)
     try {
       // await sendmail(result);
 
