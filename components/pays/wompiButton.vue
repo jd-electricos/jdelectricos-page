@@ -54,7 +54,6 @@ const pay = async () => {
   });
 
   checkout.open(async (result) => {
-    console.log(result.transaction)
     try {
       // await sendmail(result);
 
