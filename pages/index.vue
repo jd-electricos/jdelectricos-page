@@ -47,6 +47,11 @@ useHead({
       content:
         "En JD Eléctricos somos importadores directos de materiales eléctricos para alta, media y baja tensión. Contamos con un amplio catálogo de productos eléctricos certificados, con despachos a nivel nacional",
     },
+    {
+      property: "keywords",
+      content:
+        "Materiales Electricos Colombia, Distribuidor productos electricos. Importador. herrajes , cables acsr, aisladores poliméricos, soldadura exotermica. Of Bogotá",
+    },
     { property: "og:url", content: "https://jdelectricos.com.co/" },
     {
       property: "og:site_name",
