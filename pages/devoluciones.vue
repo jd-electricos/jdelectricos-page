@@ -174,7 +174,6 @@ const steps = [
       'Una vez verificado el estado, procesaremos el reembolso.'
   }
 ]
-
 const handleDownload = () => {
   isDownloading.value = true
 
