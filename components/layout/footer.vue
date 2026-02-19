@@ -120,6 +120,8 @@ const itemsMenu = ref([
   { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
   { label: "Productos", href: "/tienda-articulos-electricos" },
   { label: "Noticias", href: "/blog" },
+  { label: "Devoluciones", href: "/devoluciones" },
+
 ]);
 
 const itemsInfo = ref({

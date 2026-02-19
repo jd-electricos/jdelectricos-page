@@ -19,7 +19,7 @@ import introAboutMe from "../components/home/introAboutMe.vue";
 import ImageAndText from "../components/home/ImageAndText.vue";
 
 const SectionCategory = defineAsyncComponent(
-  () => import("../components/home/sectionCategory.vue")
+  () => import("../components/home/sectionCategory.vue"),
 );
 
 // seo para el home
@@ -50,13 +50,13 @@ useHead({
     {
       property: "keywords",
       content:
-        "Materiales Electricos Colombia, Distribuidor productos electricos. Importador. herrajes , cables acsr, aisladores poliméricos, soldadura exotermica. Of Bogotá",
+        "Materiales Electricos Colombia, materiales eléctricos, productos eléctricos, insumos eléctricos, suministros eléctricos, equipos eléctricos, Distribuidor productos electricos, materiales eléctricos por mayor, materiales eléctricos al por mayor, materiales eléctricos en Colombia, productos eléctricos en Bogotá, equipos eléctricos para alta tensión, suministros eléctricos para media tensión, materiales eléctricos para baja tensión, materiales eléctricos certificados",
     },
     { property: "og:url", content: "https://jdelectricos.com.co/" },
     {
       property: "og:site_name",
       content:
-        "materiales electricos, productos electricos en colombia JD ELECTRICOS",
+        "mMteriales eléctricos, productos electricos en colombia JD ELECTRICOS",
     },
     { property: "og:updated_time", content: "2025-03-25T08:07:05-05:00" },
     {

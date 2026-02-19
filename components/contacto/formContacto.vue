@@ -37,6 +37,24 @@
             distribuidores de productos de alta, media y baja tensión."
           </em>
         </div>
+        <br>
+        <div>
+          <h3 class="text-xl font-bold font-serif">
+            Solicitud de Devoluciones
+          </h3>
+
+          <p class="text-sm mt-2">
+            Si necesitas realizar una devolución, consulta nuestro proceso y
+            completa el formato correspondiente en la sección de devoluciones.
+
+            <NuxtLink
+              to="/devoluciones"
+              class="font-semibold underline hover:text-gray-300 transition"
+            >
+              Ir a devoluciones </NuxtLink
+            >.
+          </p>
+        </div>
       </div>
 
       <!-- Formulario de Contacto -->
@@ -170,15 +188,15 @@ import { defineAsyncComponent } from "vue";
 // import { FilePen, Phone, Mail } from "lucide-vue-next";
 
 const FilePen = defineAsyncComponent(() =>
-  import("lucide-vue-next").then(m => m.FilePen)
+  import("lucide-vue-next").then((m) => m.FilePen),
 );
 
 const Phone = defineAsyncComponent(() =>
-  import("lucide-vue-next").then(m => m.Phone)
+  import("lucide-vue-next").then((m) => m.Phone),
 );
 
 const Mail = defineAsyncComponent(() =>
-  import("lucide-vue-next").then(m => m.Mail)
+  import("lucide-vue-next").then((m) => m.Mail),
 );
 const config = useRuntimeConfig();
 
@@ -232,7 +250,7 @@ const verifyRecaptcha = async () => {
   try {
     const response = await axios.post(
       `${config.public.apiBasesDos}/recaptcha/verify-recaptcha`,
-      { recaptchaResponse }
+      { recaptchaResponse },
     );
     return response.data?.success === true;
   } catch {
@@ -261,10 +279,7 @@ const sendData = async () => {
   };
 
   try {
-    await axios.post(
-      `${config.public.apiBasesDos}/email/send-email`,
-      formData
-    );
+    await axios.post(`${config.public.apiBasesDos}/email/send-email`, formData);
 
     alert("Formulario enviado con éxito");
 
