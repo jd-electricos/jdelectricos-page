@@ -47,7 +47,7 @@
               :style="{
                 display: 'grid',
                 gridTemplateColumns: `repeat(${Math.ceil(
-                  item.items.length / 5
+                  item.items.length / 5,
                 )}, minmax(200px, 1fr))`,
                 gap: '2px',
               }"
@@ -57,11 +57,11 @@
                 :key="subitem.label"
                 class="p-2"
               >
-                <NuxtLink :to="subitem.href"
-                class="text-sm hover:text-yellow-300 p-2 hover:bg-gray-800 rounded-md"
-                
+                <NuxtLink
+                  :to="subitem.href"
+                  class="text-sm hover:text-yellow-300 p-2 hover:bg-gray-800 rounded-md"
                 >
-                  {{ subitem.label }}
+                  • {{ subitem.label }}
                 </NuxtLink>
               </li>
             </ul>
@@ -96,12 +96,17 @@
         class="text-white p-4 relative"
       >
         <!-- Si es 'Productos', también renderizamos el componente en móvil -->
-        <menuProducts  @closeDrawer="closeDrawerOfChild" v-if="item.label === 'Productos'" />
+        <menuProducts
+          @closeDrawer="closeDrawerOfChild"
+          v-if="item.label === 'Productos'"
+        />
 
         <!-- Otros ítems -->
         <template v-else>
           <div class="flex justify-between items-center cursor-pointer">
-            <NuxtLink :to="item.href" @click="closeDrawerAndSubmenu">{{ item.label }}</NuxtLink>
+            <NuxtLink :to="item.href" @click="closeDrawerAndSubmenu">{{
+              item.label
+            }}</NuxtLink>
             <span v-if="item.items" @click="toggleSubMenu(index)">
               <svg
                 :class="{ 'rotate-180': item.isOpen }"
@@ -131,7 +136,7 @@
             </button>
             <h2 class="text-lg font-bold mb-4">{{ activeSubMenu.label }}</h2>
             <ul>
-              <li v-for="subitem in activeSubMenu.items" :key="subitem.label">
+              <li v-for="subitem in activeSubMenu.items" :key="subitem.label" class="list-disc">
                 <NuxtLink
                   :to="subitem.href"
                   class="block p-2 hover:text-yellow-300 text-sm"
@@ -152,10 +157,10 @@
 import menuProducts from "./menuProducts.vue";
 // import { Menu, X } from "lucide-vue-next";
 const Menu = defineAsyncComponent(() =>
-  import("lucide-vue-next").then(m => m.Menu)
+  import("lucide-vue-next").then((m) => m.Menu),
 );
 const X = defineAsyncComponent(() =>
-  import("lucide-vue-next").then(m => m.X)
+  import("lucide-vue-next").then((m) => m.X),
 );
 import { ref } from "vue";
 const drawer = ref(false);
@@ -179,16 +184,7 @@ const items = ref([
   //   ],
   //   isOpen: false,
   // },
-  {
-    label: "Catálogo",
-    href: "/catalogo-materiales-electricos",
-    // items: [
-    //   { label: "Postes de Concreto", href: "/" },
-    //   { label: "Transformadores abb", href: "/" },
-    // ],
-    // isOpen: false,
-  },
-  { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
+  // { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
   {
     label: "Productos",
     href: "/tienda-articulos-electricos",
@@ -258,6 +254,21 @@ const items = ref([
     ],
     isOpen: false,
   },
+  {
+    label: "Catálogo",
+    href: "/catalogo-materiales-electricos",
+  },
+  {
+    label: "Información",
+    href: "/",
+    items: [
+      { label: "Pagos ", href: "/pagos" },
+      { label: "Nosotros", href: "/empresa-distribuidora-de-materiales-electricos-en-colombia" },
+      { label: "Devoluciones", href: "/devoluciones" },
+    ],
+    isOpen: false,
+  },
+
   {
     label: "Noticias",
     href: "/blog",
