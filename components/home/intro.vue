@@ -1,43 +1,52 @@
 <template>
-  <div
-    class="bg-gray-800 flex flex-col-reverse items-center lg:flex-row justify-between px-6 sm:px-12 lg:px-50 py-10 sm:py-16 lg:py-20"
+  <section
+    class="bg-gray-800 flex flex-col lg:flex-row items-center justify-between 
+           px-6 sm:px-10 md:px-16 lg:px-24 xl:px-40 
+           py-12 sm:py-16 lg:py-24 gap-10"
   >
+    <!-- Texto -->
     <div
-      class="text-white flex-1 lg:w-1/2 text-base lg:text-left pt-10 lg:pt-0"
+      class="text-white flex-1 max-w-2xl text-center lg:text-left"
     >
-      <h2 class="text-2xl sm:text-3xl lg:text-8xl font-extrabold font-serif">
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
+               font-extrabold font-serif leading-tight"
+      >
         JD Eléctricos
       </h2>
-      <h1 class="text-lg sm:text-3xl font-extrabold">
+
+      <h1
+        class="mt-4 text-lg sm:text-xl md:text-2xl lg:text-3xl 
+               font-bold text-gray-200"
+      >
         Productos y Materiales Eléctricos
       </h1>
-      <br />
-      <p class="text-sm sm:text-base">
+
+      <p
+        class="mt-6 text-sm sm:text-base md:text-lg 
+               text-gray-300 leading-relaxed"
+      >
         Distribuidores de Cable ACSR, aislador polimérico, pararrayo polimérico,
         aislador pin, aislador carrete, aislador tensor, poste de concreto,
         interruptores, equipos eléctricos, toma de tierra, transformador,
-        generadores, cables baja tensión, transformadores, para alta, media y
+        generadores y cables de baja tensión para proyectos de alta, media y
         baja tensión.
       </p>
     </div>
 
+    <!-- Imagen -->
     <div
-      class="flex-1 lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0"
+      class="flex-1 flex justify-center lg:justify-end"
     >
       <img
         src="/img/logo/intro.webp"
-        class="lg:w-[34rem] lg:h-[34rem] w-[24rem] h-[24rem] object-contain drop-shadow-lg drop-shadow-stone-400"
-        width="544"
-        height="544"
-        sizes="(max-width: 640px) 384px, 544px"
-        format="webp"
-        quality="70"
-        preload
-        fetchpriority="high"
         alt="JD Eléctricos – Equipos y materiales eléctricos"
+        class="w-60 sm:w-72 md:w-80 lg:w-[28rem] xl:w-[32rem] 
+               h-auto object-contain drop-shadow-xl"
+        loading="eager"
       />
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup></script>
