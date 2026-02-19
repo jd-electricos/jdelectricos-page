@@ -167,10 +167,10 @@ const drawer = ref(false);
 const activeSubMenu = ref(null);
 const items = ref([
   { label: "Inicio", href: "/" },
-  {
-    label: "Nosotros",
-    href: "/empresa-distribuidora-de-materiales-electricos-en-colombia",
-  },
+  // {
+  //   label: "Nosotros",
+  //   href: "/empresa-distribuidora-de-materiales-electricos-en-colombia",
+  // },
   // {
   //   label: "Certificados",
   //   items: [
@@ -184,7 +184,7 @@ const items = ref([
   //   ],
   //   isOpen: false,
   // },
-  // { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
+  { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
   {
     label: "Productos",
     href: "/tienda-articulos-electricos",
