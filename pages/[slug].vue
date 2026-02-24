@@ -77,6 +77,18 @@ const { data, pending } = await useAsyncData(
         );
       } catch {}
 
+      // 👉 Si existe pero NO tiene subcategorías, probar endpoint secundario
+      if (
+        categoryRes?.id &&
+        (!categoryRes.subCategories || categoryRes.subCategories.length === 0)
+      ) {
+        try {
+          categoryRes = await $fetch(
+            `${config.public.apiBase}/categories/slug-secondary/${slug}`,
+          );
+        } catch {}
+      }
+
       if (categoryRes?.id) {
         result.category = categoryRes;
         result.isCategory = true;
@@ -126,9 +138,7 @@ const { data, pending } = await useAsyncData(
       // 4. Buscar blog
       let blogRes = null;
       try {
-        blogRes = await $fetch(
-          `${config.public.apiBase}/blog/slug/${slug}`,
-        );
+        blogRes = await $fetch(`${config.public.apiBase}/blog/slug/${slug}`);
       } catch {}
 
       if (blogRes?.id) {
