@@ -1,5 +1,5 @@
 export default defineSitemapEventHandler(async () => {
-  const API_BASE = "https://clownfish-app-xjood.ondigitalocean.app";
+  const API_BASE = "https://apijd.jdelectricos.com.co";
 
   // --------------------------------------------------
   // Fetch simple (endpoints NO paginados)
