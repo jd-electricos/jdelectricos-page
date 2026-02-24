@@ -1,6 +1,7 @@
+
 export default defineSitemapEventHandler(async () => {
-  // const API_BASE = "https://apijd.jdelectricos.com.co";
-  const API_BASE = "http://localhost:5001";
+  const config = useRuntimeConfig();
+  const API_BASE = config.public.apiBase;
 
   // --------------------------------------------------
   // Fetch simple (endpoints NO paginados)
