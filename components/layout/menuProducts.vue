@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative inline-block text-left"
+    class="relative inline-block text-left hover:bg-gray-600"
     @mouseenter="cancelCloseMenu"
     @mouseleave="delayedCloseMenu"
   >
@@ -12,12 +12,12 @@
     <!-- Categorías -->
     <div
       v-if="open"
-      class="hidden lg:block absolute bg-white rounded-l z-50 left-0 md:left-auto md:right-0 lg:min-w-[300px] max-w-screen-xl"
+      class="hidden lg:block absolute bg-gray-600 rounded-l z-50 left-0 md:left-auto md:right-0 lg:min-w-[300px] max-w-screen-xl"
       @mouseenter="cancelCloseMenu"
       @mouseleave="delayedCloseMenu"
     >
       <ul
-        class="border rounded shadow-md p-2 flex flex-col max-h-[300px] overflow-auto"
+        class=" rounded shadow-md p-2 flex flex-col max-h-[300px] overflow-auto"
       >
         <li
           v-for="(cat, i) in menu"
@@ -28,8 +28,8 @@
         >
           <NuxtLink :to="`/${cat.slug}`">
             <div
-              class="min-h-10 text-black px-2 py-2 hover:bg-gray-100 hover:text-black cursor-pointer flex justify-between items-center"
-              :class="{ 'bg-gray-800 text-white': activeCategory === i }"
+              class="min-h-10 text-white px-2 py-2 hover:bg-gray-800 hover:text-white cursor-pointer flex justify-between items-center"
+              :class="{ 'bg-gray-900 text-white': activeCategory === i }"
             >
               {{
                 cat.name
@@ -71,7 +71,7 @@
       }"
     >
       <ul
-        class="lg:w-56 bg-white text-black border rounded shadow-md max-h-[500px] overflow-auto"
+        class="lg:w-56 bg-gray-600 text-white rounded shadow-md max-h-[500px] overflow-auto"
       >
         <li
           v-for="(sub, j) in menu[activeCategory].subcategories"
@@ -82,8 +82,8 @@
         >
           <NuxtLink :to="`/${sub.slug}`">
             <div
-              class="min-h-10 px-4 py-2 hover:bg-blue-100 hover:text-black cursor-pointer flex justify-between items-center"
-              :class="{ 'bg-gray-800 text-white': activeSubcategory === j }"
+              class="min-h-10 px-4 py-2 hover:bg-gray-800 cursor-pointer flex justify-between items-center"
+              :class="{ 'bg-gray-900 text-white': activeSubcategory === j }"
             >
               {{
                 sub.name
@@ -125,14 +125,14 @@
       }"
     >
       <ul
-        class="bg-white text-black border rounded shadow-md lg:w-64 w-36 max-h-[300px] overflow-auto"
+        class="bg-gray-600  rounded shadow-md lg:w-64 w-36 max-h-[300px] overflow-auto"
       >
         <li
           v-for="(prod, k) in menu[activeCategory].subcategories[
             activeSubcategory
           ].products"
           :key="k"
-          class="px-4 py-2 hover:bg-blue-100 cursor-pointer"
+          class="px-4 py-2 hover:bg-gray-900 cursor-pointer"
         >
           <NuxtLink :to="`/${prod.slugProduct}`">{{
             prod.name
@@ -167,11 +167,17 @@ function send() {
 }
 
 const fetchMenuData = async () => {
+    const response = await fetch(
+      `${config.public.apiBase}/products/menujd`
+    );
+    const data = await response.json();
+    console.log(data)
   try {
     const response = await fetch(
       `${config.public.apiBase}/products/menujd`
     );
     const data = await response.json();
+    console.log(data)
     menu.value = data.map((cat) => ({
       name: cat.name,
       slug: cat.slug,
