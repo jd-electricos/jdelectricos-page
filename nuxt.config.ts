@@ -5,11 +5,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.API_BASE || "https://apijd.jdelectricos.com.co/api",
-      apiBasesDos: process.env.API_BASE_DOS || "https://apijaps.jdelectricos.com.co/api",
+      apiBasesDos:
+        process.env.API_BASE_DOS || "https://apijaps.jdelectricos.com.co/api",
     },
   },
   experimental: {
-    inlineSSRStyles: true
+    inlineSSRStyles: true,
   },
   ssr: true,
   compatibilityDate: "2024-11-01",
@@ -17,8 +18,9 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css", "~/assets/css/animationtopage.css"],
   modules: ["@nuxt/image", "@nuxtjs/sitemap"],
   sitemap: {
-    sources: ["/api/urls"],
     siteUrl: "https://jdelectricos.com.co",
+    sources: ["/api/urls"],
+    includeAppSources: true, // 👈 ESTA ES LA CLAVE
     trailingSlash: false,
   },
   image: {
