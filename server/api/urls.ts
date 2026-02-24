@@ -1,5 +1,6 @@
 export default defineSitemapEventHandler(async () => {
-  const API_BASE = "https://apijd.jdelectricos.com.co";
+  // const API_BASE = "https://apijd.jdelectricos.com.co";
+  const API_BASE = "http://localhost:5001";
 
   // --------------------------------------------------
   // Fetch simple (endpoints NO paginados)
@@ -26,7 +27,7 @@ export default defineSitemapEventHandler(async () => {
     while (true) {
       try {
         const response = await fetch(
-          `${API_BASE}${endpoint}?page=${page}&limit=${limit}`
+          `${API_BASE}${endpoint}?page=${page}&limit=${limit}`,
         );
 
         if (!response.ok) break;
@@ -70,23 +71,28 @@ export default defineSitemapEventHandler(async () => {
   // Validaciones
   // --------------------------------------------------
   const safeProducts = Array.isArray(products) ? products : [];
-  const safeCategories = Array.isArray(categories) ? categories : [];
-  const safeSubcategories = Array.isArray(subcategories) ? subcategories : [];
+  const safeCategories = Array.isArray(categories?.items)
+    ? categories.items
+    : [];
+
+  const safeSubcategories = Array.isArray(subcategories?.items)
+    ? subcategories.items
+    : [];
   const safeBlog = Array.isArray(blog) ? blog : [];
 
   // --------------------------------------------------
   // Rutas de productos
   // --------------------------------------------------
   const productRoutes = safeProducts
-    .filter(p => p.slugProduct)
-    .map(p => `/${cleanSlug(p.slugProduct)}`);
+    .filter((p) => p.slugProduct)
+    .map((p) => `/${cleanSlug(p.slugProduct)}`);
 
   // --------------------------------------------------
   // Rutas de categorías
   // --------------------------------------------------
   const categoryRoutes = safeCategories
-    .filter(c => c.slug)
-    .map(c => `/${cleanSlug(c.slug)}`);
+    .filter((c) => c.slug)
+    .map((c) => `/${cleanSlug(c.slug)}`);
 
   // --------------------------------------------------
   // Rutas de subcategorías (sin duplicados)
@@ -94,8 +100,8 @@ export default defineSitemapEventHandler(async () => {
   const subcategoryRoutes = [
     ...new Set(
       safeSubcategories
-        .filter(s => s.slug)
-        .map(s => `/${cleanSlug(s.slug)}`)
+        .filter((s) => s.slug)
+        .map((s) => `/${cleanSlug(s.slug)}`),
     ),
   ];
 
@@ -103,17 +109,14 @@ export default defineSitemapEventHandler(async () => {
   // Rutas de blog (TODAS)
   // --------------------------------------------------
   const blogRoutes = safeBlog
-    .filter(b => b.slug)
-    .map(b => `/${cleanSlug(b.slug)}`);
+    .filter((b) => b.slug)
+    .map((b) => `/${cleanSlug(b.slug)}`);
 
   // --------------------------------------------------
   // Rutas finales
   // --------------------------------------------------
   const allRoutes = [
     "/",
-    "/tienda",
-    "/blog",
-    "/contacto",
     ...categoryRoutes,
     ...subcategoryRoutes,
     ...productRoutes,
@@ -123,7 +126,7 @@ export default defineSitemapEventHandler(async () => {
   // --------------------------------------------------
   // Formato sitemap
   // --------------------------------------------------
-  return allRoutes.map(route => ({
+  return allRoutes.map((route) => ({
     loc: route,
     lastmod: new Date().toISOString(),
   }));
