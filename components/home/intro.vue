@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative min-h-screen flex items-center pt-20 lg:pt-2 pb-20 overflow-hidden bg-gray-800"
+    class="relative min-h-screen flex items-center pt-20 xl:pt-2 lg:pt-20 pb-20 md:p-4 md:pt-16 overflow-hidden bg-gray-800"
   >
     <!-- Background Elements -->
     <div class="absolute inset-0 z-0">
