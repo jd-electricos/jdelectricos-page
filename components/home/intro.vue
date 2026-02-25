@@ -157,9 +157,12 @@
             <div
               class="absolute -top-6 -right-6 w-32 h-32 bg-brand-yellow rounded-full flex items-center justify-center text-brand-navy font-bold text-3xl shadow-xl z-20"
             >
-              <img
-                src="../../public/img/logo/LOGO-JD-ICONO.webp"
+              <NuxtImg
+                src="/img/logo/LOGO-JD-ICONO.webp"
                 alt="JD Eléctricos Logo"
+                width="128"
+                height="128"
+                quality="70"
               />
             </div>
             <div
