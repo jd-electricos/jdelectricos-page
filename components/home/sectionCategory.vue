@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4 items-center pt-10 bg-gray-800">
+  <div class="flex flex-col gap-4 items-center pt-10 bg-gray-800 pb-10">
     <h2 class="sm:text-6xl text-3xl font-extrabold text-white px-12">
       Nuestros Materiales Eléctricos
     </h2>
