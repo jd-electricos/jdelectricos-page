@@ -128,11 +128,16 @@
             <div
               class="relative z-10 rounded-4xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 aspect-4/5 lg:aspect-square"
             >
-              <img
-                src="../../public/img/logo/Aislamientos.jpg"
+              <NuxtImg
+                src="/img/logo/Aislamientos.jpg"
                 alt="Infraestructura Eléctrica"
+                width="800"
+                height="1000"
+                format="webp"
+                quality="80"
+                preload
+                fetchpriority="high"
                 class="w-full h-full object-cover"
-                referrerpolicy="no-referrer"
               />
 
               <div
