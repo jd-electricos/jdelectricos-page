@@ -13,7 +13,8 @@
 
     <!-- Footer -->
     <footerJd />
-    <buttonWp/>
+    <buttonWp />
+    <MenuFloat />
 
     <!-- cookies -->
     <cookies />
@@ -26,4 +27,6 @@ import bannerPhone from "../components/layout/bannerPhone.vue";
 import footerJd from "../components/layout/footer.vue";
 import buttonWp from "~/components/layout/buttonWp.vue";
 import cookies from "~/components/home/cookies.vue";
+import MenuFloat from "~/components/productos/menuProdMobile.vue";
+
 </script>

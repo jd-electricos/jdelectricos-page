@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed bottom-10 right-10 z-50 drop-shadow-xl drop-shadow-gray-900">
+  <div class="fixed bottom-10 right-5 z-50 drop-shadow-xl drop-shadow-gray-900">
     <button
       type="button"
       @click="whatsappLink"
