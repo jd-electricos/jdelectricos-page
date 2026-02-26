@@ -177,5 +177,10 @@
 
 <script setup>
 import { Motion } from "@motionone/vue";
-import { ArrowRight, Zap } from "lucide-vue-next";
+const ArrowRight = defineAsyncComponent(() =>
+  import("lucide-vue-next").then((m) => m.ArrowRight),
+);
+const Zap = defineAsyncComponent(() =>
+  import("lucide-vue-next").then((m) => m.Zap),
+);
 </script>
