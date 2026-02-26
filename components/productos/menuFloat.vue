@@ -69,13 +69,9 @@ const closeMenu = () => {
 };
 
 const fetchMenuData = async () => {
-  const response = await fetch(`${config.public.apiBase}/products/menujd`);
-  const data = await response.json();
-  console.log(data);
   try {
     const response = await fetch(`${config.public.apiBase}/products/menujd`);
     const data = await response.json();
-    // console.log(data)
     menu.value = data.map((cat) => ({
       name: cat.name,
       slug: cat.slug,
