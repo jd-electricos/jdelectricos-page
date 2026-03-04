@@ -37,9 +37,9 @@ useHead({
       content:
         "Descubre nuestro catálogo de materiales eléctricos para alta, media y baja tensión. Ofrecemos productos de alta calidad para proyectos industriales. Visita nuestra tienda online.",
     },
-    { property: "og:url", content: "https://www.japs.com.co/catalogo-materiales-electricos" },
+    { property: "og:url", content: "https://www.jdelectricos.com.co/catalogo-materiales-electricos" },
   ],
-  link: [{ rel: "canonical", href: "https://www.japs.com.co/catalogo-materiales-electricos" }],
+  link: [{ rel: "canonical", href: "https://www.jdelectricos.com.co/catalogo-materiales-electricos" }],
   script: [
     {
       type: "application/ld+json",
@@ -47,14 +47,14 @@ useHead({
         "@context": "https://schema.org",
         "@type": "ContactPage",
         "name": "Catálogo de Materiales Eléctricos - Japs Electrical Equipment",
-        "url": "https://www.japs.com.co/catalogo-materiales-electricos",
+        "url": "https://www.jdelectricos.com.co/catalogo-materiales-electricos",
         "description": "Página de catalogo de materiales eléctricos de Japs Equipos Eléctricos.",
         "mainEntity": {
           "@type": "Organization",
           "name": "Japs Equipos Eléctricos",
-          "url": "https://www.japs.com.co",
-          "logo": "https://www.japs.com.co/_vercel/image?url=%2Flogo-japs-menu.webp&w=320&q=100",
-          "email": "ventas@japs.com.co",
+          "url": "https://www.jdelectricos.com.co",
+          "logo": "https://www.jdelectricos.com.co/_vercel/image?url=%2Flogo-japs-menu.webp&w=320&q=100",
+          "email": "ventas@jdelectricos.com.co",
           "telephone": "+57-310-802-3277",
           "address": {
             "@type": "PostalAddress",
@@ -72,7 +72,7 @@ useHead({
             },
             {
               "@type": "ContactPoint",
-              "email": "ventas@japs.com.co",
+              "email": "ventas@jdelectricos.com.co",
               "contactType": "sales",
               "areaServed": "CO",
               "availableLanguage": ["Spanish"]
