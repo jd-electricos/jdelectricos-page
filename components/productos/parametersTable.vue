@@ -12,7 +12,6 @@
     />
   </div>
 </template>
-
 <script setup>
 import cablesTable from "./tables/cablesTable.vue";
 import postesTable from "./tables/postesTable.vue";
