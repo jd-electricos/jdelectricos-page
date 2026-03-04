@@ -1,7 +1,7 @@
 <template>
   <div>
     <postesTable
-      v-if="id_category === 47 || 2"
+      v-if="[47, 2].includes(id_category)"
       :technicalParameters="technicalParameters"
       :name="name"
     />
