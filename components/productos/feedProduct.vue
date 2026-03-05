@@ -68,6 +68,7 @@
       <parametersTable
         :technicalParameters="data.technical_parameters"
         :id_category="data.id_category"
+        :id_subcategory="data.id_subcategory"
         :name="data.name"
       />
     </div>
