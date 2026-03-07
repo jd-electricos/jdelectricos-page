@@ -4,7 +4,7 @@
     <div class="relative">
       <NuxtImg
         :src="carouselImage[currentIndex]"
-        class="w-full h-96 object-contain rounded-lg bg-gray-100 shadow-xl shadow-neutral-800/50"
+        class="w-full h-auto object-contain rounded-lg bg-gray-100 shadow-xl shadow-neutral-800/50"
         :alt="alt"
         width="640"
         height="384"
