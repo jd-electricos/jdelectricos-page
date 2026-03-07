@@ -192,5 +192,27 @@ const handleDownload = () => {
     isDownloading.value = false
   }, 800)
 }
+useSeoMeta({
+  title: "Devoluciones | JD Eléctricos",
+  description:
+    "Consulta el proceso de devoluciones de JD Eléctricos. Descarga el formato oficial de devolución, sigue los pasos y gestiona tu solicitud de manera rápida y sencilla.",
+  keywords:
+    "devoluciones JD Eléctricos, reembolsos JD Eléctricos, formato devolución productos eléctricos, servicio al cliente JD Eléctricos, devolución de material eléctrico, solicitud devolución JD Eléctricos",
+  robots: "index, follow",
+  author: "JD Eléctricos",
+  viewport: "width=device-width, initial-scale=1",
+
+  ogTitle: "Proceso de Devoluciones | JD Eléctricos",
+  ogDescription:
+    "Aprende cómo realizar devoluciones en JD Eléctricos. Descarga el formato oficial y sigue nuestro proceso rápido y transparente.",
+  ogType: "website",
+  ogLocale: "es_CO",
+  ogSiteName: "JD Eléctricos",
+
+  twitterCard: "summary_large_image",
+  twitterTitle: "Devoluciones y Reembolsos | JD Eléctricos",
+  twitterDescription:
+    "Descarga el formato de devolución y conoce el proceso para solicitar reembolsos en JD Eléctricos de forma rápida y sencilla.",
+});
 </script>
 
