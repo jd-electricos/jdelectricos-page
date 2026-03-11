@@ -10,7 +10,7 @@
       <div class="w-full lg:w-1/2 flex justify-center">
         <carouselProducts :carouselImage="data.carouselImg" :alt="data.name" />
       </div>
-      <div class="flex flex-col w-full lg:w-1/2">
+      <div class="flex flex-col w-full lg:w-1/2 gap-4">
         <div class="flex flex-col gap-4">
           <h1 class="text-2xl md:text-4xl font-bold text-shadow-lg/20">
             {{
@@ -21,6 +21,7 @@
                 .join(" ")
             }}
           </h1>
+          <br>
           <breadcrumb
             :categorySlug="data.subCategory.category.slug"
             :categoryName="data.subCategory.category.name"
@@ -34,8 +35,8 @@
         <div
           class="flex flex-col md:flex-row justify-between items-start md:items-center p-5 gap-4"
         >
-          <p class="font-semibold opacity-0 cursor-default">
-            Ref: <span class="font-bold">{{ data.sku }}</span>
+          <p class="font-semibold cursor-default" :class="data.price === 1? 'hidden' : 'font-bold'">
+            Precio: <span class="font-bold">{{ formatCOP(data.price) }}</span>
           </p>
           <NuxtLink :to="data.subCategory.category.slug">
             <p class="font-semibold">
@@ -46,10 +47,8 @@
             </p>
           </NuxtLink>
         </div>
-        <p class="py-5">{{ data.description }}</p>
-        <!-- <p class="font-semibold py-5">
-          Precio: <span class="font-bold">{{ data.price }}</span>
-        </p> -->
+        <p class="pb-5">{{ data.description }}</p>
+          
         <a
           :href="whatsappLink"
           target="_blank"
@@ -62,7 +61,7 @@
     </div>
     <div class="py-10">
       <h2 class="text-xl md:text-2xl font-bold mb-2">
-        Caracteristicas Tecnicas de {{ data.name }}
+        Caracteristicas Tecnicas de {{ (data.name) }}
       </h2>
       <!-- <p class="text-justify">{{ data.technical_parameters }}</p> -->
       <parametersTable
@@ -97,6 +96,14 @@ import { computed } from "vue";
 const props = defineProps({
   dataProducts: Object,
 });
+
+function formatCOP(price) {
+  return new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0
+  }).format(price);
+}
 
 const data = computed(() => props.dataProducts || {});
 const phoneNumber = "573108023277"; // Número de WhatsApp
@@ -275,7 +282,6 @@ const dataJsonLd = ref({
     },
   ],
 });
-
 useHead({
   meta: [
     { property: "og:locale", content: "es_ES" },
