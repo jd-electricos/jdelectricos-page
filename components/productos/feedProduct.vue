@@ -34,6 +34,18 @@
           <hr />
         </div>
         <div
+        v-if="data.subCategory.category.name === 'Postes'? true : false"
+          class="flex items-center gap-3 p-4 rounded-xl bg-blue-50 border border-blue-200 text-blue-900"
+        >
+          <div class="text-blue-500 text-xl">⚠️</div>
+          <p class="text-sm">
+            <span class="font-semibold">Aviso:</span>
+            <span class="font-semibold text-base">
+              Podemos entregar tu requerimiento en obra. Consulta con tu asesor.
+            </span>
+          </p>
+        </div>
+        <div
           class="flex flex-col md:flex-row justify-between items-start md:items-center p-5 gap-4"
         >
           <p
@@ -46,7 +58,7 @@
             <p class="font-semibold">
               Categoria:
               <span class="font-bold">{{
-                data.subCategory.category.name || "nada"
+                data.subCategory.category.name || ""
               }}</span>
             </p>
           </NuxtLink>
