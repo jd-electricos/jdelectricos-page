@@ -199,6 +199,12 @@ const steps = [
     description:
       "Completa el formulario y envíalo a través del formulario de devoluciones disponible aquí mismo. Adjunta el archivo, completa los datos y envíalo.",
   },
+  {
+    number: "04",
+    title: "Confirmación",
+    description:
+      "Recibirás una confirmación por parte de tu asesor comercial y te informaremos sobre el estado de tu solicitud por ende no recibiremos ningún paquete sin previa confirmación de nuestra parte",
+  },
 ];
 const handleDownload = () => {
   isDownloading.value = true;
