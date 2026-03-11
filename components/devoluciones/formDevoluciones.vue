@@ -191,6 +191,7 @@
 
 <script setup>
 import { ref } from "vue";
+const config = useRuntimeConfig();
 
 const isSending = ref(false);
 
