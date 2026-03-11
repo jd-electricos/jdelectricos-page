@@ -273,7 +273,7 @@ const handleSubmit = async () => {
     data.append("empresa", form.value.empresa);
     data.append("asunto", form.value.asunto);
 
-    await fetch("http://localhost:5000/api/email/send-return-email", {
+    await fetch(`${config.public.apiBasesDos}/email/send-return-email`, {
       method: "POST",
       body: data,
     });
