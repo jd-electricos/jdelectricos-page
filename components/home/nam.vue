@@ -69,7 +69,7 @@
               </a>
 
               <a
-                href="https://www.google.com/maps/place/JD+El%C3%A9ctricos+%7C+materiales+el%C3%A9ctricos/"
+                href="https://maps.app.goo.gl/6iqXsK2RhPQpqeLDA"
                 target="_blank"
                 class="px-8 py-4 border border-white/20 text-white rounded-xl hover:bg-white/10 transition flex items-center gap-2"
               >
