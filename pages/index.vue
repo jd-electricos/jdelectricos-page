@@ -7,6 +7,8 @@
     <introProducts />
     <ImageAndText />
     <introAboutMe />
+    <br><br>
+    <nam />
   </div>
 </template>
 <script setup>
@@ -17,6 +19,7 @@ import introProducts from "../components/home/introProducts.vue";
 // import bannerPromotions from "../components/layout/bannerPromotions.vue";
 import introAboutMe from "../components/home/introAboutMe.vue";
 import ImageAndText from "../components/home/ImageAndText.vue";
+import nam from "~/components/home/nam.vue";
 
 const SectionCategory = defineAsyncComponent(
   () => import("../components/home/sectionCategory.vue"),
