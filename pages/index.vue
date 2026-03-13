@@ -27,7 +27,7 @@ const SectionCategory = defineAsyncComponent(
 
 // seo para el home
 useHead({
-  title: "Materiales Electricos | Distribuidor Productos Por Mayor",
+  title: "JD Eléctricos | materiales eléctricos",
   meta: [
     {
       name: "description",
@@ -43,7 +43,7 @@ useHead({
     { property: "og:type", content: "website" },
     {
       property: "og:title",
-      content: "Materiales Electricos | Distribuidor Productos Por Mayor",
+      content: "JD Eléctricos | materiales eléctricos",
     },
     {
       property: "og:description",
@@ -79,7 +79,7 @@ useHead({
     { name: "twitter:card", content: "summary_large_image" },
     {
       name: "twitter:title",
-      content: "Materiales Electricos | Distribuidor Productos Por Mayor",
+      content: "JD Eléctricos | materiales eléctricos",
     },
     {
       name: "twitter:description",
@@ -186,7 +186,7 @@ useHead({
             "@type": "ItemPage",
             "@id": "https://jdelectricos.com.co/#webpage",
             url: "https://jdelectricos.com.co/",
-            name: "Materiales Electricos | Distribuidor Productos Por Mayor",
+            name: "JD Eléctricos | materiales eléctricos",
             datePublished: "2015-05-14T12:51:30-05:00",
             dateModified: "2025-03-25T08:07:05-05:00",
             isPartOf: { "@id": "https://jdelectricos.com.co/#website" },
@@ -197,7 +197,7 @@ useHead({
           },
           {
             "@type": "Product",
-            name: "Materiales Electricos | Distribuidor Productos Por Mayor",
+            name: "JD Eléctricos | materiales eléctricos",
             description:
               "Materiales El\u00e9ctricos Colombia, Distribuidor importador. herrajes , cables,  subestaciones, aisladores polimericos, iluminacion led., soldadura.  Of Bogota",
             offers: {
