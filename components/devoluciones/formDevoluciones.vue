@@ -9,7 +9,6 @@
         ></div>
 
         <div class="relative z-10">
-
           <!-- PASO 3 -->
           <div class="text-center mb-12">
             <span
@@ -32,7 +31,6 @@
 
           <!-- FORM -->
           <form @submit.prevent="handleSubmit" class="space-y-8">
-
             <!-- Archivo -->
             <div>
               <label class="block text-gray-300 mb-2 font-semibold">
@@ -47,7 +45,8 @@
               />
 
               <p class="text-yellow-400 text-sm mt-2">
-                El archivo no debe superar los 5 MB. Formatos permitidos: PDF, JPG, PNG.
+                El archivo no debe superar los 5 MB. Formatos permitidos: PDF,
+                JPG, PNG.
               </p>
 
               <p v-if="form.file" class="text-green-400 text-sm mt-1">
@@ -79,6 +78,24 @@
 
               <p v-if="errors.asesor" class="text-red-400 text-sm mt-1">
                 {{ errors.asesor }}
+              </p>
+            </div>
+
+            <!-- Número de factura -->
+            <div>
+              <label class="block text-gray-300 mb-2 font-semibold">
+                Correo para enviar respuesta
+              </label>
+
+              <input
+                v-model="form.email"
+                type="text"
+                placeholder="Ej: FAC-12345"
+                class="w-full bg-gray-700 text-white p-4 rounded-xl border border-gray-600 focus:outline-none focus:border-white"
+              />
+
+              <p v-if="errors.email" class="text-red-400 text-sm mt-1">
+                {{ errors.email }}
               </p>
             </div>
 
@@ -180,9 +197,7 @@
                 <span v-else> Enviar Solicitud </span>
               </button>
             </div>
-
           </form>
-
         </div>
       </div>
     </div>
@@ -206,13 +221,10 @@ const asesores = [
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
-const allowedTypes = [
-  "application/pdf",
-  "image/jpeg",
-  "image/png"
-];
+const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
 
 const form = ref({
+  email: "",
   asesor: "",
   factura: "",
   empresa: "",
@@ -247,15 +259,14 @@ const handleFile = (e) => {
 
 const validate = () => {
   errors.value = {};
-
+  if (!form.value.email) errors.value.email = "Ingresa el correo";
   if (!form.value.file) errors.value.file = "Debes adjuntar un archivo";
   if (!form.value.asesor) errors.value.asesor = "Selecciona un asesor";
   if (!form.value.factura)
     errors.value.factura = "Ingresa el número de factura";
   if (!form.value.empresa)
     errors.value.empresa = "Ingresa el nombre de la empresa";
-  if (!form.value.asunto)
-    errors.value.asunto = "Ingresa un asunto";
+  if (!form.value.asunto) errors.value.asunto = "Ingresa un asunto";
 
   return Object.keys(errors.value).length === 0;
 };
@@ -267,25 +278,22 @@ const handleSubmit = async () => {
 
   try {
     const data = new FormData();
-
+    data.append("email", form.value.email);
     data.append("file", form.value.file);
     data.append("asesor", form.value.asesor);
     data.append("factura", form.value.factura);
     data.append("empresa", form.value.empresa);
     data.append("asunto", form.value.asunto);
 
-    await fetch(`${config.public.apiBasesDos}/email/send-return-email`, {
+    await fetch(`http://localhost:5000/api/email/send-return-email`, {
       method: "POST",
       body: data,
     });
 
     alert("Solicitud enviada correctamente");
-
   } catch (error) {
-
     console.log(error);
     alert("Ocurrió un error al enviar el formulario");
-
   }
 
   isSending.value = false;
