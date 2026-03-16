@@ -211,12 +211,12 @@ const handleDownload = () => {
 
   setTimeout(() => {
     const filePath = encodeURI(
-      "/pdfs/Formato solicitud de Devolucion de Material JD Eléctricos e Industria LTDA.pdf",
+      "/pdfs/EDITABLE SOLICITUD DE DEVOLUCIÓN.pdf",
     );
 
     const link = document.createElement("a");
     link.href = filePath;
-    link.download = "Formato_Devolucion_JD_Electricos.pdf";
+    link.download = "SOLICITUD DE DEVOLUCIÓN.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
