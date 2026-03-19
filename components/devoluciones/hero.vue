@@ -74,7 +74,6 @@
                   </p>
                 </div>
               </div>
-
               <div class="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
                 <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-blue-500/20 text-blue-400">
                   <ShieldCheck :size="20" />
