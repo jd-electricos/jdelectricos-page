@@ -2,42 +2,104 @@
   <div class="flex flex-col">
     <!-- HERO PART -->
     <section class="relative py-20 bg-gray-800 overflow-hidden">
-      <div
-        class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gray-700/30 to-transparent pointer-events-none"
-      />
+  <!-- Gradiente decorativo -->
+  <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-gray-700/30 to-transparent pointer-events-none"></div>
 
-      <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="max-w-2xl">
-          <span
-            class="inline-block px-3 py-1 rounded-full bg-gray-700 text-gray-300 text-xs font-semibold tracking-widest uppercase mb-6"
-          >
-            Servicio al Cliente
-          </span>
+  <!-- Contenedor principal centrado -->
+  <div class="max-w-7xl mx-auto px-8 flex flex-col lg:flex-row gap-28 relative z-10">
+    
+    <!-- Columna izquierda: Texto y botón -->
+    <div class="max-w-2xl flex-1">
+      <span class="inline-block px-3 py-1 rounded-full bg-gray-700 text-gray-300 text-xs font-semibold tracking-widest uppercase mb-6">
+        Servicio al Cliente
+      </span>
 
-          <h1
-            class="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-tight font-serif"
-          >
-            Devoluciones sin <br />
-            <span class="text-gray-400 italic font-light">complicaciones.</span>
-          </h1>
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-tight font-serif">
+        Devoluciones sin <br />
+        <span class="text-gray-400 italic font-light">complicaciones.</span>
+      </h1>
 
-          <p class="text-lg text-gray-300 mb-10 leading-relaxed max-w-lg">
-            Creemos en un proceso de compra transparente. Si no estás satisfecho
-            con tu pedido, estamos aquí para ayudarte a solucionarlo de la forma
-            más rápida posible.
-          </p>
+      <p class="text-lg text-gray-300 mb-10 leading-relaxed max-w-lg">
+        Creemos en un proceso de compra transparente. Si no estás satisfecho
+        con tu pedido, estamos aquí para ayudarte a solucionarlo de la forma
+        más rápida posible.
+      </p>
 
-          <div class="flex flex-wrap gap-4">
-            <a
-              href="#download-form"
-              class="bg-white text-gray-800 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all transform hover:-translate-y-1 shadow-xl"
-            >
-              Descargar Formato
-            </a>
+      <div class="flex flex-wrap gap-4">
+        <a href="#download-form" class="bg-white text-gray-800 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all transform hover:-translate-y-1 shadow-xl">
+          Descargar Formato
+        </a>
+      </div>
+    </div>
+
+    <!-- Columna derecha: Tarjeta de info + badges -->
+    <div class="flex-1 space-y-6 animate-fade-up">
+      
+      <!-- Tarjeta principal -->
+      <div class="rounded-[2rem] p-8 md:p-10 relative overflow-hidden group bg-white/5 border border-white/10 backdrop-blur-xl">
+        
+
+        <div class="flex items-start gap-5 mb-8">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-blue-500/20 text-blue-400">
+            <Info :size="24" />
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-white mb-2">Condiciones de Devoluciones</h3>
+            <p class="text-slate-200">Revisa las condiciones clave para procesos de devolución.</p>
           </div>
         </div>
+
+        <!-- Detalles -->
+        <div class="space-y-6">
+          <div class="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-emerald-500/20 text-emerald-400">
+              <Clock :size="20" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white mb-1">Plazo de Solicitud</p>
+              <p class="text-sm text-slate-200">Dentro de <span class="text-emerald-400 font-bold">4 días</span>.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-blue-500/20 text-blue-400">
+              <ShieldCheck :size="20" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white mb-1">Estado del Producto</p>
+              <p class="text-sm text-slate-200">Empaque original y sin uso.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-white/10">
+          <p class="text-xs text-white font-bold uppercase tracking-widest">
+            Pasado el plazo de 4 días, no se aceptan devoluciones.
+          </p>
+        </div>
       </div>
-    </section>
+
+      <!-- Badges -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-4 flex items-center gap-3 bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-emerald-500/10 text-emerald-400">
+            <ShieldCheck :size="16" />
+          </div>
+          <span class="text-sm text-white">Garantía Total</span>
+        </div>
+
+        <div class="p-4 flex items-center gap-3 bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-blue-500/10 text-blue-400">
+            <Clock :size="16" />
+          </div>
+          <span class="text-sm text-white">Soporte 24/7</span>
+        </div>
+      </div>
+
+    </div> <!-- Fin columna derecha -->
+
+  </div> <!-- Fin contenedor max-w-7xl -->
+</section>
 
     <!-- PROCESS PART -->
     <section class="py-24 bg-white border-b border-gray-100">
@@ -78,7 +140,7 @@
     <!-- DOWNLOAD PART -->
     <div class="flex flex-wrap justify-center bg-gray-50">
       <div>
-        <section id="download-form" class="py-24 ">
+        <section id="download-form" class="py-24">
           <div class="max-w-4xl mx-auto px-6">
             <div
               class="bg-gray-800 rounded-[2.5rem] p-12 md:p-20 text-center shadow-2xl relative overflow-hidden"
@@ -177,6 +239,7 @@
 <script setup>
 import { ref } from "vue";
 import FormDevoluciones from "@/components/devoluciones/formDevoluciones.vue";
+import { ShieldCheck, Clock, Info, FileText } from 'lucide-vue-next'
 
 const isDownloading = ref(false);
 
@@ -210,9 +273,7 @@ const handleDownload = () => {
   isDownloading.value = true;
 
   setTimeout(() => {
-    const filePath = encodeURI(
-      "/pdfs/EDITABLE SOLICITUD DE DEVOLUCIÓN.pdf",
-    );
+    const filePath = encodeURI("/pdfs/EDITABLE SOLICITUD DE DEVOLUCIÓN.pdf");
 
     const link = document.createElement("a");
     link.href = filePath;
