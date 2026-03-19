@@ -70,7 +70,7 @@
                 <div>
                   <p class="text-sm font-medium text-white mb-1">Plazo de Solicitud</p>
                   <p class="text-sm text-slate-400">
-                    Dentro de <span class="text-emerald-400 font-bold">4 días</span>.
+                    Dentro de <span class="text-emerald-400 font-bold">4 días despues de la compra</span>.
                   </p>
                 </div>
               </div>
@@ -90,7 +90,7 @@
 
             <div class="mt-8 pt-8 border-t border-white/10">
               <p class="text-xs text-slate-500 uppercase tracking-widest">
-                Pasado el plazo de 4 días, no se aceptan devoluciones.
+                Pasado el plazo de 4 días despues de la compra, no se aceptan devoluciones.
               </p>
             </div>
           </div>
