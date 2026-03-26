@@ -71,7 +71,6 @@
             </div>
           </div>
         </div>
-
         <div class="mt-8 pt-8 border-t border-white/10">
           <p class="text-xs text-white font-bold uppercase tracking-widest">
             Pasado el plazo de 4 días despues de la compra, no se aceptan devoluciones.
