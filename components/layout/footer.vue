@@ -40,6 +40,25 @@
             </li>
           </ul>
         </nav>
+        <!-- Menú de navegación -->
+        <nav aria-label="Menú principal" role="navigation">
+          <h2
+            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
+          >
+            <FileText />
+            <span>Politicas</span>
+          </h2>
+          <ul class="space-y-2">
+            <li v-for="item in itemsData" :key="item.label">
+              <NuxtLink
+                :to="item.href"
+                class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                {{ item.label }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </nav>
 
         <!-- Teléfonos -->
         <section aria-label="Teléfonos de contacto">
@@ -100,6 +119,9 @@
 
 <script setup>
 // import { SquareMenu, Phone, Mail } from "lucide-vue-next";
+const FileText = defineAsyncComponent(() =>
+  import("lucide-vue-next").then((m) => m.FileText),
+);
 const SquareMenu = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.SquareMenu),
 );
@@ -113,15 +135,19 @@ import { ref } from "vue";
 
 const itemsMenu = ref([
   { label: "Inicio", href: "/" },
+  { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
+  { label: "Productos", href: "/tienda-articulos-electricos" },
+  { label: "Noticias", href: "/blog" },
+]);
+
+const itemsData = ref([
   {
     label: "Nosotros",
     href: "/empresa-distribuidora-de-materiales-electricos-en-colombia",
   },
-  { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
-  { label: "Productos", href: "/tienda-articulos-electricos" },
-  { label: "Noticias", href: "/blog" },
   { label: "Devoluciones", href: "/devoluciones" },
-
+  { label: "Politica de Datos", href: "/politica-proteccion-datos" },
+  { label: "Terminos y Condiciones", href: "/terminos-y-condiciones" },
 ]);
 
 const itemsInfo = ref({
