@@ -1,138 +1,125 @@
 <template>
-  <footer class="bg-gray-800 text-white">
-    <div
-      class="container mx-auto px-5 py-8 flex flex-col md:flex-row items-center justify-between"
-    >
-      <!-- Logo -->
-      <NuxtImg
-        src="/img/logo/LOGO-JD-ICONO.webp"
-        alt="Logo de JD Eléctricos"
-        class="w-32 sm:w-28 md:w-36 lg:w-44 mb-6 md:mb-0"
-        width="176"
-        height="176"
-        loading="lazy"
-        decoding="async"
-        sizes="176px"
-        densities="1"
-        quality="65"
-      />
+  <footer class="bg-gray-800 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <!-- LOGO + DESCRIPCIÓN -->
+        <div class="space-y-6 p-5">
+          <div class="flex items-center gap-3">
+            <NuxtImg
+              src="/img/logo/LOGO-JD-ICONO.webp"
+              alt="Logo de JD Eléctricos"
+              class="w-20 h-20"
+              width="80"
+              height="80"
+            />
+            <span class="font-bold text-xl tracking-tight">
+              JD Eléctricos
+            </span>
+          </div>
 
-      <!-- Secciones del Footer -->
-      <div
-        class="flex flex-col sm:flex-row gap-10 lg:gap-20 md:gap-14 text-center sm:text-left w-full justify-end"
-      >
-        <!-- Menú de navegación -->
-        <nav aria-label="Menú principal" role="navigation">
-          <h2
-            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
-          >
-            <SquareMenu />
-            <span>Menú</span>
-          </h2>
-          <ul class="space-y-2">
-            <li v-for="item in itemsMenu" :key="item.label">
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Soluciones con respaldo y calidad... construyendo país.
+            Distribuidores líderes en materiales eléctricos.
+          </p>
+        </div>
+
+        <!-- MENÚ -->
+        <div>
+          <h4 class="font-semibold mb-6">Enlaces</h4>
+          <ul class="space-y-4 text-sm text-gray-400">
+            <li v-for="item in itemsMenu" :key="item.href">
               <NuxtLink
                 :to="item.href"
-                class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
+                class="hover:text-yellow-400 transition-colors"
               >
                 {{ item.label }}
               </NuxtLink>
             </li>
           </ul>
-        </nav>
-        <!-- Menú de navegación -->
-        <nav aria-label="Menú principal" role="navigation">
-          <h2
-            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
-          >
-            <FileText />
-            <span>Politicas</span>
-          </h2>
-          <ul class="space-y-2">
-            <li v-for="item in itemsData" :key="item.label">
+        </div>
+
+        <!-- INFORMACIÓN LEGAL -->
+        <div>
+          <h4 class="font-semibold mb-6">Información</h4>
+          <ul class="space-y-4 text-sm text-gray-400">
+            <li v-for="item in itemsData" :key="item.href">
               <NuxtLink
                 :to="item.href"
-                class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
+                class="hover:text-yellow-400 transition-colors"
               >
                 {{ item.label }}
               </NuxtLink>
             </li>
           </ul>
-        </nav>
+        </div>
 
-        <!-- Teléfonos -->
-        <section aria-label="Teléfonos de contacto">
-          <h2
-            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
-          >
-            <Phone />
-            <span>Teléfonos</span>
-          </h2>
-          <address class="not-italic">
-            <ul class="space-y-2">
-              <li v-for="phone in itemsInfo.phone" :key="phone">
-                <a
-                  :href="`https://wa.me/${phone.replace(/\s+/g, '')}?text=Hola%20JD%20Eléctricos`"
-                  class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
-                  target="_blank"
-                >
-                  {{ phone }}
-                </a>
-              </li>
-            </ul>
-          </address>
-        </section>
+        <!-- CONTACTO -->
+        <div>
+          <h4 class="font-semibold mb-6">Contacto</h4>
 
-        <!-- Correo electrónico -->
-        <section aria-label="Correo electrónico">
-          <h2
-            class="flex items-center justify-center sm:justify-start gap-2 font-black pb-5"
+          <!-- TELÉFONOS -->
+          <div class="space-y-3 mb-4">
+            <div
+              v-for="(phone, i) in itemsInfo.phone"
+              :key="i"
+              class="flex items-start gap-3 text-sm text-gray-400 hover:text-yellow-400"
+            >
+              <Phone class="w-4 h-4 text-yellow-500 mt-1 shrink-0" />
+              <span>{{ phone }}</span>
+            </div>
+          </div>
+
+          <!-- EMAIL -->
+          <div
+            v-for="(email, i) in itemsInfo.email"
+            :key="i"
+            class="flex items-start gap-3 text-sm text-gray-400 hover:text-yellow-400"
           >
-            <Mail />
-            <span>Correo</span>
-          </h2>
-          <address class="not-italic">
-            <ul class="space-y-2">
-              <li v-for="email in itemsInfo.email" :key="email">
-                <a
-                  :href="'mailto:' + email.trim()"
-                  class="hover:text-gray-300 transition-colors underline focus:outline-none focus:ring-2 focus:ring-white"
-                >
-                  {{ email.trim() }}
-                </a>
-              </li>
-            </ul>
-          </address>
-        </section>
+            <Mail class="w-4 h-4 text-yellow-500 mt-1 shrink-0" />
+            <span>{{ email }}</span>
+          </div>
+
+          <div
+            v-for="(a, i) in itemsInfo.addres"
+            :key="i"
+            class="flex items-start gap-3 text-sm text-gray-400 space-y-3 mt-4 hover:text-yellow-400"
+          >
+            <MapPinCheckInside class="w-4 h-4 text-yellow-500 mt-1 shrink-0" />
+            <span>{{ a }}</span>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Créditos -->
-    <div class="w-full text-center bg-gray-700 p-5 lg:p-2">
-      <p class="text-sm">
-        © 2025 JD Eléctricos. Todos los derechos reservados. | Diseño y
-        desarrollo por JD Eléctricos.
-      </p>
+      <!-- COPYRIGHT -->
+      <div
+        class="pt-8 border-t border-white/5 text-center text-xs text-gray-500"
+      >
+        <p>
+          © 2026 JD Eléctricos. Todos los derechos reservados. | Diseño y
+          desarrollo por JD Eléctricos.
+        </p>
+      </div>
     </div>
   </footer>
 </template>
 
 <script setup>
-// import { SquareMenu, Phone, Mail } from "lucide-vue-next";
-const FileText = defineAsyncComponent(() =>
-  import("lucide-vue-next").then((m) => m.FileText),
-);
-const SquareMenu = defineAsyncComponent(() =>
-  import("lucide-vue-next").then((m) => m.SquareMenu),
-);
+import { ref, computed, defineAsyncComponent } from "vue";
+
+/* ICONOS */
 const Phone = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.Phone),
 );
 const Mail = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.Mail),
 );
-import { ref } from "vue";
 
+const MapPinCheckInside = defineAsyncComponent(() =>
+  import("lucide-vue-next").then((m) => m.MapPinCheckInside),
+);
+
+/* MENÚ PRINCIPAL */
 const itemsMenu = ref([
   { label: "Inicio", href: "/" },
   { label: "Contacto", href: "/contacto-jd-electricos-colombia" },
@@ -140,6 +127,7 @@ const itemsMenu = ref([
   { label: "Noticias", href: "/blog" },
 ]);
 
+/* INFORMACIÓN */
 const itemsData = ref([
   {
     label: "Nosotros",
@@ -150,15 +138,13 @@ const itemsData = ref([
   { label: "Terminos y Condiciones", href: "/terminos-y-condiciones" },
 ]);
 
+/* CONTACTO */
 const itemsInfo = ref({
-  phone: [
-    "PBX:(+601) 341 10 60",
-    "+57 320 270 57 34",
-    "+57 320 339 25 65",
-    "+57 310 492 84 93",
-  ],
+  phone: ["PBX:(+601) 341 10 60", "+57 310 802 32 77"],
   email: ["ventas@jdelectricos.com.co"],
+  addres: ["Cra 12 #15-95 - Bogotá Colombia"],
 });
-</script>
 
-<style scoped></style>
+/* AÑO DINÁMICO */
+const year = computed(() => new Date().getFullYear());
+</script>
