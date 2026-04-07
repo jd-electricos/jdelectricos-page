@@ -1,4 +1,26 @@
 <template>
   <NuxtLayout />
 </template>
-<script setup></script>
+<script setup>
+onMounted(() => {
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (prefersDark) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+});
+useHead({
+  script: [
+    {
+      innerHTML: `(function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w7zl75tmhv");`,
+      type: "text/javascript",
+      async: true,
+    },
+  ],
+});
+</script>
