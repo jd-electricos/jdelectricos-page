@@ -90,7 +90,7 @@
               <input
                 v-model="form.email"
                 type="text"
-                placeholder="Ej: FAC-12345"
+                placeholder="ejemplo@correo.com"
                 class="w-full bg-gray-700 text-white p-4 rounded-xl border border-gray-600 focus:outline-none focus:border-white"
               />
 
