@@ -42,7 +42,7 @@ const asesores = [
   },
   {
     bg: "#58db",
-    name: "Miguel Lozano",
+    name: "Esteban Ramirez",
     number: "+57 310 492 84 93",
   },
   {
@@ -217,7 +217,7 @@ onMounted(async () => {
         return popupTemplate(department, "Juan David Moreno", "323 225 74 26");
 
       if (miguel.includes(department))
-        return popupTemplate(department, "Miguel Lozano", "310 492 84 93");
+        return popupTemplate(department, "Esteban Ramirez", "310 492 84 93");
 
       if (dianie.includes(department))
         return popupTemplate(department, "Dianie Novoa", "320 270 57 34");
