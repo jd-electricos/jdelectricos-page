@@ -140,7 +140,7 @@ const itemsData = ref([
 
 /* CONTACTO */
 const itemsInfo = ref({
-  phone: ["PBX:(+601) 341 10 60", "+57 310 802 32 77"],
+  phone: ["PBX: (+601) 341 10 60", "+57 310 802 32 77"],
   email: ["ventas@jdelectricos.com.co"],
   addres: ["Cra 12 #15-95 - Bogotá Colombia"],
 });
