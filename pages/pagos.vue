@@ -22,10 +22,14 @@ Referencia: ${paymentResult.reference}`
       "
       @close="showModal = false"
     />
-    <loading class="bg-white" v-if="isLoading" />
-    <div v-else>
-      <Header />
+    <Header />
+    <div
+      v-if="isLoading"
+      class="fixed inset-0 z-[9999] flex items-center justify-center bg-white/80 backdrop-blur-sm"
+    >
+      <loading />
     </div>
+    
     <div class="flex gap-10 p-6 justify-center md:flex-row flex-col">
       <div>
         <ClientOnly>
