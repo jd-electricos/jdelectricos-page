@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <button
-      @click="pay"
+      type="submit"
       class="bg-[#b0f2ae] font-bold px-4 py-2 rounded w-full"
     >
       Pagar con Wompi
@@ -39,20 +39,17 @@ const pay = async () => {
   emit("loading:start");
   await loadWompi();
 
-  const data = await $fetch(
-    `${config.public.apiBase}/payments/create`,
-    {
-      method: "POST",
-      body: {
-        amountInCents: props.customer.amountInCents,
-        customer: props.customer,
-        billing: props.customer.concept,
-      },
-      headers: {
-        Authorization: `Bearer ${token.token}`,
-      },
+  const data = await $fetch(`${config.public.apiBase}/payments/create`, {
+    method: "POST",
+    body: {
+      amountInCents: props.customer.amountInCents,
+      customer: props.customer,
+      billing: props.customer.concept,
     },
-  );
+    headers: {
+      Authorization: `Bearer ${token.token}`,
+    },
+  });
   const checkout = new window.WidgetCheckout({
     publicKey: data.publicKey, // 🔐 SIEMPRE definido
     currency: data.currency,
@@ -85,6 +82,10 @@ const pay = async () => {
     }
   });
 };
+
+defineExpose({
+  pay,
+});
 
 // const sendmail = async (result) => {
 //   const formData = {

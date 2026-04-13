@@ -1,6 +1,6 @@
 <template>
   <form
-    @submit.prevent="submitPayment"
+    @submit.prevent="handleSubmit"
     class="max-w-lg space-y-3 p-6 rounded-2xl shadow bg-green-50"
   >
     <div class="flex items-center gap-4 bg-white rounded-xl shadow-sm p-2">
@@ -97,6 +97,7 @@
     </div>
 
     <WompiButton
+      ref="wompiButtonRef"
       :customer="form"
       @loading:start="$emit('loading:start')"
       @loading:end="$emit('loading:end')"
@@ -120,7 +121,7 @@ const config = useRuntimeConfig();
 const emit = defineEmits(["loading:start", "loading:end", "payment:result"]);
 const isRecaptchaVisible = ref(true);
 const siteKey = "6LeRIXgqAAAAAJvfTC0RidvG62l7jYOfQlsO8eQU";
-
+const wompiButtonRef = ref(null);
 const form = reactive({
   name: "",
   document: "",
@@ -152,7 +153,6 @@ const verifyRecaptcha = async () => {
 
   try {
     const response = await axios.post(
-      
       `${config.public.apiBasesDos}/recaptcha/verify-recaptcha`,
       { recaptchaResponse },
     );
@@ -187,6 +187,21 @@ const resetForm = () => {
   if (window.grecaptcha) {
     window.grecaptcha.reset();
   }
+};
+
+const handleSubmit = async () => {
+  emit("loading:start");
+
+  const isValid = await verifyRecaptcha();
+
+  if (!isValid) {
+    alert("Por favor verifica el reCAPTCHA");
+    emit("loading:end");
+    return;
+  }
+
+  // ✅ Si pasa, ejecuta el pago REAL
+  wompiButtonRef.value?.pay();
 };
 
 defineExpose({
