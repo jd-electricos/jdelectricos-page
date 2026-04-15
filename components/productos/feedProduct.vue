@@ -50,9 +50,8 @@
         >
           <p
             class="font-semibold cursor-default"
-            :class="data.price === 1 ? 'hidden' : 'font-bold'"
           >
-            Precio: <span class="font-bold">{{ formatCOP(data.price) }}</span>
+            Precio: <span class="font-bold">{{ data.price === 1 ? 'Consultar con un asesor' : formatCOP(data.price) }}</span>
           </p>
           <NuxtLink :to="data.subCategory.category.slug">
             <p class="font-semibold">

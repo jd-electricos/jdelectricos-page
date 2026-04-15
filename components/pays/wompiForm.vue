@@ -107,21 +107,28 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
 import axios from "axios";
 import { defineAsyncComponent } from "vue";
 import WompiButton from "./wompiButton.vue";
+
 const CreditCard = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.CreditCard),
 );
 const ShieldCheck = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.ShieldCheck),
 );
+
 const config = useRuntimeConfig();
 const emit = defineEmits(["loading:start", "loading:end", "payment:result"]);
-const isRecaptchaVisible = ref(true);
+
+const route = useRoute();
+
+const isRecaptchaVisible = ref(false);
 const siteKey = "6LeRIXgqAAAAAJvfTC0RidvG62l7jYOfQlsO8eQU";
 const wompiButtonRef = ref(null);
+
 const form = reactive({
   name: "",
   document: "",
@@ -130,6 +137,7 @@ const form = reactive({
   email: "",
   phone: "",
 });
+
 const formattedAmount = computed(() => {
   const pesos = form.amountInCents / 100;
 
@@ -141,10 +149,42 @@ const formattedAmount = computed(() => {
 });
 
 const onAmountInput = (e) => {
-  const raw = e.target.value.replace(/\D/g, ""); // solo números
+  const raw = e.target.value.replace(/\D/g, "");
   const pesos = raw ? Number(raw) : 0;
   form.amountInCents = pesos * 100;
 };
+
+// 🔥 CARGA SEGURA DEL SCRIPT
+const loadRecaptchaScript = () => {
+  return new Promise((resolve) => {
+    if (window.grecaptcha) {
+      resolve();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
+    script.async = true;
+    script.defer = true;
+    script.onload = resolve;
+    document.head.appendChild(script);
+  });
+};
+
+// 🔥 RENDER MANUAL (CLAVE)
+const renderRecaptcha = async () => {
+  await loadRecaptchaScript();
+
+  setTimeout(() => {
+    if (window.grecaptcha && document.querySelector(".g-recaptcha")) {
+      window.grecaptcha.render(document.querySelector(".g-recaptcha"), {
+        sitekey: siteKey,
+      });
+    }
+  }, 300);
+};
+
+// 🔥 VALIDACIÓN
 const verifyRecaptcha = async () => {
   if (!window.grecaptcha) return false;
 
@@ -161,20 +201,36 @@ const verifyRecaptcha = async () => {
     return false;
   }
 };
-const loadRecaptchaScript = () => {
-  if (window.grecaptcha) return;
 
-  const script = document.createElement("script");
-  script.src = "https://www.google.com/recaptcha/api.js";
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
+// 🔥 RESET
+const resetRecaptcha = () => {
+  if (window.grecaptcha) {
+    window.grecaptcha.reset();
+  }
 };
 
-onMounted(() => {
+// 🔥 CUANDO MONTA
+onMounted(async () => {
   isRecaptchaVisible.value = true;
-  loadRecaptchaScript();
+  await renderRecaptcha();
 });
+
+// 🔥 CUANDO CAMBIA LA RUTA (CLAVE PARA TU PROBLEMA)
+watch(
+  () => route.fullPath,
+  async (newPath) => {
+    if (newPath.includes("/pagos")) {
+      isRecaptchaVisible.value = false;
+
+      setTimeout(async () => {
+        isRecaptchaVisible.value = true;
+        await renderRecaptcha();
+      }, 200);
+    }
+  },
+);
+
+// 🔥 FORM RESET
 const resetForm = () => {
   form.name = "";
   form.document = "";
@@ -183,10 +239,7 @@ const resetForm = () => {
   form.email = "";
   form.phone = "";
 
-  // Limpia reCAPTCHA si existe
-  if (window.grecaptcha) {
-    window.grecaptcha.reset();
-  }
+  resetRecaptcha();
 };
 
 const handleSubmit = async () => {
@@ -200,7 +253,6 @@ const handleSubmit = async () => {
     return;
   }
 
-  // ✅ Si pasa, ejecuta el pago REAL
   wompiButtonRef.value?.pay();
 };
 

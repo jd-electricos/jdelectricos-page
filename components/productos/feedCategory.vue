@@ -27,7 +27,7 @@
     <div class="flex flex-wrap justify-center pt-10">
       <div v-for="subcategory in filteredProducts" :key="subcategory.name">
         <div
-          class="w-58 flex flex-col items-center gap-4 m-5 border-2 border-gray-600 rounded-2xl hover:border-2 hover:border-yellow-500 hover:bg-gray-900 p-3 hover:text-black drop-shadow-xl bg-gray-800 drop-shadow-gray-900"
+          class="w-64 h-72 flex flex-col items-center justify-between gap-2 m-2 border-2 border-gray-600 rounded-2xl hover:border-yellow-500 hover:bg-gray-900 p-3 text-white drop-shadow-xl bg-gray-800 drop-shadow-gray-900"
         >
           <div>
             <NuxtLink
