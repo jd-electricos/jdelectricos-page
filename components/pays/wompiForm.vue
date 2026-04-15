@@ -260,6 +260,7 @@ defineExpose({
   resetForm,
 });
 </script>
+
 <style scoped>
 .input {
   width: 100%;

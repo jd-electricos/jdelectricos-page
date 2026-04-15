@@ -2,81 +2,119 @@
   <Transition name="slide">
     <div v-if="open" class="fixed inset-0 z-50 flex">
       <!-- Overlay -->
-      <div class="fixed inset-0 bg-black/50" @click="closeMenu" />
+      <div
+        class="fixed inset-0 bg-black/60 backdrop-blur-[2px] transition"
+        @click="closeMenu"
+      />
 
       <!-- Drawer -->
       <div
-        class="relative w-72 shadow-xl/30 overflow-y-auto max-h-screen bg-gray-800 text-white pt-10"
+        class="relative w-80 bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-2xl border-r border-gray-700/50 flex flex-col"
       >
-        <!-- Botón cerrar -->
-        <div class="absolute top-4 right-4 cursor-pointer" @click="closeMenu">
-          <X />
+        <!-- HEADER -->
+        <div
+          class="sticky top-0 z-10 bg-gray-900/90 backdrop-blur border-b border-white/10 px-5 py-4 flex justify-between items-center"
+        >
+          <h2 class="text-lg font-semibold tracking-wide">Categorías</h2>
+
+          <div
+            class="p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
+            @click="closeMenu"
+          >
+            <X class="w-5 h-5" />
+          </div>
         </div>
 
-        <!-- CATEGORIAS -->
-        <div
-          class="p-5 flex flex-col"
-          v-for="(i, catIndex) in menu"
-          :key="i.name"
-        >
-          <!-- Categoria -->
+        <!-- BUSCADOR -->
+        <div class="px-4 py-3 border-b border-white/5">
+          <input
+            v-model="search"
+            type="text"
+            placeholder="Buscar producto..."
+            class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- CONTENIDO SCROLL -->
+        <div class="overflow-y-auto flex-1 px-2 py-3">
           <div
-            class="flex items-center justify-between font-semibold text-[15px] hover:bg-gray-700/70 rounded-lg py-3 px-3 cursor-pointer transition-all duration-200 group"
-            @click="toggleCategory(catIndex)"
+            v-for="(i, catIndex) in filteredMenu"
+            :key="i.name"
+            class="mb-2"
           >
-            <span class="tracking-wide">{{ textFormat(i.name) }}</span>
-
-            <Chevron
-              class="w-4 h-4 opacity-70 transition-transform duration-300 group-hover:opacity-100"
-              :class="{ 'rotate-180': openCategory === catIndex }"
-            />
-          </div>
-
-          <!-- SUBCATEGORIAS -->
-          <Transition name="accordion">
-            <ul
-              v-if="openCategory === catIndex"
-              class="mt-2 ml-1 border-l border-gray-700 pl-3 space-y-1"
+            <!-- CATEGORIA -->
+            <div
+              class="flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer 
+              transition-all duration-300 group
+              hover:bg-white/10 hover:shadow-md hover:shadow-black/20
+              active:scale-[0.98]"
+              :class="openCategory === catIndex ? 'bg-white/10 shadow-inner' : ''"
+              @click="toggleCategory(catIndex)"
             >
-              <li
-                class="py-2"
-                v-for="(sub, subIndex) in i.subcategories"
-                :key="sub.name"
+              <span class="text-sm font-semibold tracking-wide">
+                {{ textFormat(i.name) }}
+              </span>
+
+              <Chevron
+                class="w-4 h-4 opacity-60 transition-all duration-300"
+                :class="{ 'rotate-180': openCategory === catIndex }"
+              />
+            </div>
+
+            <!-- SUBCATEGORIAS -->
+            <Transition name="accordion">
+              <ul
+                v-if="openCategory === catIndex"
+                class="mt-2 ml-2 border-l border-gray-600/40 pl-3 space-y-1"
               >
-                <!-- Subcategoria -->
-                <div
-                  class="flex items-center justify-between text-sm font-medium hover:bg-gray-700/60 rounded-md p-2 cursor-pointer transition-all duration-200 group"
-                  @click="toggleSubcategory(catIndex, subIndex)"
+                <li
+                  v-for="(sub, subIndex) in i.subcategories"
+                  :key="sub.name"
                 >
-                  <span class="text-gray-200">{{ textFormat(sub.name) }}</span>
+                  <!-- SUBCATEGORIA -->
+                  <div
+                    class="flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer
+                    transition-all duration-200
+                    hover:bg-white/5 hover:pl-4"
+                    :class="isSubOpen(catIndex, subIndex) ? 'bg-white/5' : ''"
+                    @click="toggleSubcategory(catIndex, subIndex)"
+                  >
+                    <span class="text-sm text-gray-300">
+                      {{ textFormat(sub.name) }}
+                    </span>
 
-                  <Chevron
-                    class="w-3.5 h-3.5 opacity-60 transition-transform duration-300 group-hover:opacity-100"
-                    :class="{ 'rotate-180': isSubOpen(catIndex, subIndex) }"
-                  />
-                </div>
+                    <Chevron
+                      class="w-3.5 h-3.5 opacity-50 transition-transform duration-300"
+                      :class="{ 'rotate-180': isSubOpen(catIndex, subIndex) }"
+                    />
+                  </div>
 
-                <!-- PRODUCTOS -->
-                <Transition name="accordion">
-                  <ul v-if="isSubOpen(catIndex, subIndex)" class="disc ml-3">
-                    <NuxtLink
-                      v-for="prod in sub.products"
-                      :key="prod.name"
-                      :to="prod.slugProduct"
-                    >
-                      <li
-                        class="pl-5 py-2 hover:bg-gray-700 rounded text-sm transition"
+                  <!-- PRODUCTOS -->
+                  <Transition name="accordion">
+                    <ul v-if="isSubOpen(catIndex, subIndex)" class="ml-2">
+                      <NuxtLink
+                        v-for="prod in sub.products"
+                        :key="prod.name"
+                        :to="prod.slugProduct"
                       >
-                        • {{ textFormat(prod.name) }}
-                      </li>
-                    </NuxtLink>
-                  </ul>
-                </Transition>
-              </li>
-            </ul>
-          </Transition>
+                        <li
+                          class="flex items-center gap-2 pl-6 pr-2 py-2 rounded-md
+                          text-sm text-gray-400 cursor-pointer
+                          transition-all duration-200
+                          hover:bg-white/5 hover:text-white hover:pl-7"
+                        >
+                          <span class="w-1.5 h-1.5 bg-gray-500 rounded-full"></span>
+                          {{ textFormat(prod.name) }}
+                        </li>
+                      </NuxtLink>
+                    </ul>
+                  </Transition>
+                </li>
+              </ul>
+            </Transition>
 
-          <hr />
+            <hr class="border-white/5 my-2" />
+          </div>
         </div>
       </div>
     </div>
@@ -98,22 +136,29 @@ const config = useRuntimeConfig();
 const route = useRoute();
 
 const menu = ref([]);
+const search = ref("");
 
 const openCategory = ref(null);
-const openSubcategory = ref({});
+const openSubcategory = ref(null);
 
 const toggleCategory = (index) => {
-  openCategory.value = openCategory.value === index ? null : index;
+  if (openCategory.value === index) {
+    openCategory.value = null;
+    openSubcategory.value = null;
+  } else {
+    openCategory.value = index;
+    openSubcategory.value = null;
+  }
 };
 
 const toggleSubcategory = (catIndex, subIndex) => {
   const key = `${catIndex}-${subIndex}`;
-  openSubcategory.value[key] = !openSubcategory.value[key];
+  openSubcategory.value =
+    openSubcategory.value === key ? null : key;
 };
 
 const isSubOpen = (catIndex, subIndex) => {
-  const key = `${catIndex}-${subIndex}`;
-  return openSubcategory.value[key];
+  return openSubcategory.value === `${catIndex}-${subIndex}`;
 };
 
 const props = defineProps({
@@ -151,6 +196,24 @@ const fetchMenuData = async () => {
   }
 };
 
+const filteredMenu = computed(() => {
+  if (!search.value) return menu.value;
+
+  return menu.value
+    .map((cat) => ({
+      ...cat,
+      subcategories: cat.subcategories
+        .map((sub) => ({
+          ...sub,
+          products: sub.products.filter((p) =>
+            p.name.toLowerCase().includes(search.value.toLowerCase())
+          ),
+        }))
+        .filter((sub) => sub.products.length),
+    }))
+    .filter((cat) => cat.subcategories.length);
+});
+
 const textFormat = (str) => {
   return str
     .toLocaleLowerCase("es-ES")
@@ -162,6 +225,17 @@ const textFormat = (str) => {
 onMounted(fetchMenuData);
 
 watch(
+  () => props.open,
+  (val) => {
+    if (val) {
+      openCategory.value = null;
+      openSubcategory.value = null;
+      search.value = "";
+    }
+  },
+);
+
+watch(
   () => route.fullPath,
   () => {
     if (props.open) closeMenu();
@@ -170,34 +244,41 @@ watch(
 </script>
 
 <style scoped>
-/* slide menu */
+/* SLIDE */
 .slide-enter-active,
 .slide-leave-active {
   transition: transform 0.25s ease;
 }
-
 .slide-enter-from,
 .slide-leave-to {
   transform: translateX(-100%);
 }
 
-/* accordion animation */
-
+/* ACCORDION */
 .accordion-enter-active,
 .accordion-leave-active {
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
   overflow: hidden;
 }
-
 .accordion-enter-from,
 .accordion-leave-to {
   max-height: 0;
   opacity: 0;
+  transform: translateY(-5px);
 }
-
 .accordion-enter-to,
 .accordion-leave-from {
-  max-height: 600px;
+  max-height: 500px;
   opacity: 1;
+  transform: translateY(0);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 </style>
