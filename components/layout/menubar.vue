@@ -68,6 +68,16 @@
           </div>
         </template>
       </li>
+      <li>
+        <NuxtLink to="/pagos">
+          <button
+            class="cursor-pointer ml-4 px-6 py-2.5 bg-yellow-500 text-black font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-yellow-500/20 flex items-center gap-2"
+          >
+            <DollarSign size="14" strokeWidth="3" />
+            Pagos
+          </button>
+        </NuxtLink>
+      </li>
     </ul>
   </nav>
 
@@ -136,7 +146,11 @@
             </button>
             <h2 class="text-lg font-bold mb-4">{{ activeSubMenu.label }}</h2>
             <ul>
-              <li v-for="subitem in activeSubMenu.items" :key="subitem.label" class="list-disc">
+              <li
+                v-for="subitem in activeSubMenu.items"
+                :key="subitem.label"
+                class="list-disc"
+              >
                 <NuxtLink
                   :to="subitem.href"
                   class="block p-2 hover:text-yellow-300 text-sm"
@@ -149,13 +163,26 @@
           </div>
         </template>
       </li>
+      <li class="p-4">
+        <button
+          @click="$router.push('/pagos')"
+          class="cursor-pointer w-full px-6 py-3 bg-yellow-500 text-black font-extrabold text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-2"
+        >
+          <DollarSign size="14" strokeWidth="3" />
+          Pagos
+        </button>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script setup>
 import menuProducts from "./menuProducts.vue";
+
 // import { Menu, X } from "lucide-vue-next";
+const DollarSign = defineAsyncComponent(() =>
+  import("lucide-vue-next").then((m) => m.DollarSign),
+);
 const Menu = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.Menu),
 );
@@ -263,7 +290,10 @@ const items = ref([
     href: "/",
     items: [
       { label: "Pagos ", href: "/pagos" },
-      { label: "Nosotros", href: "/empresa-distribuidora-de-materiales-electricos-en-colombia" },
+      {
+        label: "Nosotros",
+        href: "/empresa-distribuidora-de-materiales-electricos-en-colombia",
+      },
       { label: "Devoluciones", href: "/devoluciones" },
     ],
     isOpen: false,

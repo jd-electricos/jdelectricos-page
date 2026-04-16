@@ -1,7 +1,7 @@
 <template>
   <form
     @submit.prevent="handleSubmit"
-    class="max-w-lg space-y-3 p-6 rounded-2xl shadow bg-green-50"
+    class="lg:max-w-lg space-y-3 p-6 rounded-2xl shadow bg-green-50"
   >
     <div class="flex items-center gap-4 bg-white rounded-xl shadow-sm p-2">
       <div class="bg-blue-100 text-blue-600 p-3 rounded-xl">
