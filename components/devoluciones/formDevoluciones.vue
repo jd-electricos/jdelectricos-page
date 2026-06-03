@@ -40,13 +40,12 @@
               <input
                 type="file"
                 @change="handleFile"
-                accept=".pdf,.jpg,.jpeg,.png"
+                accept="application/pdf,.pdf"
                 class="w-full bg-gray-700 text-white p-4 rounded-xl border border-gray-600 focus:outline-none focus:border-white"
               />
 
               <p class="text-yellow-400 text-sm mt-2">
-                El archivo no debe superar los 5 MB. Formatos permitidos: PDF,
-                JPG, PNG.
+                El archivo no debe superar los 5 MB. Formato permitido: PDF
               </p>
 
               <p v-if="form.file" class="text-green-400 text-sm mt-1">
@@ -158,6 +157,7 @@
               <button
                 type="submit"
                 :disabled="isSending"
+                :aria-busy="isSending"
                 :class="[
                   'group relative inline-flex items-center justify-center px-10 py-5 font-bold text-gray-800 transition-all duration-200 bg-white rounded-2xl',
                   isSending
@@ -221,7 +221,7 @@ const asesores = [
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
-const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
+const allowedTypes = ["application/pdf"];
 
 const form = ref({
   email: "",
@@ -240,7 +240,7 @@ const handleFile = (e) => {
   if (!file) return;
 
   if (!allowedTypes.includes(file.type)) {
-    errors.value.file = "Solo se permiten archivos PDF, JPG o PNG";
+    errors.value.file = "Solo se permiten archivos PDF";
     form.value.file = null;
     e.target.value = "";
     return;
@@ -272,6 +272,7 @@ const validate = () => {
 };
 
 const handleSubmit = async () => {
+  if (isSending.value) return;
   if (!validate()) return;
 
   isSending.value = true;
@@ -294,8 +295,8 @@ const handleSubmit = async () => {
   } catch (error) {
     console.log(error);
     alert("Ocurrió un error al enviar el formulario");
+  } finally {
+    isSending.value = false;
   }
-
-  isSending.value = false;
 };
 </script>
