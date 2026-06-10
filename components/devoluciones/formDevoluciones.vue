@@ -217,6 +217,8 @@ const asesores = [
   "Juan Moreno",
   "Nicolas Bernal",
   "William Camelo",
+  "Vladimir Molina",
+  "Mauricio Peña"
 ];
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
