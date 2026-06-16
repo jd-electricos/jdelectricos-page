@@ -7,6 +7,8 @@ export default defineNuxtConfig({
       apiBase: process.env.API_BASE || "https://apijd.jdelectricos.com.co/api",
       apiBasesDos:
         process.env.API_BASE_DOS || "https://apijaps.jdelectricos.com.co/api",
+      googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+      googlePlaceId: process.env.GOOGLE_PLACE_ID,
     },
   },
   experimental: {
