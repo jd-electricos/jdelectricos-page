@@ -31,19 +31,9 @@ let colombiaGeoJSON;
 
 const asesores = [
   {
-    bg: "#ec7063",
-    name: "Nicolas Bernal",
-    number: "+57 323 573 01 00",
-  },
-  {
-    bg: "#58d68d",
-    name: "Juan David Moreno",
-    number: "+57 323 225 74 26",
-  },
-  {
-    bg: "#58db",
-    name: "Esteban Ramirez",
-    number: "+57 310 492 84 93",
+    bg: "#f4d03f",
+    name: "Carolina Cerquera",
+    number: "+57 320 339 25 65",
   },
   {
     bg: "#eb984e",
@@ -51,9 +41,29 @@ const asesores = [
     number: "+57 320 270 57 34",
   },
   {
-    bg: "#f4d03f",
-    name: "Carolina Cerquera",
-    number: "+57 320 339 25 65",
+    bg: "#e74c3c",
+    name: "Esteban Ramirez",
+    number: "+57 310 492 84 93",
+  },
+  {
+    bg: "#58dbdb", // color cambiado
+    name: "Juan David Moreno",
+    number: "+57 323 225 74 26",
+  },
+  {
+    bg: "#9b59b6", // color cambiado
+    name: "Mauricio Peña",
+    number: "+57 313 406 42 11",
+  },
+  {
+    bg: "#ec7063",
+    name: "Nicolas Bernal",
+    number: "+57 323 573 01 00",
+  },
+  {
+    bg: "#2ecc71", // color cambiado
+    name: "Vladimir Molina",
+    number: "+57 311 203 11 38",
   },
 ];
 
@@ -63,10 +73,12 @@ onMounted(async () => {
 
   try {
     const response = await fetch(
-      "https://raw.githubusercontent.com/jd-electricos/geo-data-col/main/Colombia.geo.json"
+      "https://raw.githubusercontent.com/jd-electricos/geo-data-col/main/Colombia.geo.json",
     );
     if (!response.ok) throw new Error("Error al cargar GeoJSON");
     colombiaGeoJSON = await response.json();
+
+    console.log(colombiaGeoJSON);
 
     const map = L.map("map").setView([4.570868, -74.2973328], 5);
 
@@ -80,15 +92,11 @@ onMounted(async () => {
     ============================= */
     const getColor = (department) => {
       const nicolas = [
-        "ATLANTICO",
         "ATLÁNTICO",
-        "BOLIVAR",
+        "ATLANTICO",
         "BOLÍVAR",
-        "CORDOBA",
-        "CÓRDOBA",
-        "CESAR",
-        "SUCRE",
-        "PUTUMAYO",
+        "BOLIVAR",
+        "MAGDALENA",
       ];
 
       const juan = [
@@ -100,7 +108,14 @@ onMounted(async () => {
         "TOLIMA",
       ];
 
-      const miguel = ["BOYACA", "BOYACÁ", "META", "SAN ANDRES", "SAN ANDRÉS"];
+      const esteban = [
+        "BOYACA",
+        "BOYACÁ",
+        "META",
+        "SAN ANDRES",
+        "SAN ANDRÉS",
+        "CASANARE",
+      ];
 
       const dianie = [
         "CALDAS",
@@ -112,25 +127,32 @@ onMounted(async () => {
         "VALLE DEL CAUCA",
       ];
 
+      const mauricio = ["CORDOBA", "CÓRDOBA", "SUCRE"];
+
+      const vladimir = ["CESAR", "LA GUAJIRA"];
+
       const japs = [
         "AMAZONAS",
         "CAQUETA",
         "GUAVIARE",
         "QUIBDO",
         "CHOCO",
-        "CASANARE",
         "ARAUCA",
-        "MAGDALENA"
+        "VAUPES",
+        "VICHADA",
+        "GUAINIA",
       ];
 
       const carolina = ["ANTIOQUIA"];
 
-      if (nicolas.includes(department)) return "#ec7063";
-      if (juan.includes(department)) return "#58d68d";
-      if (miguel.includes(department)) return "#58db";
-      if (dianie.includes(department)) return "#eb984e";
       if (carolina.includes(department)) return "#f4d03f";
-      if (japs.includes(department)) return "#a569bd";
+      if (dianie.includes(department)) return "#eb984e";
+      if (esteban.includes(department)) return "#e74c3c";
+      if (juan.includes(department)) return "#58dbdb";
+      if (mauricio.includes(department)) return "#9b59b6";
+      if (nicolas.includes(department)) return "#ec7063";
+      if (vladimir.includes(department)) return "#2ecc71";
+      if (japs.includes(department)) return "#58db";
 
       return "#CCCCCC";
     };
@@ -165,15 +187,11 @@ onMounted(async () => {
     ============================= */
     const getPopupContent = (department) => {
       const nicolas = [
-        "ATLANTICO",
         "ATLÁNTICO",
-        "BOLIVAR",
+        "ATLANTICO",
         "BOLÍVAR",
-        "CORDOBA",
-        "CÓRDOBA",
-        "CESAR",
-        "SUCRE",
-        "PUTUMAYO",
+        "BOLIVAR",
+        "MAGDALENA",
       ];
 
       const juan = [
@@ -185,7 +203,14 @@ onMounted(async () => {
         "TOLIMA",
       ];
 
-      const miguel = ["BOYACA", "BOYACÁ", "META", "SAN ANDRES", "SAN ANDRÉS"];
+      const esteban = [
+        "BOYACA",
+        "BOYACÁ",
+        "META",
+        "SAN ANDRES",
+        "SAN ANDRÉS",
+        "CASANARE",
+      ];
 
       const dianie = [
         "CALDAS",
@@ -197,18 +222,29 @@ onMounted(async () => {
         "VALLE DEL CAUCA",
       ];
 
-       const japs = [
+      const mauricio = ["CORDOBA", "CÓRDOBA", "SUCRE"];
+
+      const vladimir = ["CESAR", "LA GUAJIRA"];
+
+      const japs = [
         "AMAZONAS",
         "CAQUETA",
         "GUAVIARE",
         "QUIBDO",
         "CHOCO",
-        "CASANARE",
         "ARAUCA",
-        "MAGDALENA"
+        "VAUPES",
+        "VICHADA",
+        "GUAINIA",
       ];
 
       const carolina = ["ANTIOQUIA"];
+
+      if (vladimir.includes(department))
+        return popupTemplate(department, "Vladimir Molina", "323 573 01 00");
+
+      if (mauricio.includes(department))
+        return popupTemplate(department, "Mauricio Peña", "323 573 01 00");
 
       if (nicolas.includes(department))
         return popupTemplate(department, "Nicolas Bernal", "323 573 01 00");
@@ -216,7 +252,7 @@ onMounted(async () => {
       if (juan.includes(department))
         return popupTemplate(department, "Juan David Moreno", "323 225 74 26");
 
-      if (miguel.includes(department))
+      if (esteban.includes(department))
         return popupTemplate(department, "Esteban Ramirez", "310 492 84 93");
 
       if (dianie.includes(department))
