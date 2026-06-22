@@ -218,7 +218,7 @@ const asesores = [
   "Nicolas Bernal",
   "William Camelo",
   "Vladimir Molina",
-  "Mauricio Peña"
+  "Mauricio Peña",
 ];
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -280,22 +280,68 @@ const handleSubmit = async () => {
   isSending.value = true;
 
   try {
+    // 1. Primero guardar la devolución en la base de datos
+    const responseDevolution = await fetch(
+      `${config.public.apiBase}/devolutions/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: form.value.email,
+          asesor: form.value.asesor,
+          factura: form.value.factura,
+          empresa: form.value.empresa,
+          asunto: form.value.asunto,
+        }),
+      },
+    );
+
+    const resultDevolution = await responseDevolution.json();
+
+    if (!responseDevolution.ok) {
+      throw new Error(
+        resultDevolution.error || "Error al guardar la devolución",
+      );
+    }
+
+    // 2. Tomar el asunto ya concatenado desde el backend
+    const asuntoFinal = resultDevolution.asunto;
+    const consecutivo = resultDevolution.consecutivo;
+    console.log(consecutivo);
+
+    // 3. Preparar el FormData para enviar el correo
     const data = new FormData();
+
     data.append("email", form.value.email);
     data.append("file", form.value.file);
     data.append("asesor", form.value.asesor);
     data.append("factura", form.value.factura);
     data.append("empresa", form.value.empresa);
-    data.append("asunto", form.value.asunto);
 
-    await fetch(`${config.public.apiBasesDos}/email/send-return-email`, {
-      method: "POST",
-      body: data,
-    });
+    // Aquí ya mandas el asunto con el consecutivo
+    data.append("asunto", asuntoFinal);
 
-    alert("Solicitud enviada correctamente");
+    // Opcional, por si quieres usarlo separado en el correo
+    data.append("consecutivo", consecutivo);
+    // 4. Enviar correo
+    const responseEmail = await fetch(
+      `${config.public.apiBasesDos}/email/send-return-email`,
+      {
+        method: "POST",
+        body: data,
+      },
+    );
+
+    if (!responseEmail.ok) {
+      throw new Error(
+        "La devolución se guardó, pero falló el envío del correo",
+      );
+    }
+
+    alert(`Solicitud enviada correctamente.`);
   } catch (error) {
-    console.log(error);
     alert("Ocurrió un error al enviar el formulario");
   } finally {
     isSending.value = false;
