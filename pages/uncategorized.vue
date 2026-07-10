@@ -31,9 +31,14 @@ import previewBlog from "../components/blog/previewBlog.vue";
 const config = useRuntimeConfig();
 
 // ✅ Cambiamos a useAsyncData
-const { data: posts } = await useAsyncData("posts", () =>
+const { data: postsResponse } = await useAsyncData("posts-uncategorized", () =>
   $fetch(`${config.public.apiBase}/blog/category/Uncategorized`)
 );
+
+const posts = computed(() => {
+  const response = postsResponse.value;
+  return Array.isArray(response) ? response : response?.data ?? [];
+});
 
 
 // Variables para los filtros

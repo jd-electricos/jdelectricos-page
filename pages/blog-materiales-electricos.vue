@@ -31,9 +31,14 @@ import previewBlog from "../components/blog/previewBlog.vue";
 const config = useRuntimeConfig();
 
 // ✅ Cambiamos a useAsyncData
-const { data: posts } = await useAsyncData("posts", () =>
+const { data: postsResponse } = await useAsyncData("posts-materiales-electricos", () =>
   $fetch(`${config.public.apiBase}/blog/category/Materiales Eléctricos`)
 );
+
+const posts = computed(() => {
+  const response = postsResponse.value;
+  return Array.isArray(response) ? response : response?.data ?? [];
+});
 
 // Variables para los filtros
 const searchQuery = ref("");
