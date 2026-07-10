@@ -133,12 +133,15 @@ const totalPages = ref(1)
 const pageSize = 16
 
 // Obtener los datos desde el backend paginado
-const { data: paginatedData, refresh } = await useAsyncData('posts', () =>
+const { data: paginatedData, refresh } = await useAsyncData('posts-noticias', () =>
   $fetch(`${config.public.apiBase}/blog?page=${currentPage.value}&limit=${pageSize}`)
 )
 
 // Computar posts actuales
-const posts = computed(() => paginatedData.value?.data || [])
+const posts = computed(() => {
+  const response = paginatedData.value
+  return Array.isArray(response) ? response : response?.data ?? []
+})
 
 // Actualizar total de páginas cuando se actualicen los datos
 watchEffect(() => {
