@@ -266,7 +266,6 @@ onMounted(async () => {
 
       return "<strong>Información no disponible</strong>";
     };
-
     /* =============================
        ESTILO
     ============================= */
