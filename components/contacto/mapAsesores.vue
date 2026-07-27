@@ -32,7 +32,7 @@ let colombiaGeoJSON;
 const asesores = [
   {
     bg: "#f4d03f",
-    name: "Carolina Cerquera",
+    name: "JD Eléctricos",
     number: "+57 320 339 25 65",
   },
   {
@@ -143,9 +143,9 @@ onMounted(async () => {
         "GUAINIA",
       ];
 
-      const carolina = ["ANTIOQUIA"];
+      const jd = ["ANTIOQUIA"];
 
-      if (carolina.includes(department)) return "#f4d03f";
+      if (jd.includes(department)) return "#f4d03f";
       if (dianie.includes(department)) return "#eb984e";
       if (esteban.includes(department)) return "#e74c3c";
       if (juan.includes(department)) return "#58dbdb";
@@ -238,7 +238,7 @@ onMounted(async () => {
         "GUAINIA",
       ];
 
-      const carolina = ["ANTIOQUIA"];
+      const jd = ["ANTIOQUIA"];
 
       if (vladimir.includes(department))
         return popupTemplate(department, "Vladimir Molina", "323 573 01 00");
@@ -258,15 +258,14 @@ onMounted(async () => {
       if (dianie.includes(department))
         return popupTemplate(department, "Dianie Novoa", "320 270 57 34");
 
-      if (carolina.includes(department))
-        return popupTemplate(department, "Carolina Cerquera", "320 339 25 65");
+      if (jd.includes(department))
+        return popupTemplate(department, "JD Eléctricos", "320 339 25 65");
 
       if (japs.includes(department))
         return popupTemplate(department, "JD Eléctricos", "310 802 32 77");
 
       return "<strong>Información no disponible</strong>";
     };
-
     /* =============================
        ESTILO
     ============================= */
