@@ -1,3 +1,4 @@
+import { Base } from "./.nuxt/components.d";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
@@ -19,7 +20,7 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css", "~/assets/css/animationtopage.css"],
   modules: ["@nuxt/image", "@nuxtjs/sitemap"],
   sitemap: {
-    siteUrl: "https://www.jdelectricos.com.co",
+    siteUrl: "https://jdelectricos.com.co",
     sources: ["/api/urls"],
     includeAppSources: true, // 👈 ESTA ES LA CLAVE
     trailingSlash: false,
@@ -41,7 +42,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: "es-CO",
+        lang: "es",
       },
       meta: [
         { name: "robots", content: "index, follow" },

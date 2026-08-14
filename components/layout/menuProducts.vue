@@ -6,6 +6,7 @@
     @mouseleave="scheduleClose"
   >
     <button
+      ref="menuButton"
       type="button"
       class="flex w-full items-center justify-between gap-2 rounded-xl py-2.5 text-white transition  hover:text-yellow-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400 lg:w-auto"
       :aria-expanded="open"
@@ -25,7 +26,8 @@
       <div
         v-if="open"
         id="products-dropdown"
-        class="mt-2 overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl shadow-black/50 lg:absolute lg:-left-150 lg:top-full lg:z-[70] lg:mt-3 lg:w-[min(880px,calc(100vw-3rem))]"
+        class="mt-2 overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl shadow-black/50 lg:fixed lg:left-4 lg:right-4 lg:z-[70] lg:mx-auto lg:mt-0 lg:w-auto lg:max-w-[880px]"
+        :style="dropdownTop ? { top: `${dropdownTop}px` } : undefined"
         @mouseenter="cancelClose"
         @mouseleave="scheduleClose"
       >
@@ -265,6 +267,7 @@ import {
   computed,
   defineComponent,
   h,
+  nextTick,
   onBeforeUnmount,
   onMounted,
   ref,
@@ -323,6 +326,8 @@ const config = useRuntimeConfig();
 const route = useRoute();
 const open = ref(false);
 const menuRoot = ref(null);
+const menuButton = ref(null);
+const dropdownTop = ref(0);
 const activeCategoryIndex = ref(0);
 const activeSubcategoryIndex = ref(0);
 const expandedCategoryIndex = ref(null);
@@ -362,7 +367,10 @@ const resetLevels = () => {
 };
 const toggleMenu = () => {
   open.value = !open.value;
-  if (open.value) resetLevels();
+  if (open.value) {
+    resetLevels();
+    nextTick(updateDropdownPosition);
+  }
 };
 const closeMenu = () => {
   open.value = false;
@@ -394,7 +402,16 @@ const openDesktop = () => {
   if (window.innerWidth >= 1024) {
     clearTimeout(closeTimer);
     open.value = true;
+    nextTick(updateDropdownPosition);
   }
+};
+const updateDropdownPosition = () => {
+  if (window.innerWidth < 1024 || !menuButton.value) {
+    dropdownTop.value = 0;
+    return;
+  }
+
+  dropdownTop.value = Math.round(menuButton.value.getBoundingClientRect().bottom + 8);
 };
 const scheduleClose = () => {
   if (window.innerWidth >= 1024) closeTimer = setTimeout(closeMenu, 220);
@@ -407,9 +424,13 @@ const handleOutside = (event) => {
 
 watch(() => route.fullPath, closeMenu);
 watch(categories, () => resetLevels());
-onMounted(() => document.addEventListener("click", handleOutside));
+onMounted(() => {
+  document.addEventListener("click", handleOutside);
+  window.addEventListener("resize", updateDropdownPosition);
+});
 onBeforeUnmount(() => {
   document.removeEventListener("click", handleOutside);
+  window.removeEventListener("resize", updateDropdownPosition);
   clearTimeout(closeTimer);
 });
 </script>
