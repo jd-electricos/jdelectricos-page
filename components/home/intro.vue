@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative min-h-screen flex items-center pt-20 xl:pt-2 lg:pt-20 pb-20 md:p-4 md:pt-16 md:pb-16 overflow-hidden bg-gray-800"
+    class="relative min-h-screen flex items-center pt-20 xl:pt-2 lg:pt-20 pb-20 md:p-4 md:pt-16 md:pb-16 overflow-hidden bg-slate-950"
   >
     <!-- Background Elements -->
     <div class="absolute inset-0 z-0">
@@ -16,67 +16,57 @@
       <div
         class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 xl:gap-46 items-center"
       >
-        <ClientOnly>
           <!-- Text Content -->
-          <Motion
-            :initial="{ opacity: 0, x: -30 }"
-            :animate="{ opacity: 1, x: 0 }"
-            :transition="{ duration: 0.8, ease: 'easeOut' }"
-          >
-            <Motion
-              :initial="{ opacity: 0, y: 20 }"
-              :animate="{ opacity: 1, y: 0 }"
-              :transition="{ delay: 0.2 }"
+          <div>
+            <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-yellow/10 border border-brand-yellow/20 text-brand-yellow text-xs font-bold uppercase tracking-widest mb-8 text-yellow-400"
             >
               <Zap :size="14" />
-              <span>Líderes en Materiales Eléctricos</span>
-            </Motion>
+              <span>Especialistas en materiales eléctricos</span>
+            </div>
 
             <h1
-              class="font-display text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight mb-6 text-white font-serif"
+              class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight lg:leading-[0.95] tracking-tight mb-6 text-white font-serif"
             >
-              JD <span class="text-brand-yellow">Eléctricos</span>
+              Materiales Eléctricos y Productos Eléctricos
+              <span class="text-brand-yellow">en Colombia</span>
             </h1>
 
-            <h2
-              class="text-2xl lg:text-2xl font-medium text-gray-300 mb-5 leading-tight"
+            <p
+              class="text-xl lg:text-xl font-medium text-gray-300 mb-5 leading-tight"
             >
-              Productos y Materiales Eléctricos
-            </h2>
+              Soluciones para proyectos de baja, media y alta tensión
+            </p>
 
             <p
               class="text-lg text-white opacity-85 mb-5 leading-relaxed max-w-xl"
             >
-              Distribuidores de Cable ACSR, aislador polimérico, pararrayo
-              polimérico, aislador pin, aislador carrete, aislador tensor, poste
-              de concreto, interruptores, equipos eléctricos, toma de tierra,
-              transformador, generadores y cables de baja tensión para proyectos
-              de alta, media y baja tensión.
+              Comercializamos materiales eléctricos para proyectos de baja,
+              media y alta tensión, con productos eléctricos, equipos eléctricos,
+              insumos eléctricos y suministros eléctricos para empresas,
+              contratistas e infraestructura en Colombia.
             </p>
 
             <div class="flex flex-wrap gap-4 mb-12">
-              <NuxtLink to="/catalogo-materiales-electricos">
-                <button
-                  class="cursor-pointer px-8 py-4 bg-brand-yellow text-brand-navy font-bold rounded-xl bg-yellow-400 hover:bg-white transition-all duration-300 flex items-center gap-2 group"
-                >
-                  Ver Catálogo
+              <NuxtLink
+                to="/catalogo-materiales-electricos"
+                class="cursor-pointer px-8 py-4 bg-brand-yellow text-brand-navy font-bold rounded-xl bg-yellow-400 hover:bg-white transition-all duration-300 flex items-center gap-2 group"
+              >
+                  Ver materiales eléctricos
                   <ArrowRight
                     :size="18"
                     class="group-hover:translate-x-1 transition-transform"
                   />
-                </button>
               </NuxtLink>
 
-              <NuxtLink
-                to="https://wa.me/573108023277?text=Hola JD Eléctricos, quiero asesorarme sobre sus materiales eléctricos"
+              <a
+                href="https://wa.me/573108023277?text=Hola JD Eléctricos, quiero asesorarme sobre sus materiales eléctricos"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cursor-pointer px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all duration-300"
               >
-                <button
-                  class="cursor-pointer px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all duration-300"
-                >
-                  Contactar Asesor
-                </button>
-              </NuxtLink>
+                  Hablar con un asesor
+              </a>
             </div>
 
             <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/5">
@@ -116,21 +106,16 @@
                 </span>
               </div>
             </div>
-          </Motion>
+          </div>
 
           <!-- Image Content -->
-          <Motion
-            :initial="{ opacity: 0, scale: 0.9 }"
-            :animate="{ opacity: 1, scale: 1 }"
-            :transition="{ duration: 1, ease: 'easeOut' }"
-            class="relative"
-          >
+          <div class="relative">
             <div
               class="relative z-10 rounded-4xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 aspect-4/5 lg:aspect-square"
             >
               <NuxtImg
                 src="/img/logo/Aislamientos.jpg"
-                alt="Infraestructura Eléctrica"
+                alt="Materiales eléctricos para redes de baja, media y alta tensión"
                 width="800"
                 height="1000"
                 format="webp"
@@ -159,7 +144,7 @@
             >
               <NuxtImg
                 src="/img/logo/LOGO-JD-ICONO.webp"
-                alt="JD Eléctricos Logo"
+                alt=""
                 width="128"
                 height="128"
                 quality="70"
@@ -168,15 +153,13 @@
             <div
               class="absolute -bottom-10 -left-10 w-48 h-48 border-2 border-brand-yellow/20 rounded-full z-0 text-amber-400"
             />
-          </Motion>
-        </ClientOnly>
+          </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { Motion } from "@motionone/vue";
 const ArrowRight = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.ArrowRight),
 );

@@ -8,7 +8,7 @@
     >
       <thead>
         <!-- Encabezado principal -->
-        <tr class="bg-gray-800 text-white">
+        <tr class="bg-slate-950 text-white">
           <template v-for="(item, index) in data" :key="'group-' + index">
             <th
               :colspan="Array.isArray(item.value) ? item.value.length : 1"

@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <!-- HERO PART -->
-    <section class="relative py-20 bg-gray-800 overflow-hidden">
+    <section class="relative py-20 bg-slate-950 overflow-hidden">
   <!-- Gradiente decorativo -->
   <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-gray-700/30 to-transparent pointer-events-none"></div>
 
@@ -109,7 +109,7 @@
           >
             Cómo funciona el proceso
           </h2>
-          <div class="w-20 h-1.5 bg-gray-800"></div>
+          <div class="w-20 h-1.5 bg-slate-950"></div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -142,7 +142,7 @@
         <section id="download-form" class="py-24">
           <div class="max-w-4xl mx-auto px-6">
             <div
-              class="bg-gray-800 rounded-[2.5rem] p-12 md:p-20 text-center shadow-2xl relative overflow-hidden"
+              class="bg-slate-950 rounded-[2.5rem] p-12 md:p-20 text-center shadow-2xl relative overflow-hidden"
             >
               <div
                 class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-br-full"

@@ -106,7 +106,7 @@
     </div>
 
     <!-- Sección de Políticas de Calidad -->
-    <div class="max-w-screen-lg mx-auto mt-12 bg-gray-800 p-12 rounded-2xl shadow-xl shadow-neutral-800/50">
+    <div class="max-w-screen-lg mx-auto mt-12 bg-slate-950 p-12 rounded-2xl shadow-xl shadow-neutral-800/50">
       <h2 class="text-2xl font-bold text-white border-yellow-600">
         Política de Calidad
       </h2>
@@ -146,7 +146,7 @@
         su proyecto tenga éxito.
       </p>
     </div>
-    <div class="bg-gray-800 mt-16 rounded-2xl shadow-xl shadow-neutral-800/50">
+    <div class="bg-slate-950 mt-16 rounded-2xl shadow-xl shadow-neutral-800/50">
       <div
         class="text-white py-12 px-6 sm:px-10 lg:px-40 flex flex-col sm:items-center lg:flex-row lg:justify-between gap-6 max-w-screen-xl mx-auto"
       >

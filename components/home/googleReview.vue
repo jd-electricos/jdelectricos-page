@@ -16,7 +16,7 @@ const emptyStars = (rating: number | null) => 5 - Math.round(rating || 0);
         </p>
 
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-3">
-          Nuestros clientes nos califican en Google
+          Opiniones de nuestros clientes sobre JD Eléctricos
         </h2>
 
         <div v-if="pending" class="mt-8 text-gray-500">

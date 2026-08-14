@@ -6,7 +6,7 @@
       :title="`Tabla de parámetros técnicos del producto ${props.name}`"
       role="table"
     >
-      <thead class="bg-gray-800 text-white">
+      <thead class="bg-slate-950 text-white">
         <tr>
           <th
             v-for="param in technicalParameters"

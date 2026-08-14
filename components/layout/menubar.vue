@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex justify-between items-center bg-gray-800 text-white px-4 lg:px-20 py-2 shadow-xl shadow-gray-900/50"
+    class="flex justify-between items-center bg-slate-950 text-white px-4 lg:px-20 py-2 shadow-xl shadow-gray-900/50"
   >
     <!-- logo de la empresa -->
     <div>
@@ -23,11 +23,11 @@
     </button>
 
     <!-- Menú de escritorio -->
-    <ul class="hidden lg:flex items-center space-x-4">
+    <ul class="hidden lg:flex items-center space-x-4 gap-5">
       <li
         v-for="item in items"
         :key="item.label"
-        class="relative group px-4 hover:bg-gray-600 rounded-md"
+        class="relative rounded-xl"
         @mouseenter="item.isOpen = true"
         @mouseleave="item.isOpen = false"
       >
@@ -41,7 +41,7 @@
           <!-- Submenú -->
           <div
             v-if="item.isOpen && item.items"
-            class="absolute right-0 top-full p-4 bg-gray-600 rounded-md min-w-[200px] z-50"
+            class="absolute right-0 top-full p-4 border-white/10 bg-slate-900 rounded-md min-w-[200px] z-50"
           >
             <ul
               :style="{
@@ -59,7 +59,7 @@
               >
                 <NuxtLink
                   :to="subitem.href"
-                  class="text-sm hover:text-yellow-300 p-2 hover:bg-gray-800 rounded-md"
+                  class="text-sm hover:text-yellow-300 p-2 hover:bg-slate-950 rounded-md"
                 >
                   • {{ subitem.label }}
                 </NuxtLink>
@@ -90,11 +90,11 @@
 
   <!-- Drawer menú móvil -->
   <nav
-    class="fixed top-0 left-0 h-screen w-64 bg-gray-800 z-50 transition-transform duration-300 flex flex-col pt-16"
+    class="fixed top-0 left-0 h-dvh w-[min(92vw,380px)] overflow-y-auto bg-slate-900 z-50 transition-transform duration-300 flex flex-col pt-16 shadow-2xl"
     :class="drawer ? 'translate-x-0' : '-translate-x-full'"
   >
     <button
-      @click="drawer = false"
+      @click="closeDrawerAndSubmenu"
       class="absolute top-2 right-2 text-3xl text-white cursor-pointer"
     >
       &times;
@@ -103,13 +103,65 @@
       <li
         v-for="(item, index) in items"
         :key="index"
-        class="text-white p-4 relative"
+        class="text-white px-4 py-2 relative"
       >
-        <!-- Si es 'Productos', también renderizamos el componente en móvil -->
-        <menuProducts
-          @closeDrawer="closeDrawerOfChild"
-          v-if="item.label === 'Productos'"
-        />
+        <!-- Productos móvil: dropdown de tres niveles dentro del drawer -->
+        <template v-if="item.label === 'Productos'">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between rounded-xl py-3 transition hover:bg-white/10 hover:text-yellow-300"
+            :aria-expanded="mobileProductsOpen"
+            @click="toggleMobileProducts"
+          >
+            <span class="flex items-center gap-2">
+              Productos
+            </span>
+            <ChevronDown class="h-4 w-4 transition-transform" :class="{ 'rotate-180': mobileProductsOpen }" aria-hidden="true" />
+          </button>
+
+          <div v-if="mobileProductsOpen" class="mt-2 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/60">
+            <div class="flex items-center justify-between border-b border-white/10 px-3 py-3">
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Categorías</p>
+              <NuxtLink to="/tienda-articulos-electricos" class="text-xs font-bold text-yellow-400" @click="closeDrawerAndSubmenu">Ver todo</NuxtLink>
+            </div>
+
+            <div v-if="mobileMenuPending" class="p-5 text-center text-sm text-slate-400">Cargando productos…</div>
+            <div v-else class="max-h-[58vh] overflow-y-auto overscroll-contain p-2">
+              <section v-for="(category, categoryIndex) in mobileProductMenu" :key="category.slug" class="mb-1 overflow-hidden rounded-xl" :class="{ 'bg-white/[0.05]': mobileCategoryOpen === categoryIndex }">
+                <button type="button" class="mobile-menu-row" :aria-expanded="mobileCategoryOpen === categoryIndex" @click="toggleMobileCategory(categoryIndex)">
+                  <span>{{ formatMenuName(category.name) }}</span>
+                  <ChevronDown class="h-4 w-4 shrink-0 transition-transform" :class="{ 'rotate-180': mobileCategoryOpen === categoryIndex }" />
+                </button>
+
+                <div v-if="mobileCategoryOpen === categoryIndex" class="border-t border-white/10 px-2 pb-2 pt-2">
+                  <NuxtLink :to="`/${category.slug}`" class="mobile-level-link" @click="closeDrawerAndSubmenu">
+                    Ver categoría <ArrowUpRight class="h-3.5 w-3.5" />
+                  </NuxtLink>
+
+                  <section v-for="(subcategory, subcategoryIndex) in category.subCategories || []" :key="subcategory.slug" class="mt-1 overflow-hidden rounded-lg bg-slate-950/60">
+                    <button type="button" class="mobile-menu-row pl-4 text-sm" :aria-expanded="mobileSubcategoryOpen === `${categoryIndex}-${subcategoryIndex}`" @click="toggleMobileSubcategory(categoryIndex, subcategoryIndex)">
+                      <span>{{ formatMenuName(subcategory.name) }}</span>
+                      <ChevronDown class="h-4 w-4 shrink-0 transition-transform" :class="{ 'rotate-180': mobileSubcategoryOpen === `${categoryIndex}-${subcategoryIndex}` }" />
+                    </button>
+
+                    <div v-if="mobileSubcategoryOpen === `${categoryIndex}-${subcategoryIndex}`" class="border-t border-white/10 p-2">
+                      <NuxtLink :to="`/${subcategory.slug}`" class="mobile-level-link" @click="closeDrawerAndSubmenu">
+                        Ver subcategoría <ArrowUpRight class="h-3.5 w-3.5" />
+                      </NuxtLink>
+                      <NuxtLink v-for="product in subcategory.productsInSubcategory || []" :key="product.slugProduct" :to="`/${product.slugProduct}`" class="mobile-product-link" @click="closeDrawerAndSubmenu">
+                        <span>{{ formatMenuName(product.name) }}</span>
+                        <ArrowRight class="h-3.5 w-3.5 shrink-0 text-yellow-400" />
+                      </NuxtLink>
+                      <p v-if="!subcategory.productsInSubcategory?.length" class="p-3 text-center text-xs text-slate-500">No hay productos publicados.</p>
+                    </div>
+                  </section>
+                  <p v-if="!category.subCategories?.length" class="p-3 text-center text-xs text-slate-500">No hay subcategorías publicadas.</p>
+                </div>
+              </section>
+              <p v-if="!mobileProductMenu.length" class="p-5 text-center text-sm text-slate-400">No fue posible cargar el catálogo.</p>
+            </div>
+          </div>
+        </template>
 
         <!-- Otros ítems -->
         <template v-else>
@@ -189,9 +241,39 @@ const Menu = defineAsyncComponent(() =>
 const X = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.X),
 );
-import { ref } from "vue";
+const PackageOpen = defineAsyncComponent(() => import("lucide-vue-next").then((m) => m.PackageOpen));
+const ChevronDown = defineAsyncComponent(() => import("lucide-vue-next").then((m) => m.ChevronDown));
+const ArrowUpRight = defineAsyncComponent(() => import("lucide-vue-next").then((m) => m.ArrowUpRight));
+const ArrowRight = defineAsyncComponent(() => import("lucide-vue-next").then((m) => m.ArrowRight));
+import { computed, ref } from "vue";
 const drawer = ref(false);
 const activeSubMenu = ref(null);
+const mobileProductsOpen = ref(false);
+const mobileCategoryOpen = ref(null);
+const mobileSubcategoryOpen = ref(null);
+const config = useRuntimeConfig();
+
+const { data: mobileMenuData, pending: mobileMenuPending } = useFetch(
+  `${config.public.apiBase}/products/menujd`,
+  { key: "navigation-products", server: true, timeout: 5000, default: () => [] },
+);
+const mobileProductMenu = computed(() => Array.isArray(mobileMenuData.value) ? mobileMenuData.value : []);
+const formatMenuName = (name = "") => name.toLocaleLowerCase("es-CO").replace(/(^|\s)\S/g, (letter) => letter.toLocaleUpperCase("es-CO"));
+const toggleMobileProducts = () => {
+  mobileProductsOpen.value = !mobileProductsOpen.value;
+  if (!mobileProductsOpen.value) {
+    mobileCategoryOpen.value = null;
+    mobileSubcategoryOpen.value = null;
+  }
+};
+const toggleMobileCategory = (index) => {
+  mobileCategoryOpen.value = mobileCategoryOpen.value === index ? null : index;
+  mobileSubcategoryOpen.value = null;
+};
+const toggleMobileSubcategory = (categoryIndex, subcategoryIndex) => {
+  const key = `${categoryIndex}-${subcategoryIndex}`;
+  mobileSubcategoryOpen.value = mobileSubcategoryOpen.value === key ? null : key;
+};
 const items = ref([
   { label: "Inicio", href: "/" },
   // {
@@ -331,6 +413,9 @@ const closeSubMenu = () => {
 };
 const closeDrawerAndSubmenu = () => {
   drawer.value = false;
+  mobileProductsOpen.value = false;
+  mobileCategoryOpen.value = null;
+  mobileSubcategoryOpen.value = null;
   closeSubMenu();
 };
 
@@ -338,3 +423,54 @@ function closeDrawerOfChild(value) {
   drawer.value = value;
 }
 </script>
+
+<style scoped>
+.mobile-menu-row {
+  display: flex;
+  width: 100%;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: rgb(226 232 240);
+}
+.mobile-menu-row:hover,
+.mobile-menu-row:focus-visible {
+  background: rgb(250 204 21);
+  color: rgb(2 6 23);
+  outline: none;
+}
+.mobile-level-link,
+.mobile-product-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-radius: 0.65rem;
+  padding: 0.6rem 0.75rem;
+}
+.mobile-level-link {
+  background: rgb(255 255 255 / 0.06);
+  color: rgb(250 204 21);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.mobile-product-link {
+  margin-top: 0.2rem;
+  padding-left: 1rem;
+  color: rgb(203 213 225);
+  font-size: 0.75rem;
+  line-height: 1.15rem;
+}
+.mobile-product-link:hover,
+.mobile-product-link:focus-visible {
+  background: rgb(255 255 255 / 0.08);
+  color: white;
+  outline: none;
+}
+</style>

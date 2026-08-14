@@ -68,7 +68,7 @@
           :href="whatsappLink"
           target="_blank"
           itemprop="url"
-          class="bg-gray-800 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto shadow-xl shadow-neutral-800/50 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer text-center"
+          class="bg-slate-950 text-white font-bold p-4 rounded-xl hover:bg-gray-700 w-full sm:w-auto shadow-xl shadow-neutral-800/50 transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer text-center"
         >
           Cotizar Producto
         </a>
