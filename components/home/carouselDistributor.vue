@@ -5,7 +5,7 @@
     >
       <div class="flex flex-col items-center justify-center text-center">
         <h2 class="sm:text-5xl text-3xl font-extrabold text-gray-800 font-serif">
-          Conoce algunos de nuestros clientes
+          Empresas que confían en JD Eléctricos
         </h2>
       </div>
       <!-- Contenedor del fondo con opacidad -->
@@ -46,12 +46,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-
-const images = ref([]);
-
-onMounted(() => {
-  images.value = [
+const images = [
     {
       itemImageSrc:
         "/img/carousel-customers/logo-air-e.webp",
@@ -97,8 +92,7 @@ onMounted(() => {
         "/img/carousel-customers/logo-epm.webp",
       alt: "logo epm",
     },
-  ];
-});
+];
 </script>
 
 <style scoped>

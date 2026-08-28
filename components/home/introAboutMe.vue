@@ -4,7 +4,7 @@
       <div class="lg:flex-1/2 flex justify-center">
         <NuxtImg
           src="/img/logo/resize-LOGO-JD-CTA.webp"
-          alt="logo de jd electricos"
+          alt="JD Eléctricos, distribuidor de materiales eléctricos en Colombia"
           width="256"
           height="256"
           sizes="(max-width: 640px) 128px,
@@ -19,12 +19,10 @@
         <p
           class="text-justify bg-[#fff9df] p-5 rounded-2xl font-serif max-w-xl mx-auto shadow-xl shadow-neutral-800/50"
         >
-          <em class="font-bold"> JD ELECTRICOS </em> contamos con una
-          trayectoria y experiencia para la Venta de Material Electrico en
-          Bogota y otras ciudades. Manejamos un portafolio de suministros
-          electricos y Productos Electricos asequibles, de calidad, extensos y
-          óptimo para las Instalaciones Electricas con entregas oportunas en
-          todo Colombia.
+          <em class="font-bold">En JD Eléctricos</em> contamos con experiencia
+          en la comercialización de materiales y componentes para instalaciones
+          y redes. Atendemos requerimientos de insumos eléctricos y suministros
+          para clientes empresariales en Colombia.
         </p>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <!-- <div class="p-3 bg-white w-full">
       <bannerPromotions roundedStyle="rounded-2xl" />
     </div> -->
-    <div class="bg-gray-800 px-10">
+    <div class="bg-slate-950 px-10">
       <div class="lg:text-6xl text-4xl font-bold font-serif text-white p-10">
         <h1 class="text-shadow-lg/20 text-shadow-gray-950">
           Materiales Electricos
@@ -40,7 +40,7 @@
         </select>
       </div>
       <div class="flex flex-col">
-        <div class="flex flex-wrap justify-center">
+        <div class="flex flex-wrap justify-center gap-2">
           <cardCategoriesToFeed
             v-for="(categories, index) in paginatedCategories"
             :key="index"

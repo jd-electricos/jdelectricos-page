@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-800">
+  <div class="bg-slate-950">
     <formContacto />
     <mapa />
   </div>

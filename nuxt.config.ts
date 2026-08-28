@@ -62,7 +62,7 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true, // Simplemente true y Nitro aplicará gzip y brotli
     prerender: {
-      crawlLinks: true,
+      crawlLinks: false,
     },
     routeRules: {
       // Páginas principales

@@ -7,9 +7,9 @@
     </div>
 
     <!-- Contenido principal (Empuja el footer hacia abajo) -->
-    <div class="flex-grow mt-[19.5rem] md:mt-24">
+    <main class="flex-grow mt-[19.5rem] md:mt-24">
       <NuxtPage />
-    </div>
+    </main>
 
     <!-- Footer -->
     <footerJd />

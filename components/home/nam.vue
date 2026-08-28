@@ -1,5 +1,5 @@
 <template>
-  <section class="relative py-24 overflow-hidden bg-gray-800">
+  <section class="relative py-24 overflow-hidden bg-slate-950">
     <!-- Background Effects -->
     <div class="absolute inset-0 z-0">
       <div
@@ -11,25 +11,19 @@
     </div>
 
     <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <ClientOnly>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <!-- Información empresa -->
-          <Motion
-            :initial="{ opacity: 0, x: -40 }"
-            :animate="{ opacity: 1, x: 0 }"
-            :transition="{ duration: 0.8 }"
-          >
+          <div>
             <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">
-              JD Eléctricos
-              <span class="text-yellow-400">| materiales eléctricos</span>
+              JD Eléctricos:
+              <span class="text-yellow-400">materiales eléctricos en Bogotá</span>
             </h2>
 
             <p class="text-gray-300 text-lg mb-8 leading-relaxed">
-              En JD Eléctricos somos proveedores de materiales eléctricos para
-              proyectos de alta, media y baja tensión. Ofrecemos aisladores
-              eléctricos, cables, conectores, cortacircuitos, herrajes
-              galvanizados, pararrayos, postes, transformadores y soldadura
-              exotérmica con calidad certificada.
+              Desde nuestra sede en Bogotá atendemos requerimientos de materiales
+              eléctricos para proyectos de baja, media y alta tensión. Nuestro
+              portafolio incluye cables, aisladores, conectores, cortacircuitos,
+              herrajes, pararrayos, postes, transformadores y soldadura exotérmica.
             </p>
 
             <!-- Datos -->
@@ -78,15 +72,10 @@
                 Ver en Google Maps
               </a>
             </div>
-          </Motion>
+          </div>
 
           <!-- Mapa -->
-          <Motion
-            :initial="{ opacity: 0, scale: 0.9 }"
-            :animate="{ opacity: 1, scale: 1 }"
-            :transition="{ duration: 0.9 }"
-            class="relative"
-          >
+          <div class="relative">
             <div
               class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
             >
@@ -108,9 +97,8 @@
             >
               <Store :size="30" />
             </div>
-          </Motion>
+          </div>
         </div>
-      </ClientOnly>
     </div>
     <div class="pt-15">
       <googleReview />
@@ -119,8 +107,6 @@
 </template>
 
 <script setup>
-import { Motion } from "@motionone/vue";
-
 const MapPin = defineAsyncComponent(() =>
   import("lucide-vue-next").then((m) => m.MapPin),
 );

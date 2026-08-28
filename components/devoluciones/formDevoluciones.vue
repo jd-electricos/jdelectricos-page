@@ -2,7 +2,7 @@
   <section class="py-24 bg-gray-50">
     <div class="max-w-4xl mx-auto px-6">
       <div
-        class="bg-gray-800 rounded-[2.5rem] p-12 md:p-20 shadow-2xl relative overflow-hidden"
+        class="bg-slate-950 rounded-[2.5rem] p-12 md:p-20 shadow-2xl relative overflow-hidden"
       >
         <div
           class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-br-full"
