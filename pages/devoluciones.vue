@@ -119,7 +119,7 @@
             class="group cursor-default"
           >
             <div
-              class="text-6xl font-black text-gray-100 group-hover:text-gray-800 transition-colors duration-500 mb-4"
+              class="text-6xl font-bold text-gray-100 group-hover:text-gray-800 transition-colors duration-500 mb-4"
             >
               {{ step.number }}
             </div>

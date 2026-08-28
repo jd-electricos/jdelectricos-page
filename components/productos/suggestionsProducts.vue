@@ -1,80 +1,90 @@
 <template>
-  <section class="flex flex-col items-center gap-6 overflow-hidden">
-    <h3 class="text-2xl md:text-4xl font-bold">Productos Similares</h3>
-
-    <!-- VIEWPORT -->
-    <div class="relative w-full overflow-hidden">
-      <!-- TRACK -->
-      <div class="flex flex-nowrap gap-4 animate-carousel carousel-track">
-        <div
-          v-for="product in duplicatedProducts"
-          :key="product.uid"
-          class="w-48 shrink-0 flex flex-col items-center justify-between border-2 border-gray-600 rounded-2xl hover:border-yellow-500 hover:bg-white gap-3 p-4"
+  <section v-if="products.length" aria-labelledby="similar-products-title">
+    <div class="mb-6 flex items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.16em] text-[#F1B81A]">
+          Continúa explorando
+        </p>
+        <h2
+          id="similar-products-title"
+          class="mt-2 text-2xl font-bold tracking-tight text-[#0B4168] sm:text-3xl"
         >
-          <NuxtLink :to="`/${product.slugProduct}`">
-            <NuxtImg
-              :src="product.previewImg"
-              :alt="product.name"
-              class="w-40 rounded-2xl hover:mask-b-from-50%"
-              width="160"
-              height="160"
-            />
-          </NuxtLink>
-
-          <div class="flex flex-col items-center gap-3 text-center">
-            <NuxtLink :to="`/${product.slugProduct}`">
-              <h3 class="font-bold hover:text-gray-500">
-                {{ product.name }}
-              </h3>
-            </NuxtLink>
-            <NuxtLink :to="`/${product.slugProduct}`">
-              <p class="font-semibold hover:text-gray-500">Saber más</p>
-            </NuxtLink>
-          </div>
-        </div>
+          Productos relacionados
+        </h2>
       </div>
+      <NuxtLink
+        :to="`/${dataSlug}`"
+        class="hidden font-bold text-[#0B4168] underline decoration-[#F1B81A] decoration-2 underline-offset-4 hover:text-[#11649a] sm:block"
+        >Ver categoría</NuxtLink
+      >
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+      <article
+        v-for="product in products"
+        :key="product.id || product.slugProduct"
+        class="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-1 hover:border-[#0B4168]/30 hover:shadow-lg"
+      >
+        <NuxtLink
+          :to="`/${product.slugProduct}`"
+          class="block aspect-square overflow-hidden bg-[#F5F7FA] p-3 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#F1B81A]/40"
+        >
+          <NuxtImg
+            :src="product.previewImg || fallbackImage"
+            :alt="product.name || 'Producto eléctrico relacionado'"
+            class="h-full w-full object-contain transition duration-300 group-hover:scale-[1.03] rounded-2xl"
+            width="360"
+            height="360"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            loading="lazy"
+            decoding="async"
+            @error="setFallback"
+          />
+        </NuxtLink>
+        <div class="flex flex-1 flex-col p-4">
+          <h3
+            class="line-clamp-3 break-words text-sm font-extrabold leading-5 text-[#1F2937] sm:text-base"
+          >
+            <NuxtLink
+              :to="`/${product.slugProduct}`"
+              class="hover:text-[#0B4168]"
+              >{{ product.name }}</NuxtLink
+            >
+          </h3>
+          <NuxtLink
+            :to="`/${product.slugProduct}`"
+            class="mt-auto inline-flex min-h-11 items-center gap-2 pt-4 text-sm font-bold text-[#0B4168] transition group-hover:text-[#11649a]"
+          >
+            Ver producto <ArrowRight class="h-4 w-4" aria-hidden="true" />
+          </NuxtLink>
+        </div>
+      </article>
     </div>
   </section>
 </template>
+
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { computed } from "vue";
+import { ArrowRight } from "lucide-vue-next";
 
 const config = useRuntimeConfig();
-const props = defineProps({
-  dataSlug: String,
-});
+const props = defineProps({ dataSlug: { type: String, default: "" } });
+const fallbackImage = "/img/logo/LOGO-JD-ICONO.webp";
 
-const products = ref([]);
-
-const duplicatedProducts = computed(() =>
-  [...products.value, ...products.value].map((p, i) => ({
-    ...p,
-    uid: `${p.id}-${i}`,
-  }))
+const { data } = await useAsyncData(
+  () => `related-products-${props.dataSlug}`,
+  () =>
+    $fetch(`${config.public.apiBase}/subcategories/slug/${props.dataSlug}`, {
+      timeout: 5000,
+    }).catch(() => null),
+  { watch: [() => props.dataSlug], default: () => null },
 );
-const fetchData = async () => {
-  const response = await fetch(
-    `${config.public.apiBase}/subcategories/slug/${props.dataSlug}`
-  );
-  const data = await response.json();
-  products.value = data.productsInSubcategory;
+const products = computed(() =>
+  Array.isArray(data.value?.productsInSubcategory)
+    ? data.value.productsInSubcategory.slice(0, 4)
+    : [],
+);
+const setFallback = (event) => {
+  event.target.src = fallbackImage;
 };
-onMounted(fetchData);
 </script>
-<style scoped>
-@keyframes carousel {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-80%);
-  }
-}
-.animate-carousel {
-  animation: carousel 20s linear infinite;
-}
-/* PAUSA cuando el mouse está sobre cualquier card */
-.carousel-track:hover {
-  animation-play-state: paused;
-}
-</style>

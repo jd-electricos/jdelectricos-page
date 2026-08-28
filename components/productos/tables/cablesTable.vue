@@ -1,32 +1,41 @@
 <template>
-  <div class="overflow-x-auto p-4">
+  <div class="overflow-hidden rounded-2xl border border-slate-200">
     <table
-      class="min-w-full text-sm text-center bg-white border border-gray-300 rounded-lg shadow-md"
+      class="w-full border-collapse bg-white text-left text-sm"
       :aria-label="`Tabla de parámetros técnicos del producto ${props.name}`"
       :title="`Tabla de parámetros técnicos del producto ${props.name}`"
       role="table"
     >
-      <thead class="bg-slate-950 text-white">
+      <thead class="bg-[#0B4168] text-white">
         <tr>
           <th
-            v-for="param in technicalParameters"
-            :key="param.label"
             scope="col"
-            class="px-4 py-3 border text-sm font-semibold tracking-wide"
+            class="w-2/5 px-4 py-4 text-xs font-bold uppercase tracking-wider sm:px-6"
           >
-            {{ param.label }}
+            Especificación
+          </th>
+          <th
+            scope="col"
+            class="px-4 py-4 text-xs font-bold uppercase tracking-wider sm:px-6"
+          >
+            Detalle
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-gray-50 transition-colors">
-          <td
-            v-for="param in technicalParameters"
-            :key="param.label"
-            class="px-4 py-3 border text-gray-800"
+        <tr
+          v-for="(param, index) in technicalParameters"
+          :key="`${param.label}-${index}`"
+          class="border-t border-slate-200 odd:bg-white even:bg-slate-50/70 hover:bg-[#F1B81A]/10"
+        >
+          <th
+            scope="row"
+            class="break-words px-4 py-4 align-top font-bold text-[#0B4168] sm:px-6"
           >
-            <!-- {{ param.value }} parametro que renderiza los string o textos sin modificar mi zo -->
-            {{ param.value.toLowerCase().charAt(0).toUpperCase() + param.value.toLowerCase().slice(1) }}
+            {{ param.label }}
+          </th>
+          <td class="break-words px-4 py-4 leading-6 text-slate-700 sm:px-6">
+            {{ formatValue(param.value) }}
           </td>
         </tr>
       </tbody>
@@ -35,35 +44,15 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from "vue";
-
 const props = defineProps({
   technicalParameters: Array,
   name: String,
 });
 
-const columns = [
-  { field: "label", header: "Especificaciones" },
-  { field: "value", header: "Detalles" },
-];
-
-const products = ref([]);
-
-const formattedProducts = computed(
-  () =>
-    props.technicalParameters?.map((param) => ({
-      label: param.label,
-      value: param.value,
-    })) || []
-);
-
-watch(
-  formattedProducts,
-  (newValue) => {
-    if (JSON.stringify(newValue) !== JSON.stringify(products.value)) {
-      products.value = newValue;
-    }
-  },
-  { immediate: true }
-);
+const formatValue = (value) => {
+  if (value === null || value === undefined || value === "")
+    return "No especificado";
+  const text = String(value);
+  return text.charAt(0).toLocaleUpperCase("es-CO") + text.slice(1);
+};
 </script>

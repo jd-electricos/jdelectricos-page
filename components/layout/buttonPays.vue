@@ -11,7 +11,7 @@
 
       <!-- Tooltip -->
       <span
-        class="absolute right-full mr-4 bg-brand-dark text-brand-yellow border border-brand-yellow/30 px-4 py-2 rounded-lg text-sm font-black opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl translate-x-4 group-hover:translate-x-0"
+        class="absolute right-full mr-4 bg-brand-dark text-brand-yellow border border-brand-yellow/30 px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl translate-x-4 group-hover:translate-x-0"
       >
         PAGAR FACTURA
       </span>

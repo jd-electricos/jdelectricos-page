@@ -1,18 +1,18 @@
 <template>
-  <div class="overflow-x-auto p-4">
+  <div class="overflow-x-auto rounded-2xl border border-slate-200" tabindex="0" aria-label="Desplaza horizontalmente para consultar toda la tabla">
     <table
-      class="min-w-full text-sm text-center bg-white border border-gray-300 rounded-lg shadow-md"
+      class="min-w-[720px] w-full border-collapse bg-white text-center text-sm"
       :aria-label="`Tabla de parámetros técnicos del producto ${props.name}`"
       :title="`Tabla de parámetros técnicos del producto ${props.name}`"
       role="table"
     >
       <thead>
         <!-- Encabezado principal -->
-        <tr class="bg-slate-950 text-white">
+        <tr class="bg-[#0B4168] text-white">
           <template v-for="(item, index) in data" :key="'group-' + index">
             <th
               :colspan="Array.isArray(item.value) ? item.value.length : 1"
-              class="px-4 py-3 border text-sm font-semibold tracking-wide"
+              class="border-r border-white/15 px-4 py-4 text-xs font-bold uppercase tracking-wider"
               scope="col"
             >
               {{ item.label }}
@@ -21,36 +21,36 @@
         </tr>
 
         <!-- Subencabezados si existen -->
-        <tr class="bg-gray-700 text-white">
+        <tr class="bg-[#083552] text-white">
           <template v-for="(item, index) in data" :key="'subheader-' + index">
             <template v-if="Array.isArray(item.value)">
               <th
                 v-for="(sub, i) in item.value"
                 :key="'sub-' + i"
-                class="px-4 py-2 border text-xs"
+                class="border-r border-white/15 px-4 py-3 text-xs font-semibold"
               >
                 {{ sub.label }}
               </th>
             </template>
-            <th v-else class="px-4 py-2 border text-xs"></th>
+            <th v-else class="border-r border-white/15 px-4 py-3 text-xs"></th>
           </template>
         </tr>
       </thead>
 
       <!-- Cuerpo de la tabla -->
       <tbody>
-        <tr class="hover:bg-gray-50 transition-colors">
+        <tr class="transition-colors hover:bg-[#F1B81A]/10">
           <template v-for="(item, index) in data" :key="'row-' + index">
             <template v-if="Array.isArray(item.value)">
               <td
                 v-for="(sub, i) in item.value"
                 :key="'value-' + i"
-                class="px-4 py-2 border text-gray-800"
+                class="break-words border-r border-t border-slate-200 px-4 py-4 text-slate-700"
               >
                 {{ sub.value }}
               </td>
             </template>
-            <td v-else class="px-4 py-2 border text-gray-800">
+            <td v-else class="break-words border-r border-t border-slate-200 px-4 py-4 text-slate-700">
               {{ item.value }}
             </td>
           </template>
